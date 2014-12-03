@@ -16,10 +16,10 @@ WP Ticket enables support staff to receive, process, and respond to service requ
 WP Ticket is a very easy to use ticket management system to process support requests without assigning ticket issues to a project. For project based issue tracking and management, check out [Software Issue Manager](https://wordpress.org/plugins/software-issue-manager/).
 
 > WP Ticket is designed and developed using WP App Studio AUTOBAHN without writing a single line of PHP code. Customize it to your needs by:<br>
-> 1. Download App signature.<br>
-> 2. Import App signature to WP App Studio AUTOBAHN.<br>
+> 1. [Download App signature.](https://wpas.emdplugins.com/wpas-demos/)<br>
+> 2. [Import App signature to WP App Studio AUTOBAHN.](https://wpas.emdplugins.com/)<br>
 > 3. Customize the app design.<br>
-> 4. Open up a ProDev account.<br>
+> 4. [Open up a ProDev account.](https://wpas.emdplugins.com/downloads/pro-dev-app/)<br>
 > 5. Generate your custom plugin.<br>
 > 6. Download/Install/Activate your plugin.<br>
 > 7. Set your ProDev license in your plugins setting page, licenses tab. You have 1 year to customize, update your plugin. After initial activation, all other updates are done through WordPress Plugin page like other WP plugins.
@@ -116,7 +116,7 @@ The simplest way to install is to click on 'Plugins' then 'Add' and type 'Wp Tic
 == Screenshots ==
 1. Ticket Entry form can be added in a page using a shortcode
 2. Search Tickets form can be added in a page using a shortcode
-3. Displays Ticket single page on the frontend
+3. Displays Ticket single page and Recent Tickets sidebar widget on the frontend
 4. Displays Ticket Edit screen in admin area
 5. Displays Ticket List in admin area
 6. Displays WP Ticket Pro dashboard with statistics and charts in admin area
