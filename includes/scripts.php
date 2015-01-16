@@ -3,7 +3,7 @@
  * Enqueue Scripts Functions
  *
  * @package WP_TICKET_COM
- * @version 1.0.0
+ * @version 1.1
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
@@ -17,8 +17,11 @@ add_action('admin_enqueue_scripts', 'wp_ticket_com_load_admin_enq');
  */
 function wp_ticket_com_load_admin_enq($hook) {
 	wp_enqueue_script('emd-share', WP_TICKET_COM_PLUGIN_URL . 'assets/js/emd-share.js', '', WP_TICKET_COM_VERSION, true);
-	if ($hook == 'settings_page_wp_ticket_com_settings') {
+	if ($hook == 'toplevel_page_wp_ticket_com' || $hook == 'wp-ticket_page_wp_ticket_com_notify') {
 		wp_enqueue_script('accordion');
+		return;
+	} else if ($hook == 'wp-ticket_page_wp_ticket_com_store') {
+		wp_enqueue_style('admin-tabs', WP_TICKET_COM_PLUGIN_URL . 'assets/css/admin-store.css');
 		return;
 	}
 	global $post;

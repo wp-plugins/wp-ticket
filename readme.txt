@@ -5,24 +5,33 @@ Author URI: https://emarketdesign.com
 Donate link: https://emarketdesign.com/donate-emarket-design/
 Requires at least: 3.8
 Tested up to: 4.1
-Stable tag: 1.0.0
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: help, support, support ticket, ticket, email notification, user support plugin, support plugin , ticket plugin, support system, helpdesk, ticket system, ticketing system, help desk, customer service, submit tickets, CRM, ticket management, wp app studio, wpas
+Tags: help, support, support ticket, ticket, email notification, user support plugin, support plugin , ticket plugin, support system, helpdesk, ticket system, ticketing system, help desk, customer service, submit tickets, CRM, ticket management, wp app studio, wpas, IMAP, POP3, incoming email, email, post by email
 
 WP Ticket enables support staff to receive, process, and respond to service requests efficiently and effectively.
 
 == Description ==
-WP Ticket is a very easy to use ticket management system to process support requests without assigning ticket issues to a project. For project based issue tracking and management, check out [Software Issue Manager](https://wordpress.org/plugins/software-issue-manager/).
+WP Ticket is a very easy to use helpdesk and support ticket management system to receive, process, and respond to service requests.
 
+For project based issue tracking and management, check out [Software Issue Manager](https://wordpress.org/plugins/software-issue-manager/).
+
+[Premium editions](https://emdplugins.com/plugins) are available.
+
+> <strong>Customization</strong><br>
 > WP Ticket is designed and developed using WP App Studio AUTOBAHN without writing a single line of PHP code. Customize it to your needs by:<br>
 > 1. [Download App signature.](https://wpas.emdplugins.com/wpas-demos/)<br>
-> 2. [Import App signature to WP App Studio AUTOBAHN.](https://wpas.emdplugins.com/)<br>
-> 3. Customize the app design.<br>
-> 4. [Open up a ProDev account.](https://wpas.emdplugins.com/downloads/pro-dev-app/)<br>
-> 5. Generate your custom plugin.<br>
-> 6. Download/Install/Activate your plugin.<br>
-> 7. Set your ProDev license in your plugins setting page, licenses tab. You have 1 year to customize, update your plugin. After initial activation, all other updates are done through WordPress Plugin page like other WP plugins.
+> 2. [Download WP App Studio.](https://wordpress.org/plugins/wp-app-studio/)<br>
+> 3. [Import App signature to WP App Studio AUTOBAHN.](https://wpas.emdplugins.com/)<br>
+> 4. Customize the app design.<br>
+> 5. [Open up a ProDev account.](https://wpas.emdplugins.com/downloads/pro-dev-app/)<br>
+> 6. Generate your custom plugin.<br>
+> 7. Download/Install/Activate your plugin.<br>
+> 8. Set your ProDev license in your plugins setting page, licenses tab. You have 1 year to customize, update your plugin. After initial activation, all other updates are done through WordPress Plugin page like other WP plugins.
+
+= Works with WPAS Extensions =
+* If you need issues to be created through email (POP3/IMAP supported), you can purchase [WPAS incoming email extension](https://emdplugins.com/plugins/incoming-email-extension/).
 
 <strong>Community Edition Features</strong><br>
 * Useful for small teams *without* organizational content access requirements.<br>
@@ -122,10 +131,14 @@ The simplest way to install is to click on 'Plugins' then 'Add' and type 'Wp Tic
 6. Displays WP Ticket Pro dashboard with statistics and charts in admin area
 
 == Changelog ==
-
+= 1.1.0 =
+* Added the required configuration to use WPAS Incoming Email extension
+* Fixed Misc bugs.
 = 1.0.0 =
 * Initial release
 
 == Frequently Asked Questions ==
 
 == Upgrade Notice ==
+= 1.1.0 =
+* Added the required configuration to use WPAS Incoming Email extension

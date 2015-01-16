@@ -19,7 +19,10 @@ onkeyup: false,
 onclick: false,
 errorClass: 'text-danger',
 rules: {
-  emd_ticket_first_name : {
+  'ticket_topic':{
+required:true,
+},
+emd_ticket_first_name : {
 required  : true,
 },
 emd_ticket_last_name : {
@@ -40,9 +43,6 @@ required  : true,
 },
 emd_ticket_attachment : {
 required  : false,
-},
-'ticket_topic':{
-required:true,
 },
 },
 success: function(label) {

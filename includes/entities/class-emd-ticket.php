@@ -3,7 +3,7 @@
  * Entity Class
  *
  * @package WP_TICKET_COM
- * @version 1.0.0
+ * @version 1.1
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;

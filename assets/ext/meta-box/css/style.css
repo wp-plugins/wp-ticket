@@ -75,3 +75,6 @@ select.error {
 #side-sortables .rwmb-input {
 	width: 100%;
 }
+#commentsdiv ul{
+        list-style: inside none disc;
+}

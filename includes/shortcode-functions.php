@@ -19,13 +19,21 @@ if (!defined('ABSPATH')) exit;
  * @return string layout html
  */
 function emd_shc_get_layout_list($atts, $args, $args_default, $fields) {
+	global $wp_rewrite;
 	//fields -- app , class, shc , form, has_pages , pageno, theme
 	if ($fields['has_pages'] && empty($args)) {
 		if (is_front_page() && get_query_var('pagename') == get_post(get_query_var('page_id'))->post_name) {
 			$fields['pageno'] = get_query_var('paged');
-		} else {
+		}
+		elseif($wp_rewrite->permalink_structure == '/%postname%/' || $wp_rewrite->permalink_structure == ''){
 			if (get_query_var('pageno')) $fields['pageno'] = get_query_var('pageno');
 		}
+		else {
+			$fields['pageno'] = get_query_var('paged');
+		}
+		if($fields['pageno'] == 0){
+			$fields['pageno'] = 1;	
+		}	
 	}
 	if (empty($args)) {
 		if (is_array($atts) && !empty($atts['filter'])) {
@@ -72,8 +80,12 @@ function emd_shc_get_layout_list($atts, $args, $args_default, $fields) {
 			if ($wp_rewrite->using_permalinks()) {
 				if (is_front_page()) {
 					$base = '/' . get_post(get_query_var('page_id'))->post_name . '/page/%#%/';
-				} else {
+				}
+				elseif($wp_rewrite->permalink_structure == '/%postname%/'){
 					$base = '/' . get_query_var('pagename') . '/pageno/%#%/';
+				}
+				else {
+					$base = '/' . get_query_var('pagename') . '/page/%#%/';
 				}
 			} else {
 				$base = '/?page_id=' . get_query_var('page_id') . '&pageno=%#%';
@@ -84,6 +96,7 @@ function emd_shc_get_layout_list($atts, $args, $args_default, $fields) {
 				'base' => $base,
 				'format' => '%#%',
 				'type' => 'array',
+				'add_args' => true,
 			));
 			$paging_html = emd_shc_get_pagination($fields['theme'], $paging, $fields['pageno']); ?>
 			<div class='pagination-bar'>
@@ -113,7 +126,7 @@ function emd_shc_get_pagination($type, $paging, $pageno) {
 		$paging_html = "<ul class='pagination'>";
 		foreach ($paging as $key_paging => $my_paging) {
 			$paging_html.= "<li";
-			if (($pageno == 1 && $key_paging == 0) || ($pageno > 1 && $pageno == $key_paging)) {
+			if(preg_match('/current/',$my_paging)){
 				$paging_html.= " class='active'";
 			}
 			$paging_html.= ">" . $my_paging . "</li>";
@@ -123,7 +136,7 @@ function emd_shc_get_pagination($type, $paging, $pageno) {
 		$paging_html = "<div class='nav-pages'>";
 		foreach ($paging as $key_paging => $my_paging) {
 			$paging_html.= "<div class='nav-item ui-state-default ui-corner-all";
-			if (($pageno == 1 && $key_paging == 0) || ($pageno > 1 && $pageno == $key_paging)) {
+			if(preg_match('/current/',$my_paging)){
 				$paging_html.= " ui-state-highlight";
 			}
 			$paging_html.= "'>" . $my_paging . "</div>";

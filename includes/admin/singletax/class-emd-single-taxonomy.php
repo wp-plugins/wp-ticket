@@ -200,7 +200,7 @@ class Emd_Single_Taxonomy {
 		<a id="<?php echo $taxonomy; ?>-add-toggle" href="#<?php echo $taxonomy; ?>-add" class="hide-if-no-js" tabindex="3">
 		<?php
 			/* translators: %s: add new taxonomy label */
-			printf(__('+ %s') , $tax->labels->add_new_item);
+			printf(__('+ %s','emd-plugins') , $tax->labels->add_new_item);
 ?>
 		</a>
 		</h4>

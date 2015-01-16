@@ -148,9 +148,7 @@ function emd_delete_uploads($uploads) {
  */
 function emd_search_form($myapp, $myentity, $myform, $myview, $noresult_msg, $path) {
 	global $blts;
-	$args = Array(
-		'post_type' => $myentity
-	);
+	$args = Array();
 	$search_fields = Array();
 	$attrs = Array();
 	$txns = Array();
@@ -249,7 +247,7 @@ function emd_search_form($myapp, $myentity, $myform, $myview, $noresult_msg, $pa
 	}
 	$emd_query = new Emd_Query($myentity, $myapp);
 	$emd_query->args_filter($filter);
-	$args = $emd_query->args;
+	$args = array_merge($args,$emd_query->args);
 	$args['post_type'] = $myentity;
 	if (!empty($attrs) || !empty($txns) || !empty($rels) || !empty($blts)) {
 		$func_layout = $myapp . "_" . $myview . "_set_shc";
@@ -274,7 +272,7 @@ function emd_search_form($myapp, $myentity, $myform, $myview, $noresult_msg, $pa
  * @param bool $file_attr_exists
  *
  */
-function emd_submit_redirect_form($form_name, $myapp, $myentity, $post_status, $redirect_url, $error_msg, $file_attr_exists) {
+function emd_submit_redirect_form($form_name, $myapp, $myentity, $post_status, $visitor_post_status, $redirect_url, $error_msg, $file_attr_exists) {
 	check_admin_referer($form_name, $form_name . '_nonce');
 	$set_fname = $myapp . "_set_" . $form_name;
 	$form = $set_fname();
@@ -282,7 +280,7 @@ function emd_submit_redirect_form($form_name, $myapp, $myentity, $post_status, $
 		emd_set_file_upload();
 	}
 	if ($form->validate()) {
-		$result = emd_submit_form($myapp, $myentity, $post_status, $form);
+		$result = emd_submit_form($myapp, $myentity, $post_status, $visitor_post_status, $form);
 		if ($result !== false) {
 			$rel_uniqs = $result['rel_uniqs'];
 			do_action('emd_notify', $myapp, $result['id'], 'entity', 'front_add', $rel_uniqs);
@@ -407,7 +405,7 @@ function emd_search_php_form($form_name, $myapp, $myentity, $noresult_msg, $view
  *
  * @return string $layout
  */
-function emd_submit_php_form($form_name, $myapp, $myentity, $post_status, $success_msg, $error_msg, $clear_hide_form, $file_attr_exists) {
+function emd_submit_php_form($form_name, $myapp, $myentity, $post_status, $visitor_post_status, $success_msg, $error_msg, $clear_hide_form, $file_attr_exists) {
 	$set_fname = $myapp . "_set_" . $form_name;
 	$form = $set_fname();
 	$form_file = str_replace("_", "-", $form_name);
@@ -418,7 +416,7 @@ function emd_submit_php_form($form_name, $myapp, $myentity, $post_status, $succe
 			emd_set_file_upload();
 		}
 		if ($form->validate()) {
-			$result = emd_submit_form($myapp, $myentity, $post_status, $form);
+			$result = emd_submit_form($myapp, $myentity, $post_status, $visitor_post_status, $form);
 			if ($file_attr_exists) {
 				emd_unset_file_upload();
 			}
@@ -468,7 +466,7 @@ function emd_submit_php_form($form_name, $myapp, $myentity, $post_status, $succe
  *
  * @return array $ret
  */
-function emd_submit_form($myapp, $myentity, $post_status, $form) {
+function emd_submit_form($myapp, $myentity, $post_status, $visitor_post_status, $form) {
 	$user_conf = Array();
 	global $current_user_id;
 	$entity_post = Array();
@@ -489,9 +487,11 @@ function emd_submit_form($myapp, $myentity, $post_status, $form) {
 	$attr_list = get_option($myapp . '_attr_list', Array());
 	$txn_list = get_option($myapp . '_tax_list', Array());
 	$rel_list = get_option($myapp . '_rel_list', Array());
-	foreach ($txn_list[$myentity] as $mykey => $mytxn) {
-		if (!empty($mytxn['default'])) {
-			$default_txns[$mykey] = $mytxn['default'];
+	if(!empty($txn_list)){
+		foreach ($txn_list[$myentity] as $mykey => $mytxn) {
+			if (!empty($mytxn['default'])) {
+				$default_txns[$mykey] = $mytxn['default'];
+			}
 		}
 	}
 	foreach ($attr_list[$myentity] as $mykey => $myattr) {
@@ -550,6 +550,9 @@ function emd_submit_form($myapp, $myentity, $post_status, $form) {
 	$published_cap = get_post_type_object($myentity)->cap->edit_published_posts;
         if (current_user_can($published_cap)) {
 		$entity_post['post_status'] = $post_status;
+	}
+	else {
+		$entity_post['post_status'] = $visitor_post_status;
 	}
 	if (!empty($blts)) {
 		foreach ($blts as $blt_key => $blt_val) {

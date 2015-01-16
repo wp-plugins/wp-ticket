@@ -104,11 +104,14 @@ class Emd_Entity {
 					$uniq_keys = $ent_list[$this->post_type]['unique_keys'];
 					$new_title = '';
 					foreach ($uniq_keys as $mykey) {
-						$new_title.= rwmb_meta($mykey, Array() , $post_id) . " - ";
+						$tpart = rwmb_meta($mykey, Array() , $post_id);
+						if(!empty($tpart)){
+							$new_title.= $tpart . " - ";
+						}
 					}
 					$new_title = rtrim($new_title, ' - ');
 				}
-				if ($post->post_title == $post_id || $post->post_title != $new_title) {
+				if ($post->post_title == $post_id ||  ($post->post_title != $new_title && $new_title != '')) {
 					remove_action('save_post', array(
 						$this,
 						'change_title'
@@ -146,7 +149,7 @@ class Emd_Entity {
 			6 => sprintf(__('%s published. <a href="%s">View %s</a>', 'emd-plugins') , $this->sing_label, esc_url(get_permalink($post_ID)) , $this->sing_label) ,
 			7 => sprintf(__('%s saved.', 'emd-plugins') , $this->sing_label) ,
 			8 => sprintf(__('%s submitted. <a target="_blank" href="%s">Preview %s</a>', 'emd-plugins') , $this->sing_label, esc_url(add_query_arg('preview', 'true', get_permalink($post_ID))) , $this->sing_label) ,
-			9 => sprintf(__('%s scheduled for: <strong>%1$s</strong>. <a target="_blank" href="%2$s">Preview %s</a>', 'emd-plugins') , $this->sing_label, date_i18n(__('M j, Y @ G:i') , strtotime($post->post_date)) , esc_url(get_permalink($post_ID)) , $this->sing_label) ,
+			9 => sprintf(__('%s scheduled for: <strong>%s</strong>. <a target="_blank" href="%s">Preview %s</a>', 'emd-plugins') , $this->sing_label, date_i18n(__('M j, Y @ G:i','emd-plugins') , strtotime($post->post_date)) , esc_url(get_permalink($post_ID)) , $this->sing_label) ,
 			10 => sprintf(__('%s draft updated. <a target="_blank" href="%s">Preview %s</a>', 'emd-plugins') , $this->sing_label, esc_url(add_query_arg('preview', 'true', get_permalink($post_ID))) , $this->sing_label) ,
 		);
 		return $messages;

@@ -28,7 +28,7 @@ function emd_translate_date_format($myfield_opt, $meta_value, $reverse = 0) {
 		'M' => 'M',
 		'MM' => 'F',
 		'y' => 'y',
-		'yy' => 'Y'
+		'yy' => 'y'
 	);
 	$emd_time_format_translation = array(
 		'H' => 'H',

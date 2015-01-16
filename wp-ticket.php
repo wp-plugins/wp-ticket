@@ -1,11 +1,11 @@
 <?php
 /** 
  * Plugin Name: Wp Ticket
- * Plugin URI: http://emdplugins.com
+ * Plugin URI: https://emdplugins.com
  * Description: WP Ticket enables support staff to receive, process, and respond to service requests efficiently and effectively.
- * Version: 1.0.0
+ * Version: 1.1
  * Author: eMarket Design
- * Author URI: http://emarketdesign.com
+ * Author URI: https://emarketdesign.com
  * Text Domain: wp-ticket-com
  * @package WP_TICKET_COM
  * @since WPAS 4.0
@@ -74,7 +74,7 @@ if (!class_exists('Wp_Ticket')):
 		 * @return void
 		 */
 		private function define_constants() {
-			define('WP_TICKET_COM_VERSION', '1.0.0');
+			define('WP_TICKET_COM_VERSION', '1.1');
 			define('WP_TICKET_COM_AUTHOR', 'eMarket Design');
 			define('WP_TICKET_COM_PLUGIN_FILE', __FILE__);
 			define('WP_TICKET_COM_PLUGIN_DIR', plugin_dir_path(__FILE__));
@@ -89,8 +89,8 @@ if (!class_exists('Wp_Ticket')):
 		private function includes() {
 			if (is_admin()) {
 				//these files are in all apps
-				if (!function_exists('emd_settings_page')) {
-					require_once WP_TICKET_COM_PLUGIN_DIR . 'includes/admin/settings-functions.php';
+				if (!function_exists('emd_display_store')) {
+					require_once WP_TICKET_COM_PLUGIN_DIR . 'includes/admin/store-functions.php';
 				}
 				//the rest
 				if (!function_exists('emd_shc_button')) {
@@ -119,6 +119,15 @@ if (!class_exists('Wp_Ticket')):
 			}
 			if (!function_exists('emd_get_template_part')) {
 				require_once WP_TICKET_COM_PLUGIN_DIR . 'includes/layout-functions.php';
+			}
+			if (!class_exists('EDD_SL_Plugin_Updater')) {
+				require_once WP_TICKET_COM_PLUGIN_DIR . 'assets/ext/edd/EDD_SL_Plugin_Updater.php';
+			}
+			if (!class_exists('Emd_License')) {
+				require_once WP_TICKET_COM_PLUGIN_DIR . 'includes/admin/class-emd-license.php';
+			}
+			if (!function_exists('emd_show_license_page')) {
+				require_once WP_TICKET_COM_PLUGIN_DIR . 'includes/admin/license-functions.php';
 			}
 			//the rest
 			if (!class_exists('Emd_Query')) {
@@ -200,25 +209,43 @@ if (!class_exists('Wp_Ticket')):
 			return $content;
 		}
 		/**
-		 * Creates plugin settings submenu page under settings
+		 * Creates plugin page in menu with submenus
 		 *
 		 * @access public
 		 * @return void
 		 */
 		public function display_settings() {
-			add_submenu_page('options-general.php', __('Wp Ticket Settings', $this->textdomain) , __('Wp Ticket Settings', $this->textdomain) , 'manage_options', $this->app_name . '_settings', array(
+			add_menu_page(__('WP Ticket', $this->textdomain) , __('WP Ticket', $this->textdomain) , 'manage_options', $this->app_name, array(
 				$this,
-				'display_settings_page'
+				'display_glossary_page'
 			));
+			add_submenu_page($this->app_name, __('Glossary', $this->textdomain) , __('Glossary', $this->textdomain) , 'manage_options', $this->app_name);
+			add_submenu_page($this->app_name, __('Add-Ons', $this->textdomain) , __('Add-Ons', $this->textdomain) , 'manage_options', $this->app_name . '_store', array(
+				$this,
+				'display_store_page'
+			));
+			$emd_lic_settings = get_option('emd_license_settings', Array());
+			if (!empty($emd_lic_settings)) {
+				add_submenu_page($this->app_name, __('Licenses', $this->textdomain) , __('Licenses', $this->textdomain) , 'manage_options', $this->app_name . '_licenses', array(
+					$this,
+					'display_licenses_page'
+				));
+			}
 		}
 		/**
-		 * Calls settings function to display plugin settings page
+		 * Calls settings function to display glossary page
 		 *
 		 * @access public
 		 * @return void
 		 */
-		public function display_settings_page() {
-			emd_settings_page($this->app_name);
+		public function display_glossary_page() {
+			do_action($this->app_name . '_settings_glossary');
+		}
+		public function display_store_page() {
+			emd_display_store($this->textdomain);
+		}
+		public function display_licenses_page() {
+			do_action('emd_show_license_page', $this->app_name);
 		}
 		/**
 		 * Loads sidebar widgets

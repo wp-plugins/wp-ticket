@@ -7,8 +7,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2014-12-02T14:41:21-05:00\n"
-"POT-Creation-Date: 2014-12-02T14:41:21-05:00\n"
+"PO-Revision-Date: 2015-01-16T11:52:07-05:00\n"
+"POT-Creation-Date: 2015-01-16T11:52:07-05:00\n"
 
 #: ./wp-ticket/assets/ext/meta-box/inc/field.php:189
 msgid "+"
@@ -481,12 +481,16 @@ msgstr ""
 msgid "Number of %s to show:"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/settings-functions.php:20
-msgid "Glossary"
+#: ./wp-ticket/includes/admin/license-functions.php:28
+msgid "Please enter and activate your <b>license keys</b>."
 msgstr ""
 
-#: ./wp-ticket/includes/admin/settings-functions.php:22
-msgid "Notifications"
+#: ./wp-ticket/includes/admin/license-functions.php:81
+msgid "Deactivate License"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/license-functions.php:85
+msgid "Activate License"
 msgstr ""
 
 #: ./wp-ticket/includes/admin/singletax/class-emd-single-taxonomy.php:139
@@ -495,6 +499,18 @@ msgstr ""
 
 #: ./wp-ticket/includes/admin/singletax/class-emd-single-taxonomy.php:203
 msgid "+ %s"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/store-functions.php:22
+msgid "Browse All"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/store-functions.php:24
+msgid "The following plugins extend and expand the functionality of your app."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/store-functions.php:46
+msgid "There was an error retrieving the extensions list from the server. Please try again later."
 msgstr ""
 
 #: ./wp-ticket/includes/admin/wpas-btn-functions.php:30
@@ -551,50 +567,50 @@ msgstr ""
 msgid "%1$s on %2$s"
 msgstr ""
 
-#: ./wp-ticket/includes/entities/class-emd-entity.php:140
+#: ./wp-ticket/includes/entities/class-emd-entity.php:143
 msgid "%s updated. <a href=\"%s\">View %s</a>"
 msgstr ""
 
-#: ./wp-ticket/includes/entities/class-emd-entity.php:141
+#: ./wp-ticket/includes/entities/class-emd-entity.php:144
 msgid "Custom field updated."
 msgstr ""
 
-#: ./wp-ticket/includes/entities/class-emd-entity.php:142
+#: ./wp-ticket/includes/entities/class-emd-entity.php:145
 msgid "Custom field deleted."
 msgstr ""
 
-#: ./wp-ticket/includes/entities/class-emd-entity.php:143
+#: ./wp-ticket/includes/entities/class-emd-entity.php:146
 msgid "%s updated."
 msgstr ""
 
-#: ./wp-ticket/includes/entities/class-emd-entity.php:145
+#: ./wp-ticket/includes/entities/class-emd-entity.php:148
 msgid "%s restored to revision from %s"
 msgstr ""
 
-#: ./wp-ticket/includes/entities/class-emd-entity.php:146
+#: ./wp-ticket/includes/entities/class-emd-entity.php:149
 msgid "%s published. <a href=\"%s\">View %s</a>"
 msgstr ""
 
-#: ./wp-ticket/includes/entities/class-emd-entity.php:147
+#: ./wp-ticket/includes/entities/class-emd-entity.php:150
 msgid "%s saved."
 msgstr ""
 
-#: ./wp-ticket/includes/entities/class-emd-entity.php:148
+#: ./wp-ticket/includes/entities/class-emd-entity.php:151
 msgid "%s submitted. <a target=\"_blank\" href=\"%s\">Preview %s</a>"
 msgstr ""
 
-#: ./wp-ticket/includes/entities/class-emd-entity.php:149
-msgid "%s scheduled for: <strong>%1$s</strong>. <a target=\"_blank\" href=\"%2$s\">Preview %s</a>"
+#: ./wp-ticket/includes/entities/class-emd-entity.php:152
+msgid "%s scheduled for: <strong>%s</strong>. <a target=\"_blank\" href=\"%s\">Preview %s</a>"
 msgstr ""
 
-#: ./wp-ticket/includes/entities/class-emd-entity.php:149
+#: ./wp-ticket/includes/entities/class-emd-entity.php:152
 msgid "M j, Y @ G:i"
 msgstr ""
 
-#: ./wp-ticket/includes/entities/class-emd-entity.php:150
+#: ./wp-ticket/includes/entities/class-emd-entity.php:153
 msgid "%s draft updated. <a target=\"_blank\" href=\"%s\">Preview %s</a>"
 msgstr ""
 
-#: ./wp-ticket/includes/entities/class-emd-entity.php:169
+#: ./wp-ticket/includes/entities/class-emd-entity.php:172
 msgid "Operations"
 msgstr ""

@@ -3,7 +3,7 @@
  * Settings Glossary Functions
  *
  * @package WP_TICKET_COM
- * @version 1.0.0
+ * @version 1.1
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
@@ -14,7 +14,11 @@ add_action('wp_ticket_com_settings_glossary', 'wp_ticket_com_settings_glossary')
  *
  * @return html
  */
-function wp_ticket_com_settings_glossary() { ?>
+function wp_ticket_com_settings_glossary() {
+	global $title;
+?>
+<div class="wrap">
+<h2><?php echo $title; ?></h2>
 <p><?php _e('WP Ticket enables support staff to receive, process, and respond to service requests efficiently and effectively.', 'wp-ticket-com'); ?></p>
 <p><?php _e('The below are the definitions of entities, attributes, and terms included in Wp Ticket.', 'wp-ticket-com'); ?></p>
 <div id="glossary" class="accordion-container">
@@ -95,6 +99,7 @@ function wp_ticket_com_settings_glossary() { ?>
 </div>
 </li>
 </ul>
+</div>
 </div>
 <?php
 }
