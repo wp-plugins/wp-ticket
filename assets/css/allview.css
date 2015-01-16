@@ -1,0 +1,21 @@
+div.emd-container{
+font-size:16px;
+position:relative;
+}
+div.emd-container .nav-pages {
+display: inline-block !important;
+margin: 3px 0;
+vertical-align: middle;
+}
+div.emd-container .nav-item {
+cursor: pointer;
+display: inline-block !important;
+font-size: 12px;
+margin: 0 3px !important;
+padding: 3px 5px;
+text-align: center;
+vertical-align: middle;
+}
+div.emd-container li{
+margin:0px;
+}
