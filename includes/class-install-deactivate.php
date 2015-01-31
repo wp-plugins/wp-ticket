@@ -2,7 +2,7 @@
 /**
  * Install and Deactivate Plugin Functions
  * @package WP_TICKET_COM
- * @version 1.1
+ * @version 1.2
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
@@ -43,6 +43,10 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 			add_action('before_delete_post', array(
 				$this,
 				'delete_post_file_att'
+			));
+			add_filter('tiny_mce_before_init', array(
+				$this,
+				'tinymce_fix'
 			));
 		}
 		/**
@@ -385,6 +389,63 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 			$emd_inc_email_apps = get_option('emd_inc_email_apps');
 			$emd_inc_email_apps[$this->option_name] = $this->option_name . '_inc_email_conf';
 			update_option('emd_inc_email_apps', $emd_inc_email_apps);
+			//conf parameters for inline entity
+			$has_inline_ent = Array(
+				'emd_ticket' => Array(
+					'canned_response' => Array(
+						'location' => Array(
+							'wp_comment',
+						) ,
+						'button_label' => 'Canned Response',
+						'entity' => Array(
+							'name' => 'emd_canned_response',
+							'label' => 'Canned Responses',
+							'singular' => 'Canned Response',
+							'all_items' => 'Canned Responses',
+						) ,
+						'taxonomies' => Array(
+							'cannedresponse_category' => Array(
+								'label' => 'CR Categories',
+								'singular' => 'CR Category',
+								'type' => 'single',
+								'hierarchical' => false,
+								'values' => Array(
+									Array(
+										'name' => __('Business', 'wp-ticket-com') ,
+										'slug' => sanitize_title('Business')
+									) ,
+									Array(
+										'name' => __('Education', 'wp-ticket-com') ,
+										'slug' => sanitize_title('Education')
+									) ,
+									Array(
+										'name' => __('Science', 'wp-ticket-com') ,
+										'slug' => sanitize_title('Science')
+									) ,
+									Array(
+										'name' => __('Technology', 'wp-ticket-com') ,
+										'slug' => sanitize_title('Technology')
+									)
+								) ,
+								'default' => Array(
+									__('Science', 'wp-ticket-com')
+								) ,
+							) ,
+							'cannedresponse_tag' => Array(
+								'label' => 'CR Tags',
+								'singular' => 'CR Tag',
+								'type' => 'multi',
+								'hierarchical' => false,
+							) ,
+						)
+					)
+				)
+			);
+			update_option($this->option_name . '_has_inline_ent', $has_inline_ent);
+			//EXT-INLINE-ENT
+			$emd_inline_ent_apps = get_option('emd_inline_entity_apps', Array());
+			$emd_inline_ent_apps[$this->option_name] = $this->option_name . '_has_inline_ent';
+			update_option('emd_inline_entity_apps', $emd_inline_ent_apps);
 			//action to configure different extension conf parameters for this plugin
 			do_action('emd_extension_set_conf');
 		}
@@ -424,6 +485,10 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 			unset($incemail_settings[$this->option_name]);
 			update_option('emd_inc_email_apps', $incemail_settings);
 			delete_option($this->option_name . '_has_incoming_email');
+			$emd_inline_ent_apps = get_option('emd_inline_entity_apps', Array());
+			unset($emd_inline_ent_apps[$this->option_name]);
+			update_option('emd_inline_entity_apps', $emd_inline_ent_apps);
+			delete_option($this->option_name . '_has_inline_ent');
 		}
 		/**
 		 * Show install notices
@@ -578,6 +643,10 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 				}
 			}
 			return true;
+		}
+		public function tinymce_fix($init) {
+			$init['wpautop'] = false;
+			return $init;
 		}
 	}
 endif;

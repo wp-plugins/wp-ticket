@@ -3,7 +3,7 @@
  * Enqueue Scripts Functions
  *
  * @package WP_TICKET_COM
- * @version 1.1
+ * @version 1.2
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
@@ -34,7 +34,10 @@ function wp_ticket_com_load_admin_enq($hook) {
 		$sing_enq = 0;
 		if ($hook == 'post.php' || $hook == 'post-new.php') {
 			$unique_vars['msg'] = __('Please enter a unique value.', 'emd-plugins');
-			wp_enqueue_script('unique_validate-js', WP_TICKET_COM_PLUGIN_URL . 'assets/js/unique_validate.js', '', WP_TICKET_COM_VERSION, true);
+			wp_enqueue_script('unique_validate-js', WP_TICKET_COM_PLUGIN_URL . 'assets/js/unique_validate.js', array(
+				'jquery',
+				'jquery-validate'
+			) , WP_TICKET_COM_VERSION, true);
 			wp_localize_script("unique_validate-js", 'unique_vars', $unique_vars);
 		}
 		switch ($post->post_type) {

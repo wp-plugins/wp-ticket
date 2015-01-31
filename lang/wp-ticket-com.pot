@@ -7,8 +7,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-01-16T11:52:09-05:00\n"
-"POT-Creation-Date: 2015-01-16T11:52:09-05:00\n"
+"PO-Revision-Date: 2015-01-31T14:23:24-05:00\n"
+"POT-Creation-Date: 2015-01-31T14:23:24-05:00\n"
 
 #: wp-ticket/forms/search-tickets.php:16
 msgid "Ticket ID"
@@ -319,58 +319,75 @@ msgstr ""
 msgid "There was an error retrieving the extensions list from the server. Please try again later."
 msgstr ""
 
-#: wp-ticket/includes/class-install-deactivate.php:252
+#: wp-ticket/includes/class-install-deactivate.php:256
 msgid "Open a Ticket"
 msgstr ""
 
-#: wp-ticket/includes/class-install-deactivate.php:256
+#: wp-ticket/includes/class-install-deactivate.php:260
 msgid "Search Tickets"
 msgstr ""
 
-#: wp-ticket/includes/class-install-deactivate.php:330
+#: wp-ticket/includes/class-install-deactivate.php:334
 msgid "Priorities"
 msgstr ""
 
-#: wp-ticket/includes/class-install-deactivate.php:337
+#: wp-ticket/includes/class-install-deactivate.php:341
 msgid "Topics"
 msgstr ""
 
-#: wp-ticket/includes/class-install-deactivate.php:342
+#: wp-ticket/includes/class-install-deactivate.php:346
 msgid "Statuses"
 msgstr ""
 
-#: wp-ticket/includes/class-install-deactivate.php:344
+#: wp-ticket/includes/class-install-deactivate.php:348
 msgid "Open"
 msgstr ""
 
-#: wp-ticket/includes/class-install-deactivate.php:460
-#: wp-ticket/includes/class-install-deactivate.php:472
-#: wp-ticket/includes/class-install-deactivate.php:484
+#: wp-ticket/includes/class-install-deactivate.php:414
+msgid "Business"
+msgstr ""
+
+#: wp-ticket/includes/class-install-deactivate.php:418
+msgid "Education"
+msgstr ""
+
+#: wp-ticket/includes/class-install-deactivate.php:422
+#: wp-ticket/includes/class-install-deactivate.php:431
+msgid "Science"
+msgstr ""
+
+#: wp-ticket/includes/class-install-deactivate.php:426
+msgid "Technology"
+msgstr ""
+
+#: wp-ticket/includes/class-install-deactivate.php:525
+#: wp-ticket/includes/class-install-deactivate.php:537
+#: wp-ticket/includes/class-install-deactivate.php:549
 msgid "Dismiss"
 msgstr ""
 
-#: wp-ticket/includes/class-install-deactivate.php:472
+#: wp-ticket/includes/class-install-deactivate.php:537
 msgid "New To WP Ticket? Review the documentation!"
 msgstr ""
 
-#: wp-ticket/includes/class-install-deactivate.php:472
-#: wp-ticket/includes/class-install-deactivate.php:484
+#: wp-ticket/includes/class-install-deactivate.php:537
+#: wp-ticket/includes/class-install-deactivate.php:549
 msgid "&#187;"
 msgstr ""
 
-#: wp-ticket/includes/class-install-deactivate.php:484
+#: wp-ticket/includes/class-install-deactivate.php:549
 msgid "Buy WPAS Incoming Email Extension to create tickets through emails!"
 msgstr ""
 
-#: wp-ticket/includes/class-install-deactivate.php:490
+#: wp-ticket/includes/class-install-deactivate.php:555
 msgid "Welcome to Wp Ticket"
 msgstr ""
 
-#: wp-ticket/includes/class-install-deactivate.php:491
+#: wp-ticket/includes/class-install-deactivate.php:556
 msgid "Setup Wp Ticket Pages"
 msgstr ""
 
-#: wp-ticket/includes/class-install-deactivate.php:491
+#: wp-ticket/includes/class-install-deactivate.php:556
 msgid "Skip setup"
 msgstr ""
 
@@ -379,7 +396,7 @@ msgid "The most recent tickets"
 msgstr ""
 
 #: wp-ticket/includes/entities/class-emd-ticket.php:172
-#: wp-ticket/includes/entities/class-emd-ticket.php:426
+#: wp-ticket/includes/entities/class-emd-ticket.php:427
 msgid "Ticket"
 msgstr ""
 
@@ -605,11 +622,11 @@ msgstr ""
 msgid "Major"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:430
+#: wp-ticket/includes/entities/class-emd-ticket.php:431
 msgid "Ticket Info"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:484
+#: wp-ticket/includes/entities/class-emd-ticket.php:485
 msgid "The due date of the ticket"
 msgstr ""
 
@@ -684,71 +701,71 @@ msgid "Submit Ticket"
 msgstr ""
 
 #: wp-ticket/includes/scripts.php:36
-#: wp-ticket/includes/scripts.php:90
+#: wp-ticket/includes/scripts.php:93
 msgid "Please enter a unique value."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:74
+#: wp-ticket/includes/scripts.php:77
 msgid "This field is required."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:75
+#: wp-ticket/includes/scripts.php:78
 msgid "Please fix this field."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:76
+#: wp-ticket/includes/scripts.php:79
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:77
+#: wp-ticket/includes/scripts.php:80
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:78
+#: wp-ticket/includes/scripts.php:81
 msgid "Please enter a valid date."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:79
+#: wp-ticket/includes/scripts.php:82
 msgid "Please enter a valid date ( ISO )"
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:80
+#: wp-ticket/includes/scripts.php:83
 msgid "Please enter a valid number."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:81
+#: wp-ticket/includes/scripts.php:84
 msgid "Please enter only digits."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:82
+#: wp-ticket/includes/scripts.php:85
 msgid "Please enter a valid credit card number."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:83
+#: wp-ticket/includes/scripts.php:86
 msgid "Please enter the same value again."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:84
+#: wp-ticket/includes/scripts.php:87
 msgid "Please enter no more than {0} characters."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:85
+#: wp-ticket/includes/scripts.php:88
 msgid "Please enter at least {0} characters."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:86
+#: wp-ticket/includes/scripts.php:89
 msgid "Please enter a value between {0} and {1} characters long."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:87
+#: wp-ticket/includes/scripts.php:90
 msgid "Please enter a value between {0} and {1}."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:88
+#: wp-ticket/includes/scripts.php:91
 msgid "Please enter a value less than or equal to {0}."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:89
+#: wp-ticket/includes/scripts.php:92
 msgid "Please enter a value greater than or equal to {0}."
 msgstr ""
 

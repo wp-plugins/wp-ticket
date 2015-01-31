@@ -3,7 +3,7 @@
  * Entity Class
  *
  * @package WP_TICKET_COM
- * @version 1.1
+ * @version 1.2
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
@@ -188,7 +188,7 @@ class Emd_Ticket extends Emd_Entity {
 			'show_ui' => true,
 			'description' => __('A tickets represents a help request.', 'wp-ticket-com') ,
 			'show_in_menu' => true,
-			'menu_position' => 6,
+			'menu_position' => 7,
 			'has_archive' => true,
 			'exclude_from_search' => false,
 			'rewrite' => array(
@@ -422,6 +422,7 @@ class Emd_Ticket extends Emd_Entity {
 	 *
 	 */
 	public function set_filters() {
+		$search_args = array();
 		$filter_args = array();
 		$this->sing_label = __('Ticket', 'wp-ticket-com');
 		$this->plural_label = __('Tickets', 'wp-ticket-com');

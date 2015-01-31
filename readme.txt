@@ -5,10 +5,10 @@ Author URI: https://emarketdesign.com
 Donate link: https://emarketdesign.com/donate-emarket-design/
 Requires at least: 3.8
 Tested up to: 4.1
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: help, support, support ticket, ticket, email notification, user support plugin, support plugin , ticket plugin, support system, helpdesk, ticket system, ticketing system, help desk, customer service, submit tickets, CRM, ticket management, wp app studio, wpas, IMAP, POP3, incoming email, email, post by email
+Tags: help, support, support ticket, ticket, email notification, user support plugin, support plugin , ticket plugin, support system, helpdesk, ticket system, ticketing system, help desk, customer service, submit tickets, CRM, ticket management, wp app studio, wpas, IMAP, POP3, incoming email, email, post by email, canned responses, quick responses
 
 WP Ticket enables support staff to receive, process, and respond to service requests efficiently and effectively.
 
@@ -31,7 +31,10 @@ For project based issue tracking and management, check out [Software Issue Manag
 > 8. Set your ProDev license in your plugins setting page, licenses tab. You have 1 year to customize, update your plugin. After initial activation, all other updates are done through WordPress Plugin page like other WP plugins.
 
 = Works with WPAS Extensions =
-* If you need issues to be created through email (POP3/IMAP supported), you can purchase [WPAS incoming email extension](https://emdplugins.com/plugins/incoming-email-extension/).
+[WPAS incoming email extension](https://emdplugins.com/plugins/incoming-email-extension/)
+* Allows tickets to be created through email (POP3/IMAP supported).
+[WPAS canned responses extension](https://emdplugins.com/plugins/canned-responses-extension/)
+* Allows to create, categorize, and utilize predetermined responses in WPAS app comments.
 
 <strong>Community Edition Features</strong><br>
 * Useful for small teams *without* organizational content access requirements.<br>
@@ -131,6 +134,10 @@ The simplest way to install is to click on 'Plugins' then 'Add' and type 'Wp Tic
 6. Displays WP Ticket Pro dashboard with statistics and charts in admin area
 
 == Changelog ==
+= 1.2.0 =
+* Added the required configuration to use WPAS Canned Responses extension
+* Fixed Misc bugs.
+* TinyMCE visual editor fix for <p> tags
 = 1.1.0 =
 * Added the required configuration to use WPAS Incoming Email extension
 * Fixed Misc bugs.
@@ -140,5 +147,7 @@ The simplest way to install is to click on 'Plugins' then 'Add' and type 'Wp Tic
 == Frequently Asked Questions ==
 
 == Upgrade Notice ==
+= 1.2.0 =
+* Added the required configuration to use WPAS Canned Responses extension
 = 1.1.0 =
 * Added the required configuration to use WPAS Incoming Email extension

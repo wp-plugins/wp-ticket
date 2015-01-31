@@ -134,3 +134,151 @@ if (version_compare($wp_version, "3.6", "<")) {
 		return false;
 	}
 }
+/**
+ * Parse and replace template tags with values in email subject and messages
+ *
+ * @since WPAS 4.3
+ * moved from notify-actions file
+ *
+ * @param string $app
+ * @param string $message
+ * @param string $pid
+ *
+ * @param string $message
+ */
+function emd_parse_template_tags($app, $message, $pid) {
+	global $wpdb;
+	$rel_list = get_option($app . "_rel_list");
+	$mypost = get_post($pid);
+	$permlink = get_permalink($pid);
+	$access_views = get_option($app . "_access_views");
+	if (!empty($access_views['single'])) {
+		foreach ($access_views['single'] as $single) {
+			if ($single['obj'] == $mypost->post_type) {
+				$permlink = wp_login_url(get_permalink($pid));
+			}
+		}
+	}
+	if (in_array($mypost->post_status, Array(
+		'pending',
+		'draft'
+	))) {
+		$permlink = wp_login_url(add_query_arg('preview', 'true', get_permalink($pid)));
+	}
+
+	$author = get_the_author();
+	if(empty($author)){
+		$author = get_the_author_meta('nickname',$mypost->post_author);
+	}
+	$builtins = Array(
+		'title' => $mypost->post_title,
+		'permalink' => $permlink,
+		'edit_link' => get_edit_post_link($pid) ,
+		'delete_link' => add_query_arg('frontend', 'true', get_delete_post_link($pid)) ,
+		'excerpt' => $mypost->post_excerpt,
+		'content' => $mypost->post_content,
+		'author' => $author,
+	);
+	//first get each template tag
+	if (preg_match_all('/\{([^}]*)\}/', $message, $matches)) {
+		foreach ($matches[1] as $match_tag) {
+			//replace if builtin
+			if (in_array($match_tag, array_keys($builtins))) {
+				$message = str_replace('{' . $match_tag . '}', $builtins[$match_tag], $message);
+			} elseif (preg_match('/^wpas_/', $match_tag)) {
+				$message = str_replace('{' . $match_tag . '}', rwmb_meta($match_tag, array() , $pid) , $message);
+			} elseif (preg_match('/^emd_/', $match_tag)) {
+				$new = emd_get_attr_val($app, $pid, $mypost->post_type, $match_tag);
+				$message = str_replace('{' . $match_tag . '}', $new, $message);
+			} elseif (preg_match('/^rel_/', $match_tag)) {
+				$new_rel = "";
+				$new_match_tag = preg_replace('/^rel_/', '', $match_tag);
+				$myrel = $rel_list[$match_tag];
+				$from_to = "from";
+				$other = "to";
+				if ($myrel['from'] == $mypost->post_type) {
+					$from_to = "to";
+					$other = "from";
+				}
+				$conns = $wpdb->get_results("SELECT p2p_" . $from_to . " as pid FROM {$wpdb->p2p} WHERE p2p_type='" . $new_match_tag . "' AND p2p_" . $other . "='" . $pid . "'", ARRAY_A);
+				foreach ($conns as $mycon) {
+					$rpost = get_post($mycon['pid']);
+					$new_rel.= $rpost->post_title . ",";
+				}
+				$new_rel = rtrim($new_rel, ",");
+				$message = str_replace('{' . $match_tag . '}', $new_rel, $message);
+			} else {
+				if (preg_match('/_nl$/', $match_tag)) {
+					$new_match_tag = preg_replace('/_nl$/', '', $match_tag);
+					$new = strip_tags(get_the_term_list($pid, $new_match_tag, '', ' ', ''));
+				} else {
+					$new = get_the_term_list($pid, $match_tag, '', ' ', '');
+				}
+				if (!is_wp_error($new)) {
+					$message = str_replace('{' . $match_tag . '}', $new, $message);
+				}
+			}
+		}
+	}
+	return $message;
+}
+/**
+ * Get attribute value by attribute type
+ *
+ * @since WPAS 4.3
+ * moved from notify-actions file
+ *
+ * @param string $app
+ * @param string $pid
+ * @param string $ptype
+ * @param string $attr_id
+ *
+ * @return string $val
+ *
+ */
+function emd_get_attr_val($app, $pid, $ptype, $attr_id) {
+	$attr_list = get_option($app . "_attr_list");
+	$val = "";
+	$mult = 0;
+	if(!empty($attr_list[$ptype][$attr_id])){
+		$attr = $attr_list[$ptype][$attr_id];
+		$dtype = $attr['display_type'];
+		if (isset($attr['multiple'])) {
+			$mult = 1;
+		}
+		if ($dtype == 'checkbox_list' || $dtype == 'select' && $mult == 1) {
+			$rwmb_list = rwmb_meta($attr_id, 'type=checkbox_list', $pid);
+			if (!empty($rwmb_list)) {
+				$val = implode(', ', $rwmb_list);
+			}
+		} elseif ($dtype == 'file') {
+			$rwmb_file = rwmb_meta($attr_id, 'type=file', $pid);
+			if (!empty($rwmb_file)) {
+				foreach ($rwmb_file as $info) {
+					$val.= "<a href='" . $info['url'] . "' title='" . $info['title'] . "'>" . $info['name'] . "</a><br/>";
+				}
+			}
+		} elseif (in_array($dtype, Array(
+			'image',
+			'plupload_image',
+			'thickbox_image'
+		))) {
+			$images = rwmb_meta($attr_id, 'type=plupload_image', $pid);
+			if (!empty($images)) {
+				foreach ($images as $image) {
+					$val.= "<a href='" . $image['full_url'] . "' title='" . $image['title'] . "' rel=\'thickbox\'>
+						<img src='" . $image['url'] . "' width='" . $image['width'] . "' height='" . $image['height'] . "' alt='" . $image['alt'] . "'/></a>";
+				}
+			}
+		} elseif (in_array($dtype, Array(
+			'date',
+			'datetime',
+			'time'
+		))) {
+			$val = emd_translate_date_format($attr, rwmb_meta($attr_id, array() , $pid) , 1);
+		} else {
+			$val = rwmb_meta($attr_id, array() , $pid);
+		}
+	}
+	return $val;
+}
