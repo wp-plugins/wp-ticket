@@ -32,7 +32,7 @@ For project based issue tracking and management, check out [Software Issue Manag
 
 = Works with WPAS Extensions =
 [WPAS incoming email extension](https://emdplugins.com/plugins/incoming-email-extension/)
-* Allows tickets to be created through email (POP3/IMAP supported).
+* Allows tickets to be created through email (POP3/IMAP supported).<br>
 [WPAS canned responses extension](https://emdplugins.com/plugins/canned-responses-extension/)
 * Allows to create, categorize, and utilize predetermined responses in WPAS app comments.
 
@@ -137,7 +137,7 @@ The simplest way to install is to click on 'Plugins' then 'Add' and type 'Wp Tic
 = 1.2.0 =
 * Added the required configuration to use WPAS Canned Responses extension
 * Fixed Misc bugs.
-* TinyMCE visual editor fix for <p> tags
+* TinyMCE visual editor fix for p tags
 = 1.1.0 =
 * Added the required configuration to use WPAS Incoming Email extension
 * Fixed Misc bugs.
