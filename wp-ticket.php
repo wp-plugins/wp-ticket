@@ -3,7 +3,7 @@
  * Plugin Name: Wp Ticket
  * Plugin URI: https://emdplugins.com
  * Description: WP Ticket enables support staff to receive, process, and respond to service requests efficiently and effectively.
- * Version: 1.1
+ * Version: 1.2
  * Author: eMarket Design
  * Author URI: https://emarketdesign.com
  * Text Domain: wp-ticket-com
