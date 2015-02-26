@@ -65,12 +65,16 @@ function emd_shc_get_layout_list($atts, $args, $args_default, $fields) {
 		<?php
 		emd_get_template_part($fields['app'], 'shc', str_replace('_', '-', $fields['shc']) . "-header");
 		$res_posts = Array();
+		$count_var = $fields['shc'] . "_count";
+		global $$count_var;
+		$$count_var = 0;
 		while ($myshc_query->have_posts()) {
 			$myshc_query->the_post();
 			$in_post_id = get_the_ID();
 			if (!in_array($in_post_id, $res_posts)) {
 				$res_posts[] = $in_post_id;
 				emd_get_template_part($fields['app'], 'shc', str_replace('_', '-', $fields['shc']) . "-content");
+				$$count_var++;
 			}
 		}
 		wp_reset_postdata();
@@ -98,7 +102,7 @@ function emd_shc_get_layout_list($atts, $args, $args_default, $fields) {
 				'type' => 'array',
 				'add_args' => true,
 			));
-			$paging_html = emd_shc_get_pagination($fields['theme'], $paging, $fields['pageno']); ?>
+			$paging_html = emd_shc_get_pagination($fields['theme'], $paging, $fields['pageno'], $fields['pgn_class']); ?>
 			<div class='pagination-bar'>
 			<?php echo $paging_html; ?>
 			</div>
@@ -120,10 +124,10 @@ function emd_shc_get_layout_list($atts, $args, $args_default, $fields) {
  * @param int $pageno
  * @return string paging html
  */
-function emd_shc_get_pagination($type, $paging, $pageno) {
+function emd_shc_get_pagination($type, $paging, $pageno, $pgn_class) {
 	$paging_html = "";
 	if ($type == 'bs') {
-		$paging_html = "<ul class='pagination'>";
+		$paging_html = "<ul class='pagination " . $pgn_class . "'>";
 		foreach ($paging as $key_paging => $my_paging) {
 			$paging_html.= "<li";
 			if(preg_match('/current/',$my_paging)){
@@ -133,7 +137,7 @@ function emd_shc_get_pagination($type, $paging, $pageno) {
 		}
 		$paging_html.= "</ul>";
 	} elseif ($type == 'jui' || $type == 'na') {
-		$paging_html = "<div class='nav-pages'>";
+		$paging_html = "<div class='nav-pages " . $pgn_class . "'>";
 		foreach ($paging as $key_paging => $my_paging) {
 			$paging_html.= "<div class='nav-item ui-state-default ui-corner-all";
 			if(preg_match('/current/',$my_paging)){

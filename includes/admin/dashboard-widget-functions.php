@@ -102,8 +102,8 @@ function emd_dashboard_widget_control($widget_id, $clabel, $type, $default = '')
 	if (!isset($dwidgets[$widget_id])) $dwidgets[$widget_id] = array();
 	if ('POST' == $_SERVER['REQUEST_METHOD'] && isset($_POST[$form_id])) {
 		if ($type == 'admin') {
-			$message = $_POST[$form_id]['message'];
-			$dwidgets[$widget_id]['message'] = $message;
+			$message = $_POST[$form_id];
+			$dwidgets[$widget_id]['message'] = stripslashes($message);
 		} else {
 			$number = absint($_POST[$form_id]['items']);
 			$dwidgets[$widget_id]['items'] = $number;
@@ -112,21 +112,20 @@ function emd_dashboard_widget_control($widget_id, $clabel, $type, $default = '')
 	}
 	if ($type == 'admin') {
 		$message = isset($dwidgets[$widget_id]['message']) ? $dwidgets[$widget_id]['message'] : $default;
-		echo '<p><label for="admin_message">' . __('Admin Message:', 'emd-plugins') . '</label>';
 		$settings = array(
-			'text_area_name' => $form_id . '[message]',
-			'quicktags' => false,
+			'text_area_name' => $form_id,
+			'quicktags' => true,
 			'media_buttons' => false,
 			'textarea_rows' => 3,
 			'tinymce' => array(
 				'theme_advanced_buttons1' => 'bold,italic,underline, justifyleft,justifycenter,justifyright,justifyfull,bullist,numlist,outdent,indent'
 			) ,
 		);
-		$id = $form_id . '[message]';
+		$id = $form_id;
 		wp_editor($message, $id, $settings);
 	} else {
 		$number = isset($dwidgets[$widget_id]['items']) ? (int)$dwidgets[$widget_id]['items'] : '';
-		echo '<p><label for="' . esc_attr($widget_id) . '-number">' . printf(__('Number of %s to show:', 'emd-plugins') , $clabel) . '</label>';
+		echo '<p><label for="' . esc_attr($widget_id) . '-number">' . sprintf(__('Number of %s to show:', 'emd-plugins') , $clabel) . '</label>';
 		echo '<input id="' . esc_attr($widget_id) . '-number" name="' . esc_attr($form_id) . '[items]" type="text" value="' . $number . '" size="3" /></p>';
 	}
 }

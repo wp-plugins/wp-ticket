@@ -82,7 +82,7 @@ echo (isset($zf_error) ? $zf_error : (isset($error) ? $error : ''));
 <label id="label_blt_title" class="control-label" for="blt_title">
 <?php _e('Subject', 'wp-ticket-com'); ?>
 <span style="display: inline-flex;right: 0px; position: relative; top:-6px;">
-<a href="#" data-toggle="tooltip" title="<?php _e('Ideally, a question title should be a question. It&#039;s important that the question title is specific and has at least some meaning with no other information. A question such as &quot;Why doesn&#039;t this work?&quot; makes absolutely no sense without the rest of the question.', 'wp-ticket-com'); ?>" id="info_blt_title" class="helptip"><span class="field-icons icons-help"></span></a>
+<a href="#" data-toggle="tooltip" title="<?php _e('Ideally, a question title should be a question. It\'s important that the question title is specific and has at least some meaning with no other information. A question such as "Why doesn\'t this work?" makes absolutely no sense without the rest of the question.', 'wp-ticket-com'); ?>" id="info_blt_title" class="helptip"><span class="field-icons icons-help"></span></a>
 <a href="#" data-toggle="tooltip" title="<?php _e('Subject field is required', 'wp-ticket-com'); ?>" id="info_blt_title" class="helptip">
 <span class="field-icons icons-required"></span>
 </a>

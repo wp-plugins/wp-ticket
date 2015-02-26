@@ -3,7 +3,7 @@
  * Entity Class
  *
  * @package WP_TICKET_COM
- * @version 1.2
+ * @version 1.3.0
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
@@ -118,7 +118,7 @@ class Emd_Ticket extends Emd_Entity {
 			case 'plupload_image':
 			case 'image':
 			case 'thickbox_image':
-				$image_list = rwmb_meta($column_id, 'type=image');
+				$image_list = emd_mb_meta($column_id, 'type=image');
 				if (!empty($image_list)) {
 					$value = "";
 					foreach ($image_list as $myimage) {
@@ -128,24 +128,24 @@ class Emd_Ticket extends Emd_Entity {
 			break;
 			case 'user':
 			case 'user-adv':
-				$user_id = rwmb_meta($column_id);
+				$user_id = emd_mb_meta($column_id);
 				if (!empty($user_id)) {
 					$user_info = get_userdata($user_id);
 					$value = $user_info->display_name;
 				}
 			break;
 			case 'file':
-				$file_list = rwmb_meta($column_id, 'type=file');
+				$file_list = emd_mb_meta($column_id, 'type=file');
 				if (!empty($file_list)) {
 					$value = "";
 					foreach ($file_list as $myfile) {
-						$value.= "<a href='" . $myfile['url'] . "' target='_blank'>" . $myfile['name'] . "</a>, ";
+						$fsrc = wp_mime_type_icon($myfile['ID']);
+						$value.= "<a href='" . $myfile['url'] . "' target='_blank'><img src='" . $fsrc . "' title='" . $myfile['name'] . "' width='20' /></a>";
 					}
-					$value = rtrim($value, ", ");
 				}
 			break;
 			case 'checkbox_list':
-				$checkbox_list = rwmb_meta($column_id, 'type=checkbox_list');
+				$checkbox_list = emd_mb_meta($column_id, 'type=checkbox_list');
 				if (!empty($checkbox_list)) {
 					$value = implode(', ', $checkbox_list);
 				}
@@ -568,9 +568,9 @@ class Emd_Ticket extends Emd_Entity {
 		}
 		global $pagenow;
 		if ('post-new.php' === $pagenow || 'post.php' === $pagenow) {
-			if (class_exists('RW_Meta_Box') && is_array($this->boxes)) {
+			if (class_exists('EMD_Meta_Box') && is_array($this->boxes)) {
 				foreach ($this->boxes as $meta_box) {
-					new RW_Meta_Box($meta_box);
+					new EMD_Meta_Box($meta_box);
 				}
 			}
 		}

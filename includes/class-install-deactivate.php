@@ -2,7 +2,7 @@
 /**
  * Install and Deactivate Plugin Functions
  * @package WP_TICKET_COM
- * @version 1.2
+ * @version 1.3.0
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
@@ -397,6 +397,7 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 							'wp_comment',
 						) ,
 						'button_label' => 'Canned Response',
+						'button_icon' => '',
 						'entity' => Array(
 							'name' => 'emd_canned_response',
 							'label' => 'Canned Responses',
@@ -438,11 +439,10 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 								'hierarchical' => false,
 							) ,
 						)
-					)
+					) ,
 				)
 			);
 			update_option($this->option_name . '_has_inline_ent', $has_inline_ent);
-			//EXT-INLINE-ENT
 			$emd_inline_ent_apps = get_option('emd_inline_entity_apps', Array());
 			$emd_inline_ent_apps[$this->option_name] = $this->option_name . '_has_inline_ent';
 			update_option('emd_inline_entity_apps', $emd_inline_ent_apps);
@@ -546,7 +546,7 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 ?>
 <div class="updated">
 <?php
-				printf('<p><a href="%1s" target="_blank"> %2$s </a>%3$s<a style="float:right;" href="%4$s"><span class="dashicons dashicons-dismiss" style="font-size:15px;"></span>%5$s</a></p>', 'https://emdplugins.com/plugins/incoming-email-extension/?pk_campaign=wpticket&pk_source=plugin&pk_medium=link&pk_content=notice', __('Buy WPAS Incoming Email Extension to create tickets through emails!', 'wpas') , __('&#187;', 'wpas') , esc_url(add_query_arg($this->option_name . '_adm_notice2', true)) , __('Dismiss', 'wpas'));
+				printf('<p><a href="%1s" target="_blank"> %2$s </a>%3$s<a style="float:right;" href="%4$s"><span class="dashicons dashicons-dismiss" style="font-size:15px;"></span>%5$s</a></p>', 'https://emdplugins.com/plugins/wp-ticket-professional/?pk_campaign=wpticket&pk_source=plugin&pk_medium=link&pk_content=notice', __('Upgrade to Professional Version Now!', 'wpas') , __('&#187;', 'wpas') , esc_url(add_query_arg($this->option_name . '_adm_notice2', true)) , __('Dismiss', 'wpas'));
 ?>
 </div>
 <?php

@@ -4042,10 +4042,16 @@ class Zebra_Form
 					$file_name = ($filename !== true ? $filename : '') . $file_name;
 					$suffix = '';
 				}
+				$this->file_upload[$control][$counter] = $myupload;
 				if(!isset($myupload['path']))
 				{
+					include_once ABSPATH . 'wp-admin/includes/media.php';
+					include_once ABSPATH . 'wp-admin/includes/file.php';
+					include_once ABSPATH . 'wp-admin/includes/image.php';
+					$file = wp_handle_upload($myupload , array( 'test_form' => false ) );
+					$myupload['path'] = $file['file'];
 				    // if file could be uploaded
-				    if (@move_uploaded_file($myupload['tmp_name'], $path . $file_name . $file_extension)) {
+				    /*if (@move_uploaded_file($myupload['tmp_name'], $path . $file_name . $file_extension)) {
 
 					// get a list of functions disabled via configuration
 					$disabled_functions = @ini_get('disable_functions');
@@ -4056,12 +4062,22 @@ class Zebra_Form
 					    // chmod the file
 					    chmod($path . $file_name . $file_extension, intval($this->file_upload_permissions, 8));
 				    }
+					$this->file_upload[$control][$counter]['file_name'] = $file_name . $file_extension;
+					$this->file_upload[$control][$counter]['name'] = $file_name . $file_extension;
+					*/
 				}
+				$path_arr = explode("/",$myupload['path']);
+				$flen = count($path_arr) - 1;
+				$file_name = $path_arr[$flen];
+				$this->file_upload[$control][$counter]['file_name'] = $file_name;
+				$this->file_upload[$control][$counter]['name'] = $file_name;
+				
 				// set a special property
 				// the value of the property will be an array will information about the uploaded file
-				$this->file_upload[$control][$counter] = $myupload;
-				$this->file_upload[$control][$counter]['path'] = rtrim($upload_path, '/') . '/' . $file_name . $file_extension ;
-				$this->file_upload[$control][$counter]['file_name'] = $file_name . $file_extension;
+				$this->file_upload[$control][$counter]['path'] = $myupload['path'];
+				/*else {
+					$this->file_upload[$control][$counter]['path'] = rtrim($upload_path, '/') . '/' . $file_name . $file_extension ;
+				}*/
 				// if uploaded file is an image
 				if ($imageinfo = @getimagesize($path . $file_name . $file_extension)) {
 					// rename some of the attributes returned by getimagesize

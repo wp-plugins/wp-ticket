@@ -56,8 +56,13 @@ class Emd_Widget extends WP_Widget {
 		if ($this->type == 'entity') {
 			$args['has_pages'] = $this->has_pages;
 			$args['class'] = $this->class;
-			$args['query_args'] = $this->query_args;
 			$args['cname'] = get_class($this);
+			if(!empty($this->filter)){
+				$emd_query = new Emd_Query($this->class, str_replace("-","_",$this->text_domain));
+        			$emd_query->args_filter($this->filter);
+        			$this->query_args = array_merge($this->query_args,$emd_query->args);
+			}
+			$args['query_args'] = $this->query_args;
 			$widg_layout = self::get_ent_widget_layout($count, $pids,$args);
 		} elseif ($this->type == 'comment') {
 			$widg_layout = $this->get_comm_widget_layout($count, $pids);

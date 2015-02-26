@@ -65,25 +65,6 @@ function emd_check_uniq_from_wpdb($data, $post_id, $post_type) {
 	return false;
 }
 /**
- * Operator list for search
- *
- * @since WPAS 4.0
- * @param string $opr
- *
- * @return string $operator
- */
-function emd_get_meta_operator($opr) {
-	$operators['is'] = '=';
-	$operators['is_not'] = '!=';
-	$operators['like'] = 'LIKE';
-	$operators['not_like'] = 'NOT LIKE';
-	$operators['less_than'] = '<';
-	$operators['greater_than'] = '>';
-	$operators['less_than_eq'] = '<=';
-	$operators['greater_than_eq'] = '>=';
-	return $operators[$opr];
-}
-/**
  * Check min max value for int/decimal fields
  *
  * @since WPAS 4.0
@@ -468,7 +449,6 @@ function emd_submit_php_form($form_name, $myapp, $myentity, $post_status, $visit
  */
 function emd_submit_form($myapp, $myentity, $post_status, $visitor_post_status, $form) {
 	$user_conf = Array();
-	global $current_user_id;
 	$entity_post = Array();
 	$entity_fields = Array();
 	$txn_fields = Array();
@@ -546,13 +526,16 @@ function emd_submit_form($myapp, $myentity, $post_status, $visitor_post_status, 
 		}
 	}
 	$entity_post['post_type'] = $myentity;
-	$entity_post['post_author'] = $current_user_id;
 	$published_cap = get_post_type_object($myentity)->cap->edit_published_posts;
+	$current_user_id = get_current_user_id();
+
         if (current_user_can($published_cap)) {
 		$entity_post['post_status'] = $post_status;
+		$entity_post['post_author'] = $current_user_id;
 	}
 	else {
 		$entity_post['post_status'] = $visitor_post_status;
+		$entity_post['post_author'] = 1;
 	}
 	if (!empty($blts)) {
 		foreach ($blts as $blt_key => $blt_val) {
@@ -596,6 +579,13 @@ function emd_submit_form($myapp, $myentity, $post_status, $visitor_post_status, 
 			if ($meta_value == 'emd_uid') {
 				$meta_value = uniqid($id, false);
 			}
+			elseif($meta_value == 'emd_autoinc'){
+				$autoinc_start = $attr_list[$myentity][$meta_key]['autoinc_start'];
+				$autoinc_incr = $attr_list[$myentity][$meta_key]['autoinc_incr'];
+				$meta_value = get_option($meta_key . "_autoinc",$autoinc_start);
+				$new = $meta_value + $autoinc_incr;
+				update_option($meta_key . "_autoinc", $new);
+			}
 			if (is_array($meta_value)) {
 				foreach ($meta_value as $mvalue) {
 					add_post_meta($id, $meta_key, $mvalue);
@@ -625,7 +615,9 @@ function emd_submit_form($myapp, $myentity, $post_status, $visitor_post_status, 
 			if (!empty($rel_value)) {
 				if (is_array($rel_value)) {
 					foreach ($rel_value as $rvalue) {
-						p2p_type($rel_key)->connect($rvalue, $id);
+						if(!empty($rvalue)){
+							p2p_type($rel_key)->connect($rvalue, $id);
+						}
 					}
 				} else {
 					p2p_type($rel_key)->connect($rel_value, $id);
@@ -633,16 +625,21 @@ function emd_submit_form($myapp, $myentity, $post_status, $visitor_post_status, 
 			}
 		}
 		if (!empty($form->file_upload)) {
+			$emd_file_upload = wp_upload_dir();
 			foreach ($form->file_upload as $key_upload => $uploads) {
 				if (is_array($uploads)) {
 					foreach ($uploads as $myfileupload) {
 						if (isset($myfileupload['path']) && $myfileupload['error'] == 0) {
-							$upload_dir = wp_upload_dir();
-							$upload_url = $upload_dir['baseurl'];
-							$filetype = wp_check_filetype(basename($myfileupload['name']));
-							$guid = $upload_url . '/wpas-files/' . $current_user_id . '/' . $myfileupload['name'];
+							if(!$myfileupload['type']){
+								$filetype = wp_check_filetype(basename($myfileupload['name']));
+								$pmtype = $filetype['type'];
+							}
+							else {
+								$pmtype = $myfileupload['type'];
+							}
+							$guid = $emd_file_upload['url'] . '/' . $myfileupload['name'];
 							$attachment = array(
-								'post_mime_type' => $filetype['type'],
+								'post_mime_type' => $pmtype,
 								'guid' => $guid,
 								'post_title' => basename($myfileupload['name']) ,
 								'post_content' => '',

@@ -4,37 +4,39 @@ Plugin URI: https://emdplugins.com
 Author URI: https://emarketdesign.com
 Donate link: https://emarketdesign.com/donate-emarket-design/
 Requires at least: 3.8
-Tested up to: 4.1
-Stable tag: 1.2.0
+Tested up to: 4.1.1
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: help, support, support ticket, ticket, email notification, user support plugin, support plugin , ticket plugin, support system, helpdesk, ticket system, ticketing system, help desk, customer service, submit tickets, CRM, ticket management, wp app studio, wpas, IMAP, POP3, incoming email, email, post by email, canned responses, quick responses
 
-WP Ticket enables support staff to receive, process, and respond to service requests efficiently and effectively.
+WP Ticket is a very easy to use helpdesk and support ticket management system to receive, process, and respond to service requests.
 
 == Description ==
-WP Ticket is a very easy to use helpdesk and support ticket management system to receive, process, and respond to service requests.
+
+WP Ticket enables support staff to receive, process, and respond to service requests efficiently and effectively.
 
 For project based issue tracking and management, check out [Software Issue Manager](https://wordpress.org/plugins/software-issue-manager/).
 
 [Premium editions](https://emdplugins.com/plugins) are available.
 
-> <strong>Customization</strong><br>
-> WP Ticket is designed and developed using WP App Studio AUTOBAHN without writing a single line of PHP code. Customize it to your needs by:<br>
-> 1. [Download App signature.](https://wpas.emdplugins.com/wpas-demos/)<br>
-> 2. [Download WP App Studio.](https://wordpress.org/plugins/wp-app-studio/)<br>
-> 3. [Import App signature to WP App Studio AUTOBAHN.](https://wpas.emdplugins.com/)<br>
-> 4. Customize the app design.<br>
-> 5. [Open up a ProDev account.](https://wpas.emdplugins.com/downloads/pro-dev-app/)<br>
-> 6. Generate your custom plugin.<br>
+> <strong>Customization using your WP App Studio ProdDev account</strong><br>
+> WP Ticket is designed and developed using WP App Studio AUTOBAHN (4.3+) without writing a single line of PHP code. Customize it to your needs by: <br>
+> 1. [Download App signature.](https://emdplugins.com/designs/)<br>
+> 2. [Download WP App Studio.](https://wordpress.org/plugins/wp-app-studio/) <br>
+> 3. [Import App signature to WP App Studio AUTOBAHN by clicking on Import button in the app list screen](https://wpas.emdplugins.com/articles/importing-and-exporting-apps/)<br>
+> 4. [Open up a ProDev account.](https://wpas.emdplugins.com/)<br>
+> 5. Go to WP App Studio menu Applications page Click on the app signature imported and change the *app name* and *text domain* to your ProDev *app name* and *text domain* you purchased.<br>
+> 6. Make modifications to the design and Generate your plugin.<br>
 > 7. Download/Install/Activate your plugin.<br>
-> 8. Set your ProDev license in your plugins setting page, licenses tab. You have 1 year to customize, update your plugin. After initial activation, all other updates are done through WordPress Plugin page like other WP plugins.
+> 8. Set your ProDev license in your plugins setting page, licenses tab. You have 1 year to customize, update your plugin. After initial activation, all other updates are done through WordPress Plugin page like other WP plugins.<br>
 
-= Works with WPAS Extensions =
+= Works with WPAS Extensions and Addons =
 [WPAS incoming email extension](https://emdplugins.com/plugins/incoming-email-extension/)
 * Allows tickets to be created through email (POP3/IMAP supported).<br>
 [WPAS canned responses extension](https://emdplugins.com/plugins/canned-responses-extension/)
-* Allows to create, categorize, and utilize predetermined responses in WPAS app comments.
+* Allows to create, categorize, and utilize predetermined responses in WPAS app comments.<br>
+* Advanced Knowledgebase plugin is coming soon.<br>
 
 <strong>Community Edition Features</strong><br>
 * Useful for small teams *without* organizational content access requirements.<br>
@@ -53,10 +55,10 @@ For project based issue tracking and management, check out [Software Issue Manag
 [Plugin Documentation](https://docs.emdplugins.com/docs/wp-ticket-community-documentation/)
 
 **Workflow implemented for Community edition**<br>
-1. Customer opens a ticket from frontend. The ticket is set to Draft.<br>
-2. Admin user accepts and publishes the ticket. The customer can view the ticket from frontend.<br>
-3. Admin user processes and moderates comments on the ticket using standard WP commenting system.<br>
-4. Admin user sets a resolution status to the ticket.<br>
+1. Customer opens a ticket from frontend. The ticket status is set to "Open".<br>
+2. Admin user processes and moderates comments on the ticket using standard WP commenting system.<br>
+3. The customer can view, search and add comment for the ticket from frontend.<br>
+4. Admin user sets a resolution status to the ticket when the resolution is reached.<br>
 
 
 
@@ -95,14 +97,40 @@ For project based issue tracking and management, check out [Software Issue Manag
 * Record ticket revision history.<br>
 
 **Workflow implemented for Pro Edition**<br>
-1. Customer opens a ticket from frontend.<br>
-2. The ticket is set to "Draft" and a notification is sent to catch all and user email (Bcc, CC, multiple emails accepted).<br>
+1. Customer opens a ticket from frontend. No registration required.<br>
+2. The ticket is set to "Open" and a notification is sent to catch all and user email (Bcc, CC, multiple emails accepted).<br>
 3. Manager user accepts, assigns the ticket to a staff member and publishes the ticket. The assignee gets notified on ticket assignment. After ticket is published, customers can see their ticket from frontend.<br>
 4. The assignee processes the ticket adds/moderates comments. Customers and the assignee get notified on comments on the ticket.<br>
 5. The assignee sets a resolution status to the ticket after an acceptable solution is reached.<br>
 
 [WP Ticket Pro Plugin Documentation](https://docs.emdplugins.com/docs/wp-ticket-professional-documentation/)<br>
 [WP Ticket Pro Plugin Page - full demo available](https://emdplugins.com/plugins/wp-ticket-professional/)
+
+= Enterprise Edition Features =
+* Most advanced and fully featured WordPress app ever built for non-project based service request management. 
+* For project based management see [Software Issue Manager](https://emdplugins.com/plugins/software-issue-manager-enterprise/)
+* Includes all features included in PRO edition plus advanced email piping, canned responses, time tracking, additional charts, and more
+* For enterprise level service request management with performance analytics, request analytics, and time tracking
+* Manager and Agent custom roles: display content based on the role a user plays in your team
+* Agent specific dashboards: for performance analytics and agent workload information
+* Responsive intuitive interface helps improve user adaptation
+* Advanced collaboration with latest comment filters: see a flag indicating who replied last and if customer response required
+* Attachment icons to indicate file type are displayed in the frontend and backend
+* Relate tickets to each other to find service request path.
+* Time Spent Per Ticket By Assignee
+* Time Spent By SLA
+* Ticket Counts By Status By Created Date Last 4 Weeks
+
+**Workflow implemented for Enterprise Edition**<br>
+1. Customer opens a ticket from frontend, no registration required.<br>
+2. The ticket is set to "Open" and a notification is sent to catch all and user email (Bcc, CC, multiple emails accepted).<br>
+3. Manager user accepts, assigns the ticket to a staff member and publishes the ticket. The assignee gets notified on ticket assignment. After ticket is published, customers can see their ticket from frontend.<br>
+4. The assignee processes the ticket: insert expected time spent, remaining time to resolution, adds/moderates comments. Customers and the assignee get notified on comments on the ticket.<br>
+5. The assignee sets a resolution status, actual time spent in to the ticket after an acceptable solution is reached.<br>
+
+[WP Ticket Enterprise Plugin Documentation](https://docs.emdplugins.com/docs/wp-ticket-enterprise-documentation/)<br>
+[WP Ticket Enterprise Plugin Page - full demo available](https://emdplugins.com/plugins/wp-ticket-enterprise/)
+
 
 == Installation ==
 
@@ -134,6 +162,10 @@ The simplest way to install is to click on 'Plugins' then 'Add' and type 'Wp Tic
 6. Displays WP Ticket Pro dashboard with statistics and charts in admin area
 
 == Changelog ==
+= 1.3.0 =
+* Fixed untranslatable search form results view header columns
+* Fixed file uploads issue with file names including spaces
+* Fixed various compatibility issues related to other plugins
 = 1.2.0 =
 * Added the required configuration to use WPAS Canned Responses extension
 * Fixed Misc bugs.
@@ -147,6 +179,8 @@ The simplest way to install is to click on 'Plugins' then 'Add' and type 'Wp Tic
 == Frequently Asked Questions ==
 
 == Upgrade Notice ==
+= 1.3.0 =
+* Fixed untranslatable search form results, file uploads, and compatibility issues related to other plugins
 = 1.2.0 =
 * Added the required configuration to use WPAS Canned Responses extension
 = 1.1.0 =

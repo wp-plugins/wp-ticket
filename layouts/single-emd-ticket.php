@@ -13,7 +13,7 @@ if (!empty($blt_content)) { ?>
 <?php
 } ?>
 <?php
-$emd_ticket_id = rwmb_meta('emd_ticket_id');
+$emd_ticket_id = emd_mb_meta('emd_ticket_id');
 if (!empty($emd_ticket_id)) { ?>
    <div id="emd-ticket-emd-ticket-id-div" class="emd-single-div">
    <div id="emd-ticket-emd-ticket-id-key" class="emd-single-title">
@@ -26,7 +26,7 @@ if (!empty($emd_ticket_id)) { ?>
 <?php
 } ?>
 <?php
-$emd_ticket_first_name = rwmb_meta('emd_ticket_first_name');
+$emd_ticket_first_name = emd_mb_meta('emd_ticket_first_name');
 if (!empty($emd_ticket_first_name)) { ?>
    <div id="emd-ticket-emd-ticket-first-name-div" class="emd-single-div">
    <div id="emd-ticket-emd-ticket-first-name-key" class="emd-single-title">
@@ -39,7 +39,7 @@ if (!empty($emd_ticket_first_name)) { ?>
 <?php
 } ?>
 <?php
-$emd_ticket_last_name = rwmb_meta('emd_ticket_last_name');
+$emd_ticket_last_name = emd_mb_meta('emd_ticket_last_name');
 if (!empty($emd_ticket_last_name)) { ?>
    <div id="emd-ticket-emd-ticket-last-name-div" class="emd-single-div">
    <div id="emd-ticket-emd-ticket-last-name-key" class="emd-single-title">
@@ -52,7 +52,7 @@ if (!empty($emd_ticket_last_name)) { ?>
 <?php
 } ?>
 <?php
-$emd_ticket_email = rwmb_meta('emd_ticket_email');
+$emd_ticket_email = emd_mb_meta('emd_ticket_email');
 if (!empty($emd_ticket_email)) { ?>
    <div id="emd-ticket-emd-ticket-email-div" class="emd-single-div">
    <div id="emd-ticket-emd-ticket-email-key" class="emd-single-title">
@@ -65,7 +65,7 @@ if (!empty($emd_ticket_email)) { ?>
 <?php
 } ?>
 <?php
-$emd_ticket_phone = rwmb_meta('emd_ticket_phone');
+$emd_ticket_phone = emd_mb_meta('emd_ticket_phone');
 if (!empty($emd_ticket_phone)) { ?>
    <div id="emd-ticket-emd-ticket-phone-div" class="emd-single-div">
    <div id="emd-ticket-emd-ticket-phone-key" class="emd-single-title">
@@ -77,7 +77,7 @@ if (!empty($emd_ticket_phone)) { ?>
    </div>
 <?php
 } ?>
-<?php $emd_ticket_duedate = rwmb_meta('emd_ticket_duedate');
+<?php $emd_ticket_duedate = emd_mb_meta('emd_ticket_duedate');
 if (!empty($emd_ticket_duedate)) {
 	$emd_ticket_duedate = emd_translate_date_format($ent_attrs['emd_ticket']['emd_ticket_duedate'], $emd_ticket_duedate, 1);
 ?>
@@ -90,16 +90,18 @@ if (!empty($emd_ticket_duedate)) {
    </div></div>
 <?php
 } ?>
-<?php $rwmb_file = rwmb_meta('emd_ticket_attachment', 'type=file');
-if (!empty($rwmb_file)) { ?>
+<?php $emd_mb_file = emd_mb_meta('emd_ticket_attachment', 'type=file');
+if (!empty($emd_mb_file)) { ?>
   <div id="emd-ticket-emd-ticket-attachment-div" class="emd-single-div">
   <div id="emd-ticket-emd-ticket-attachment-key" class="emd-single-title">
   <?php _e('Attachments', 'wp-ticket-com'); ?>
   </div>
   <div id="emd-ticket-emd-ticket-attachment-val" class="emd-single-val">
-  <?php foreach ($rwmb_file as $info) { ?>
-  <a href='<?php echo esc_url($info['url']); ?>' target='_blank' title='<?php echo esc_attr($info['title']); ?>'><?php echo esc_html($info['name']); ?>
-   </a><br />
+  <?php foreach ($emd_mb_file as $info) {
+		$fsrc = wp_mime_type_icon($info['ID']);
+?>
+  <a href='<?php echo esc_url($info['url']); ?>' target='_blank' title='<?php echo esc_attr($info['title']); ?>'><img src='<?php echo $fsrc; ?>' title='<?php echo esc_html($info['name']); ?>' width='20' />
+   </a>
   <?php
 	} ?>
   </div>

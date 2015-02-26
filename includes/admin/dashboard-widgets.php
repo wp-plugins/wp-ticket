@@ -3,7 +3,7 @@
  * Admin Dashboard Functions
  *
  * @package WP_TICKET_COM
- * @version 1.2
+ * @version 1.3.0
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
@@ -53,8 +53,8 @@ function wp_ticket_com_recent_tickets_dashboard_dwidget_control() {
  */
 function wp_ticket_com_recent_tickets_dashboard_layout() {
 ?>
-* <a title="<?php echo esc_html(rwmb_meta('emd_ticket_id')) ?> - <?php echo get_the_date() ?> - <?php echo get_the_time() ?>" href="<?php echo get_permalink() ?>"><?php echo get_the_title() ?></a><br />
+* <a title="<?php echo esc_html(emd_mb_meta('emd_ticket_id')) ?> - <?php echo get_the_date() ?> - <?php echo get_the_time() ?>" href="<?php echo get_permalink() ?>"><?php echo get_the_title() ?></a><br />
 
 
 <?php
-} ?>
+}

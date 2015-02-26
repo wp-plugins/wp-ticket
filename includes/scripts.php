@@ -3,7 +3,7 @@
  * Enqueue Scripts Functions
  *
  * @package WP_TICKET_COM
- * @version 1.2
+ * @version 1.3.0
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
@@ -20,7 +20,11 @@ function wp_ticket_com_load_admin_enq($hook) {
 	if ($hook == 'toplevel_page_wp_ticket_com' || $hook == 'wp-ticket_page_wp_ticket_com_notify') {
 		wp_enqueue_script('accordion');
 		return;
-	} else if ($hook == 'wp-ticket_page_wp_ticket_com_store') {
+	} else if (in_array($hook, Array(
+		'wp-ticket_page_wp_ticket_com_store',
+		'wp-ticket_page_wp_ticket_com_designs',
+		'wp-ticket_page_wp_ticket_com_support'
+	))) {
 		wp_enqueue_style('admin-tabs', WP_TICKET_COM_PLUGIN_URL . 'assets/css/admin-store.css');
 		return;
 	}
@@ -48,7 +52,7 @@ function wp_ticket_com_load_admin_enq($hook) {
 		}
 		wp_enqueue_style("jq-css", "//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css");
 		if ($datetime_enq == 1) {
-			wp_enqueue_script("jquery-ui-timepicker", WP_TICKET_COM_PLUGIN_URL . 'assets/ext/meta-box/js/jqueryui/jquery-ui-timepicker-addon.js', array(
+			wp_enqueue_script("jquery-ui-timepicker", WP_TICKET_COM_PLUGIN_URL . 'assets/ext/emd-meta-box/js/jqueryui/jquery-ui-timepicker-addon.js', array(
 				'jquery-ui-datepicker',
 				'jquery-ui-slider'
 			) , WP_TICKET_COM_VERSION, true);

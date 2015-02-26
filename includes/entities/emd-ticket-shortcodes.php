@@ -3,7 +3,7 @@
  * Entity Related Shortcode Functions
  *
  * @package WP_TICKET_COM
- * @version 1.2
+ * @version 1.3.0
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
@@ -26,6 +26,7 @@ function wp_ticket_com_search_tickets_set_shc($atts, $args = Array() , $form_nam
 		'form' => $form_name,
 		'has_pages' => true,
 		'pageno' => $pageno,
+		'pgn_class' => '',
 		'theme' => 'jui'
 	);
 	$args_default = array(

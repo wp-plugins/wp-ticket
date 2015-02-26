@@ -3,7 +3,7 @@
  * Settings Glossary Functions
  *
  * @package WP_TICKET_COM
- * @version 1.2
+ * @version 1.3.0
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
@@ -47,7 +47,7 @@ function wp_ticket_com_settings_glossary() {
 <td><?php _e('The due date of the ticket Due is filterable in the admin area. Due does not have a default value. ', 'wp-ticket-com'); ?></td>
 </tr><tr>
 <th><?php _e('Subject', 'wp-ticket-com'); ?></th>
-<td><?php _e('Ideally, a question title should be a question. It&#039;s important that the question title is specific and has at least some meaning with no other information. A question such as &quot;Why doesn&#039;t this work?&quot; makes absolutely no sense without the rest of the question. Subject is a required field. Subject does not have a default value. ', 'wp-ticket-com'); ?></td>
+<td><?php _e('Ideally, a question title should be a question. It\'s important that the question title is specific and has at least some meaning with no other information. A question such as "Why doesn\'t this work?" makes absolutely no sense without the rest of the question. Subject is a required field. Subject does not have a default value. ', 'wp-ticket-com'); ?></td>
 </tr><tr>
 <th><?php _e('Message', 'wp-ticket-com'); ?></th>
 <td><?php _e('Describe the problem or question. Include all necessary details but no unnecessary ones. A short description is easier to understand and will save the reviewer time. Please avoid asking multiple questions in one ticket. Open a separate ticket so that we can better answer your question. Message is a required field. Message does not have a default value. ', 'wp-ticket-com'); ?></td>

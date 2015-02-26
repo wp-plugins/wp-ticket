@@ -20,6 +20,7 @@ global $wp_version;
 function emd_get_hidden_func($hidden_func) {
 	global $current_user;
 	get_currentuserinfo();
+	$val = "";
 	switch ($hidden_func) {
 		case 'user_login':
 			$val = $current_user->user_login;
@@ -70,6 +71,9 @@ function emd_get_hidden_func($hidden_func) {
 		break;
 		case 'unique_id':
 			$val = 'emd_uid';
+		break;
+		case 'autoinc':
+			$val = 'emd_autoinc';
 		break;
 	}
 	if ($current_user->ID == 0 && $val == '') {
@@ -166,10 +170,6 @@ function emd_parse_template_tags($app, $message, $pid) {
 		$permlink = wp_login_url(add_query_arg('preview', 'true', get_permalink($pid)));
 	}
 
-	$author = get_the_author();
-	if(empty($author)){
-		$author = get_the_author_meta('nickname',$mypost->post_author);
-	}
 	$builtins = Array(
 		'title' => $mypost->post_title,
 		'permalink' => $permlink,
@@ -177,7 +177,14 @@ function emd_parse_template_tags($app, $message, $pid) {
 		'delete_link' => add_query_arg('frontend', 'true', get_delete_post_link($pid)) ,
 		'excerpt' => $mypost->post_excerpt,
 		'content' => $mypost->post_content,
-		'author' => $author,
+		'author_dispname' => get_the_author_meta('display_name',$mypost->post_author),
+		'author_nickname' => get_the_author_meta('nickname',$mypost->post_author),
+		'author_fname' => get_the_author_meta('first_name',$mypost->post_author),
+		'author_lname' => get_the_author_meta('last_name',$mypost->post_author),
+		'author_login' => get_the_author_meta('user_login',$mypost->post_author),
+		'author_bio' => get_the_author_meta('description',$mypost->post_author),
+		'author_googleplus' => get_the_author_meta('googleplus',$mypost->post_author),
+		'author_twitter' => get_the_author_meta('twitter',$mypost->post_author),
 	);
 	//first get each template tag
 	if (preg_match_all('/\{([^}]*)\}/', $message, $matches)) {
@@ -186,7 +193,7 @@ function emd_parse_template_tags($app, $message, $pid) {
 			if (in_array($match_tag, array_keys($builtins))) {
 				$message = str_replace('{' . $match_tag . '}', $builtins[$match_tag], $message);
 			} elseif (preg_match('/^wpas_/', $match_tag)) {
-				$message = str_replace('{' . $match_tag . '}', rwmb_meta($match_tag, array() , $pid) , $message);
+				$message = str_replace('{' . $match_tag . '}', emd_mb_meta($match_tag, array() , $pid) , $message);
 			} elseif (preg_match('/^emd_/', $match_tag)) {
 				$new = emd_get_attr_val($app, $pid, $mypost->post_type, $match_tag);
 				$message = str_replace('{' . $match_tag . '}', $new, $message);
@@ -247,14 +254,14 @@ function emd_get_attr_val($app, $pid, $ptype, $attr_id) {
 			$mult = 1;
 		}
 		if ($dtype == 'checkbox_list' || $dtype == 'select' && $mult == 1) {
-			$rwmb_list = rwmb_meta($attr_id, 'type=checkbox_list', $pid);
-			if (!empty($rwmb_list)) {
-				$val = implode(', ', $rwmb_list);
+			$emd_mb_list = emd_mb_meta($attr_id, 'type=checkbox_list', $pid);
+			if (!empty($emd_mb_list)) {
+				$val = implode(', ', $emd_mb_list);
 			}
 		} elseif ($dtype == 'file') {
-			$rwmb_file = rwmb_meta($attr_id, 'type=file', $pid);
-			if (!empty($rwmb_file)) {
-				foreach ($rwmb_file as $info) {
+			$emd_mb_file = emd_mb_meta($attr_id, 'type=file', $pid);
+			if (!empty($emd_mb_file)) {
+				foreach ($emd_mb_file as $info) {
 					$val.= "<a href='" . $info['url'] . "' title='" . $info['title'] . "'>" . $info['name'] . "</a><br/>";
 				}
 			}
@@ -263,7 +270,7 @@ function emd_get_attr_val($app, $pid, $ptype, $attr_id) {
 			'plupload_image',
 			'thickbox_image'
 		))) {
-			$images = rwmb_meta($attr_id, 'type=plupload_image', $pid);
+			$images = emd_mb_meta($attr_id, 'type=plupload_image', $pid);
 			if (!empty($images)) {
 				foreach ($images as $image) {
 					$val.= "<a href='" . $image['full_url'] . "' title='" . $image['title'] . "' rel=\'thickbox\'>
@@ -275,10 +282,29 @@ function emd_get_attr_val($app, $pid, $ptype, $attr_id) {
 			'datetime',
 			'time'
 		))) {
-			$val = emd_translate_date_format($attr, rwmb_meta($attr_id, array() , $pid) , 1);
+			$val = emd_translate_date_format($attr, emd_mb_meta($attr_id, array() , $pid) , 1);
 		} else {
-			$val = rwmb_meta($attr_id, array() , $pid);
+			$val = emd_mb_meta($attr_id, array() , $pid);
 		}
 	}
 	return $val;
+}
+/**
+ * Operator list for search moved from form-functions
+ *
+ * @since WPAS 4.3 
+ * @param string $opr
+ *
+ * @return string $operator
+ */
+function emd_get_meta_operator($opr) {
+	$operators['is'] = '=';
+	$operators['is_not'] = '!=';
+	$operators['like'] = 'LIKE';
+	$operators['not_like'] = 'NOT LIKE';
+	$operators['less_than'] = '<';
+	$operators['greater_than'] = '>';
+	$operators['less_than_eq'] = '<=';
+	$operators['greater_than_eq'] = '>=';
+	return $operators[$opr];
 }

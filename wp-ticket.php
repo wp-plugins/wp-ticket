@@ -3,7 +3,7 @@
  * Plugin Name: Wp Ticket
  * Plugin URI: https://emdplugins.com
  * Description: WP Ticket enables support staff to receive, process, and respond to service requests efficiently and effectively.
- * Version: 1.2
+ * Version: 1.3.0
  * Author: eMarket Design
  * Author URI: https://emarketdesign.com
  * Text Domain: wp-ticket-com
@@ -74,8 +74,9 @@ if (!class_exists('Wp_Ticket')):
 		 * @return void
 		 */
 		private function define_constants() {
-			define('WP_TICKET_COM_VERSION', '1.1');
+			define('WP_TICKET_COM_VERSION', '1.3.0');
 			define('WP_TICKET_COM_AUTHOR', 'eMarket Design');
+			define('WP_TICKET_COM_NAME', 'Wp Ticket');
 			define('WP_TICKET_COM_PLUGIN_FILE', __FILE__);
 			define('WP_TICKET_COM_PLUGIN_DIR', plugin_dir_path(__FILE__));
 			define('WP_TICKET_COM_PLUGIN_URL', plugin_dir_url(__FILE__));
@@ -87,26 +88,9 @@ if (!class_exists('Wp_Ticket')):
 		 * @return void
 		 */
 		private function includes() {
-			if (is_admin()) {
-				//these files are in all apps
-				if (!function_exists('emd_display_store')) {
-					require_once WP_TICKET_COM_PLUGIN_DIR . 'includes/admin/store-functions.php';
-				}
-				//the rest
-				if (!function_exists('emd_shc_button')) {
-					require_once WP_TICKET_COM_PLUGIN_DIR . 'includes/admin/wpas-btn-functions.php';
-				}
-				if (!class_exists('Emd_Single_Taxonomy')) {
-					require_once WP_TICKET_COM_PLUGIN_DIR . 'includes/admin/singletax/class-emd-single-taxonomy.php';
-					require_once WP_TICKET_COM_PLUGIN_DIR . 'includes/admin/singletax/class-emd-walker-radio.php';
-				}
-				if (!function_exists('emd_dashboard_widget')) {
-					require_once WP_TICKET_COM_PLUGIN_DIR . 'includes/admin/dashboard-widget-functions.php';
-				}
-			}
 			//these files are in all apps
-			if (!function_exists('rwmb_meta')) {
-				require_once WP_TICKET_COM_PLUGIN_DIR . 'assets/ext/meta-box/meta-box.php';
+			if (!function_exists('emd_mb_meta')) {
+				require_once WP_TICKET_COM_PLUGIN_DIR . 'assets/ext/emd-meta-box/emd-meta-box.php';
 			}
 			if (!function_exists('emd_translate_date_format')) {
 				require_once WP_TICKET_COM_PLUGIN_DIR . 'includes/date-functions.php';
@@ -144,6 +128,21 @@ if (!class_exists('Wp_Ticket')):
 			}
 			//app specific files
 			if (is_admin()) {
+				//these files are in all apps
+				if (!function_exists('emd_display_store')) {
+					require_once WP_TICKET_COM_PLUGIN_DIR . 'includes/admin/store-functions.php';
+				}
+				//the rest
+				if (!function_exists('emd_shc_button')) {
+					require_once WP_TICKET_COM_PLUGIN_DIR . 'includes/admin/wpas-btn-functions.php';
+				}
+				if (!class_exists('Emd_Single_Taxonomy')) {
+					require_once WP_TICKET_COM_PLUGIN_DIR . 'includes/admin/singletax/class-emd-single-taxonomy.php';
+					require_once WP_TICKET_COM_PLUGIN_DIR . 'includes/admin/singletax/class-emd-walker-radio.php';
+				}
+				if (!function_exists('emd_dashboard_widget')) {
+					require_once WP_TICKET_COM_PLUGIN_DIR . 'includes/admin/dashboard-widget-functions.php';
+				}
 				require_once WP_TICKET_COM_PLUGIN_DIR . 'includes/admin/misc-functions.php';
 				require_once WP_TICKET_COM_PLUGIN_DIR . 'includes/admin/glossary.php';
 				require_once WP_TICKET_COM_PLUGIN_DIR . 'includes/admin/dashboard-widgets.php';
@@ -166,7 +165,7 @@ if (!class_exists('Wp_Ticket')):
 			$mofile = sprintf('%1$s-%2$s.mo', $this->textdomain, $locale);
 			$mofile_shared = sprintf('%1$s-emd-plugins-%2$s.mo', $this->textdomain, $locale);
 			$lang_file_list = Array(
-				$this->textdomain . '-emd-plugins' => $mofile_shared,
+				'emd-plugins' => $mofile_shared,
 				$this->textdomain => $mofile
 			);
 			foreach ($lang_file_list as $lang_key => $lang_file) {
@@ -224,12 +223,31 @@ if (!class_exists('Wp_Ticket')):
 				$this,
 				'display_store_page'
 			));
+			add_submenu_page($this->app_name, __('Designs', $this->textdomain) , __('Designs', $this->textdomain) , 'manage_options', $this->app_name . '_designs', array(
+				$this,
+				'display_design_page'
+			));
+			add_submenu_page($this->app_name, __('Support', $this->textdomain) , __('Support', $this->textdomain) , 'manage_options', $this->app_name . '_support', array(
+				$this,
+				'display_support_page'
+			));
 			$emd_lic_settings = get_option('emd_license_settings', Array());
 			if (!empty($emd_lic_settings)) {
-				add_submenu_page($this->app_name, __('Licenses', $this->textdomain) , __('Licenses', $this->textdomain) , 'manage_options', $this->app_name . '_licenses', array(
-					$this,
-					'display_licenses_page'
-				));
+				foreach ($emd_lic_settings as $key => $val) {
+					if ($key == $this->app_name) {
+						$show_lic_page = 1;
+						break;
+					} else if ($val['type'] == 'ext') {
+						$show_lic_page = 1;
+						break;
+					}
+				}
+				if ($show_lic_page == 1) {
+					add_submenu_page($this->app_name, __('Licenses', $this->textdomain) , __('Licenses', $this->textdomain) , 'manage_options', $this->app_name . '_licenses', array(
+						$this,
+						'display_licenses_page'
+					));
+				}
 			}
 		}
 		/**
@@ -243,6 +261,12 @@ if (!class_exists('Wp_Ticket')):
 		}
 		public function display_store_page() {
 			emd_display_store($this->textdomain);
+		}
+		public function display_design_page() {
+			emd_display_design($this->textdomain);
+		}
+		public function display_support_page() {
+			emd_display_support($this->textdomain, 2, 'wp-ticket');
 		}
 		public function display_licenses_page() {
 			do_action('emd_show_license_page', $this->app_name);

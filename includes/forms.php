@@ -2,28 +2,23 @@
 /**
  * Setup and Process submit and search forms
  * @package WP_TICKET_COM
- * @version 1.2
+ * @version 1.3.0
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
 if (is_admin()) {
 }
-add_action('wp_loaded', 'wp_ticket_com_form_shortcodes');
+add_action('init', 'wp_ticket_com_form_shortcodes', -2);
 /**
  * Start session and setup upload idr and current user id
  * @since WPAS 4.0
  *
  */
 function wp_ticket_com_form_shortcodes() {
-	global $current_user, $current_user_id, $file_upload_dir;
-	get_currentuserinfo();
-	$current_user_id = $current_user->ID;
-	if (!isset($current_user_id) || $current_user_id == '') {
-		$current_user_id = 'guest';
-	}
+	global $file_upload_dir;
 	$upload_dir = wp_upload_dir();
-	$file_upload_dir = $upload_dir['basedir'] . '/wpas-files/' . $current_user_id;
-	if (!session_id()) {
+	$file_upload_dir = $upload_dir['basedir'];
+	if (!session_id() && !headers_sent()) {
 		session_start();
 	}
 }

@@ -7,8 +7,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-01-31T14:23:24-05:00\n"
-"POT-Creation-Date: 2015-01-31T14:23:24-05:00\n"
+"PO-Revision-Date: 2015-02-26T14:39:27-05:00\n"
+"POT-Creation-Date: 2015-02-26T14:39:27-05:00\n"
 
 #: wp-ticket/forms/search-tickets.php:16
 msgid "Ticket ID"
@@ -71,7 +71,7 @@ msgid "Subject"
 msgstr ""
 
 #: wp-ticket/forms/submit-tickets.php:85
-msgid "Ideally, a question title should be a question. It&#039;s important that the question title is specific and has at least some meaning with no other information. A question such as &quot;Why doesn&#039;t this work?&quot; makes absolutely no sense without the rest of the question."
+msgid "Ideally, a question title should be a question. It's important that the question title is specific and has at least some meaning with no other information. A question such as \"Why doesn't this work?\" makes absolutely no sense without the rest of the question."
 msgstr ""
 
 #: wp-ticket/forms/submit-tickets.php:86
@@ -156,7 +156,7 @@ msgid "The due date of the ticket Due is filterable in the admin area. Due does 
 msgstr ""
 
 #: wp-ticket/includes/admin/glossary.php:50
-msgid "Ideally, a question title should be a question. It&#039;s important that the question title is specific and has at least some meaning with no other information. A question such as &quot;Why doesn&#039;t this work?&quot; makes absolutely no sense without the rest of the question. Subject is a required field. Subject does not have a default value. "
+msgid "Ideally, a question title should be a question. It's important that the question title is specific and has at least some meaning with no other information. A question such as \"Why doesn't this work?\" makes absolutely no sense without the rest of the question. Subject is a required field. Subject does not have a default value. "
 msgstr ""
 
 #: wp-ticket/includes/admin/glossary.php:53
@@ -308,6 +308,7 @@ msgid "required"
 msgstr ""
 
 #: wp-ticket/includes/admin/store-functions.php:22
+#: wp-ticket/includes/admin/store-functions.php:42
 msgid "Browse All"
 msgstr ""
 
@@ -315,8 +316,32 @@ msgstr ""
 msgid "The following plugins extend and expand the functionality of your app."
 msgstr ""
 
+#: wp-ticket/includes/admin/store-functions.php:44
+msgid "The following <a href=\"%s\" title=\"WP App Studio Prodev\" target=\"_blank\">WP App Studio Prodev</a> plugin designs can be used as a template:"
+msgstr ""
+
 #: wp-ticket/includes/admin/store-functions.php:46
+msgid "To customize the functionality of their corresponding plugins"
+msgstr ""
+
+#: wp-ticket/includes/admin/store-functions.php:49
+msgid "To create your own plugin"
+msgstr ""
+
+#: wp-ticket/includes/admin/store-functions.php:74
 msgid "There was an error retrieving the extensions list from the server. Please try again later."
+msgstr ""
+
+#: wp-ticket/includes/admin/store-functions.php:92
+msgid "Thanks for installing %s."
+msgstr ""
+
+#: wp-ticket/includes/admin/store-functions.php:92
+msgid "All support requests are accepted through <a href=\"%s\" target=\"_blank\">our support site.</a>"
+msgstr ""
+
+#: wp-ticket/includes/admin/store-functions.php:115
+msgid "Like our plugin? Leave us a review"
 msgstr ""
 
 #: wp-ticket/includes/class-install-deactivate.php:256
@@ -343,20 +368,20 @@ msgstr ""
 msgid "Open"
 msgstr ""
 
-#: wp-ticket/includes/class-install-deactivate.php:414
+#: wp-ticket/includes/class-install-deactivate.php:415
 msgid "Business"
 msgstr ""
 
-#: wp-ticket/includes/class-install-deactivate.php:418
+#: wp-ticket/includes/class-install-deactivate.php:419
 msgid "Education"
 msgstr ""
 
-#: wp-ticket/includes/class-install-deactivate.php:422
-#: wp-ticket/includes/class-install-deactivate.php:431
+#: wp-ticket/includes/class-install-deactivate.php:423
+#: wp-ticket/includes/class-install-deactivate.php:432
 msgid "Science"
 msgstr ""
 
-#: wp-ticket/includes/class-install-deactivate.php:426
+#: wp-ticket/includes/class-install-deactivate.php:427
 msgid "Technology"
 msgstr ""
 
@@ -376,7 +401,7 @@ msgid "&#187;"
 msgstr ""
 
 #: wp-ticket/includes/class-install-deactivate.php:549
-msgid "Buy WPAS Incoming Email Extension to create tickets through emails!"
+msgid "Upgrade to Professional Version Now!"
 msgstr ""
 
 #: wp-ticket/includes/class-install-deactivate.php:555
@@ -391,7 +416,7 @@ msgstr ""
 msgid "Skip setup"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket-widgets.php:36
+#: wp-ticket/includes/entities/class-emd-ticket-widgets.php:37
 msgid "The most recent tickets"
 msgstr ""
 
@@ -630,161 +655,173 @@ msgstr ""
 msgid "The due date of the ticket"
 msgstr ""
 
-#: wp-ticket/includes/forms.php:70
-#: wp-ticket/includes/forms.php:202
+#: wp-ticket/includes/forms.php:65
+#: wp-ticket/includes/forms.php:197
 msgid "Email: Please enter a valid email address"
 msgstr ""
 
-#: wp-ticket/includes/forms.php:77
-#: wp-ticket/includes/forms.php:265
+#: wp-ticket/includes/forms.php:72
+#: wp-ticket/includes/forms.php:260
 msgid "Please enter the characters with black color."
+msgstr ""
+
+#: wp-ticket/includes/forms.php:74
+#: wp-ticket/includes/forms.php:262
+msgid "Code"
 msgstr ""
 
 #: wp-ticket/includes/forms.php:79
 #: wp-ticket/includes/forms.php:267
-msgid "Code"
-msgstr ""
-
-#: wp-ticket/includes/forms.php:84
-#: wp-ticket/includes/forms.php:272
 msgid "Captcha is required"
 msgstr ""
 
-#: wp-ticket/includes/forms.php:88
-#: wp-ticket/includes/forms.php:276
+#: wp-ticket/includes/forms.php:83
+#: wp-ticket/includes/forms.php:271
 msgid "Characters from captcha image entered incorrectly!"
 msgstr ""
 
-#: wp-ticket/includes/forms.php:111
+#: wp-ticket/includes/forms.php:106
 msgid "Your search returned no results."
 msgstr ""
 
-#: wp-ticket/includes/forms.php:114
-#: wp-ticket/includes/forms.php:301
+#: wp-ticket/includes/forms.php:109
+#: wp-ticket/includes/forms.php:296
 msgid "<p>You are not allowed to access to this area. Please contact the site administrator.</p>"
 msgstr ""
 
-#: wp-ticket/includes/forms.php:142
+#: wp-ticket/includes/forms.php:137
 msgid "Please Select"
 msgstr ""
 
-#: wp-ticket/includes/forms.php:156
+#: wp-ticket/includes/forms.php:151
 msgid "Topic is required!"
 msgstr ""
 
-#: wp-ticket/includes/forms.php:170
+#: wp-ticket/includes/forms.php:165
 msgid "First Name is required"
 msgstr ""
 
-#: wp-ticket/includes/forms.php:184
+#: wp-ticket/includes/forms.php:179
 msgid "Last Name is required"
 msgstr ""
 
-#: wp-ticket/includes/forms.php:198
+#: wp-ticket/includes/forms.php:193
 msgid "Email is required"
 msgstr ""
 
-#: wp-ticket/includes/forms.php:216
+#: wp-ticket/includes/forms.php:211
 msgid "Subject is required"
 msgstr ""
 
-#: wp-ticket/includes/forms.php:224
+#: wp-ticket/includes/forms.php:219
 msgid "Enter text ..."
 msgstr ""
 
-#: wp-ticket/includes/forms.php:231
+#: wp-ticket/includes/forms.php:226
 msgid "Message is required"
 msgstr ""
 
-#: wp-ticket/includes/forms.php:280
+#: wp-ticket/includes/forms.php:275
 msgid "Submit Ticket"
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:36
-#: wp-ticket/includes/scripts.php:93
+#: wp-ticket/includes/scripts.php:40
+#: wp-ticket/includes/scripts.php:97
 msgid "Please enter a unique value."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:77
+#: wp-ticket/includes/scripts.php:81
 msgid "This field is required."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:78
+#: wp-ticket/includes/scripts.php:82
 msgid "Please fix this field."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:79
+#: wp-ticket/includes/scripts.php:83
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:80
+#: wp-ticket/includes/scripts.php:84
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:81
+#: wp-ticket/includes/scripts.php:85
 msgid "Please enter a valid date."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:82
+#: wp-ticket/includes/scripts.php:86
 msgid "Please enter a valid date ( ISO )"
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:83
+#: wp-ticket/includes/scripts.php:87
 msgid "Please enter a valid number."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:84
+#: wp-ticket/includes/scripts.php:88
 msgid "Please enter only digits."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:85
+#: wp-ticket/includes/scripts.php:89
 msgid "Please enter a valid credit card number."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:86
+#: wp-ticket/includes/scripts.php:90
 msgid "Please enter the same value again."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:87
+#: wp-ticket/includes/scripts.php:91
 msgid "Please enter no more than {0} characters."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:88
+#: wp-ticket/includes/scripts.php:92
 msgid "Please enter at least {0} characters."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:89
+#: wp-ticket/includes/scripts.php:93
 msgid "Please enter a value between {0} and {1} characters long."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:90
+#: wp-ticket/includes/scripts.php:94
 msgid "Please enter a value between {0} and {1}."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:91
+#: wp-ticket/includes/scripts.php:95
 msgid "Please enter a value less than or equal to {0}."
 msgstr ""
 
-#: wp-ticket/includes/scripts.php:92
+#: wp-ticket/includes/scripts.php:96
 msgid "Please enter a value greater than or equal to {0}."
+msgstr ""
+
+#: wp-ticket/layouts/shc-search-tickets-header.php:11
+msgid "Last Updated"
 msgstr ""
 
 #: wp-ticket/wp-ticket.php:68
 msgid "Cheatin&#8217; huh?"
 msgstr ""
 
-#: wp-ticket/wp-ticket.php:218
+#: wp-ticket/wp-ticket.php:217
 msgid "WP Ticket"
 msgstr ""
 
-#: wp-ticket/wp-ticket.php:222
+#: wp-ticket/wp-ticket.php:221
 msgid "Glossary"
 msgstr ""
 
-#: wp-ticket/wp-ticket.php:223
+#: wp-ticket/wp-ticket.php:222
 msgid "Add-Ons"
 msgstr ""
 
-#: wp-ticket/wp-ticket.php:229
+#: wp-ticket/wp-ticket.php:226
+msgid "Designs"
+msgstr ""
+
+#: wp-ticket/wp-ticket.php:230
+msgid "Support"
+msgstr ""
+
+#: wp-ticket/wp-ticket.php:246
 msgid "Licenses"
 msgstr ""
