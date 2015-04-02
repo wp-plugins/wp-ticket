@@ -2,11 +2,12 @@
 /**
  * Setup and Process submit and search forms
  * @package WP_TICKET_COM
- * @version 1.3.0
+ * @version 1.4
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
 if (is_admin()) {
+	add_action('wp_ajax_nopriv_emd_check_unique', 'emd_check_unique');
 }
 add_action('init', 'wp_ticket_com_form_shortcodes', -2);
 /**
@@ -24,91 +25,6 @@ function wp_ticket_com_form_shortcodes() {
 }
 add_shortcode('submit_tickets', 'wp_ticket_com_process_submit_tickets');
 add_shortcode('search_tickets', 'wp_ticket_com_process_search_tickets');
-/**
- * Set each form field(attr,tax and rels) and render form
- *
- * @since WPAS 4.0
- *
- * @return object $form
- */
-function wp_ticket_com_set_search_tickets() {
-	global $file_upload_dir;
-	$show_captcha = 1;
-	if (is_user_logged_in()) {
-		$show_captcha = 0;
-	}
-	require_once WP_TICKET_COM_PLUGIN_DIR . '/assets/ext/zebraform/Zebra_Form.php';
-	$form = new Zebra_Form('search_tickets', 0, 'POST', '', array(
-		'class' => 'form-container wpas-form wpas-form-stacked'
-	));
-	$form->form_properties['csrf_storage_method'] = false;
-	//text
-	$form->add('label', 'label_emd_ticket_id', 'emd_ticket_id', 'Ticket ID', array(
-		'class' => 'control-label'
-	));
-	$obj = $form->add('text', 'emd_ticket_id', '', array(
-		'class' => 'input-md form-control',
-		'placeholder' => __('Ticket ID', 'wp-ticket-com')
-	));
-	$obj->set_rule(array());
-	//text
-	$form->add('label', 'label_emd_ticket_email', 'emd_ticket_email', 'Email', array(
-		'class' => 'control-label'
-	));
-	$obj = $form->add('text', 'emd_ticket_email', '', array(
-		'class' => 'input-md form-control',
-		'placeholder' => __('Email', 'wp-ticket-com')
-	));
-	$obj->set_rule(array(
-		'email' => array(
-			'error',
-			__('Email: Please enter a valid email address', 'wp-ticket-com')
-		) ,
-	));
-	$form->assign('show_captcha', $show_captcha);
-	if ($show_captcha == 1) {
-		//Captcha
-		$form->add('captcha', 'captcha_image', 'captcha_code', '', '<span style="font-weight:bold;" class="refresh-txt">Refresh</span>', 'refcapt');
-		$form->add('label', 'label_captcha_code', 'captcha_code', __('Please enter the characters with black color.', 'wp-ticket-com'));
-		$obj = $form->add('text', 'captcha_code', '', array(
-			'placeholder' => __('Code', 'wp-ticket-com')
-		));
-		$obj->set_rule(array(
-			'required' => array(
-				'error',
-				__('Captcha is required', 'wp-ticket-com')
-			) ,
-			'captcha' => array(
-				'error',
-				__('Characters from captcha image entered incorrectly!', 'wp-ticket-com')
-			)
-		));
-	}
-	$form->add('submit', 'singlebutton_search_tickets', '' . __('Search Tickets', 'wp-ticket-com') . ' ', array(
-		'class' => 'wpas-button wpas-juibutton-primary wpas-button-large btn-block'
-	));
-	return $form;
-}
-/**
- * Process each form and show error or success
- *
- * @since WPAS 4.0
- *
- * @return html
- */
-function wp_ticket_com_process_search_tickets() {
-	$show_form = 1;
-	$access_views = get_option('wp_ticket_com_access_views', Array());
-	if (!current_user_can('view_search_tickets') && !empty($access_views['forms']) && in_array('search_tickets', $access_views['forms'])) {
-		$show_form = 0;
-	}
-	if ($show_form == 1) {
-		$noresult_msg = __('Your search returned no results.', 'wp-ticket-com');
-		return emd_search_php_form('search_tickets', 'wp_ticket_com', 'emd_ticket', $noresult_msg, 'search_tickets');
-	} else {
-		return "<div class='alert alert-info not-authorized'>" . __('<p>You are not allowed to access to this area. Please contact the site administrator.</p>', 'wp-ticket-com') . "</div>";
-	}
-}
 /**
  * Set each form field(attr,tax and rels) and render form
  *
@@ -291,7 +207,92 @@ function wp_ticket_com_process_submit_tickets() {
 		$show_form = 0;
 	}
 	if ($show_form == 1) {
-		return emd_submit_php_form('submit_tickets', 'wp_ticket_com', 'emd_ticket', 'publish', 'draft', 'Thanks for your submission.', 'There has been an error when submitting your entry. Please contact the site administrator.', 0, 1);
+		return emd_submit_php_form('submit_tickets', 'wp_ticket_com', 'emd_ticket', 'publish', 'publish', 'Thanks for your submission.', 'There has been an error when submitting your entry. Please contact the site administrator.', 0, 1);
+	} else {
+		return "<div class='alert alert-info not-authorized'>" . __('<p>You are not allowed to access to this area. Please contact the site administrator.</p>', 'wp-ticket-com') . "</div>";
+	}
+}
+/**
+ * Set each form field(attr,tax and rels) and render form
+ *
+ * @since WPAS 4.0
+ *
+ * @return object $form
+ */
+function wp_ticket_com_set_search_tickets() {
+	global $file_upload_dir;
+	$show_captcha = 1;
+	if (is_user_logged_in()) {
+		$show_captcha = 0;
+	}
+	require_once WP_TICKET_COM_PLUGIN_DIR . '/assets/ext/zebraform/Zebra_Form.php';
+	$form = new Zebra_Form('search_tickets', 0, 'POST', '', array(
+		'class' => 'form-container wpas-form wpas-form-stacked'
+	));
+	$form->form_properties['csrf_storage_method'] = false;
+	//text
+	$form->add('label', 'label_emd_ticket_id', 'emd_ticket_id', 'Ticket ID', array(
+		'class' => 'control-label'
+	));
+	$obj = $form->add('text', 'emd_ticket_id', '', array(
+		'class' => 'input-md form-control',
+		'placeholder' => __('Ticket ID', 'wp-ticket-com')
+	));
+	$obj->set_rule(array());
+	//text
+	$form->add('label', 'label_emd_ticket_email', 'emd_ticket_email', 'Email', array(
+		'class' => 'control-label'
+	));
+	$obj = $form->add('text', 'emd_ticket_email', '', array(
+		'class' => 'input-md form-control',
+		'placeholder' => __('Email', 'wp-ticket-com')
+	));
+	$obj->set_rule(array(
+		'email' => array(
+			'error',
+			__('Email: Please enter a valid email address', 'wp-ticket-com')
+		) ,
+	));
+	$form->assign('show_captcha', $show_captcha);
+	if ($show_captcha == 1) {
+		//Captcha
+		$form->add('captcha', 'captcha_image', 'captcha_code', '', '<span style="font-weight:bold;" class="refresh-txt">Refresh</span>', 'refcapt');
+		$form->add('label', 'label_captcha_code', 'captcha_code', __('Please enter the characters with black color.', 'wp-ticket-com'));
+		$obj = $form->add('text', 'captcha_code', '', array(
+			'placeholder' => __('Code', 'wp-ticket-com')
+		));
+		$obj->set_rule(array(
+			'required' => array(
+				'error',
+				__('Captcha is required', 'wp-ticket-com')
+			) ,
+			'captcha' => array(
+				'error',
+				__('Characters from captcha image entered incorrectly!', 'wp-ticket-com')
+			)
+		));
+	}
+	$form->add('submit', 'singlebutton_search_tickets', '' . __('Search Tickets', 'wp-ticket-com') . ' ', array(
+		'class' => 'wpas-button wpas-juibutton-primary wpas-button-large btn-block'
+	));
+	return $form;
+}
+/**
+ * Process each form and show error or success
+ *
+ * @since WPAS 4.0
+ *
+ * @return html
+ */
+function wp_ticket_com_process_search_tickets() {
+	$show_form = 1;
+	$access_views = get_option('wp_ticket_com_access_views', Array());
+	if (!current_user_can('view_search_tickets') && !empty($access_views['forms']) && in_array('search_tickets', $access_views['forms'])) {
+		$show_form = 0;
+	}
+	if ($show_form == 1) {
+		$noresult_msg = __('Your search returned no results.', 'wp-ticket-com');
+		return emd_search_php_form('search_tickets', 'wp_ticket_com', 'emd_ticket', $noresult_msg, 'search_tickets');
 	} else {
 		return "<div class='alert alert-info not-authorized'>" . __('<p>You are not allowed to access to this area. Please contact the site administrator.</p>', 'wp-ticket-com') . "</div>";
 	}

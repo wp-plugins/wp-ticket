@@ -3,7 +3,7 @@
  * Entity Class
  *
  * @package WP_TICKET_COM
- * @version 1.3.0
+ * @version 1.4
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
@@ -16,7 +16,7 @@ class Emd_Ticket extends Emd_Entity {
 	protected $textdomain = 'wp-ticket-com';
 	protected $sing_label;
 	protected $plural_label;
-	private $boxes = Array();
+	protected $menu_entity;
 	/**
 	 * Initialize entity class
 	 *
@@ -206,42 +206,43 @@ class Emd_Ticket extends Emd_Entity {
 				'comments'
 			)
 		));
-		$ticket_topic_nohr_labels = array(
-			'name' => __('Topics', 'wp-ticket-com') ,
-			'singular_name' => __('Topic', 'wp-ticket-com') ,
-			'search_items' => __('Search Topics', 'wp-ticket-com') ,
-			'popular_items' => __('Popular Topics', 'wp-ticket-com') ,
+		$ticket_priority_nohr_labels = array(
+			'name' => __('Priorities', 'wp-ticket-com') ,
+			'singular_name' => __('Priority', 'wp-ticket-com') ,
+			'search_items' => __('Search Priorities', 'wp-ticket-com') ,
+			'popular_items' => __('Popular Priorities', 'wp-ticket-com') ,
 			'all_items' => __('All', 'wp-ticket-com') ,
 			'parent_item' => null,
 			'parent_item_colon' => null,
-			'edit_item' => __('Edit Topic', 'wp-ticket-com') ,
-			'update_item' => __('Update Topic', 'wp-ticket-com') ,
-			'add_new_item' => __('Add New Topic', 'wp-ticket-com') ,
-			'new_item_name' => __('Add New Topic Name', 'wp-ticket-com') ,
-			'separate_items_with_commas' => __('Seperate Topics with commas', 'wp-ticket-com') ,
-			'add_or_remove_items' => __('Add or Remove Topics', 'wp-ticket-com') ,
-			'choose_from_most_used' => __('Choose from the most used Topics', 'wp-ticket-com') ,
-			'menu_name' => __('Topics', 'wp-ticket-com') ,
+			'edit_item' => __('Edit Priority', 'wp-ticket-com') ,
+			'update_item' => __('Update Priority', 'wp-ticket-com') ,
+			'add_new_item' => __('Add New Priority', 'wp-ticket-com') ,
+			'new_item_name' => __('Add New Priority Name', 'wp-ticket-com') ,
+			'separate_items_with_commas' => __('Seperate Priorities with commas', 'wp-ticket-com') ,
+			'add_or_remove_items' => __('Add or Remove Priorities', 'wp-ticket-com') ,
+			'choose_from_most_used' => __('Choose from the most used Priorities', 'wp-ticket-com') ,
+			'menu_name' => __('Priorities', 'wp-ticket-com') ,
 		);
-		register_taxonomy('ticket_topic', array(
+		register_taxonomy('ticket_priority', array(
 			'emd_ticket'
 		) , array(
 			'hierarchical' => false,
-			'labels' => $ticket_topic_nohr_labels,
+			'labels' => $ticket_priority_nohr_labels,
 			'public' => true,
 			'show_ui' => true,
 			'show_in_nav_menus' => true,
+			'show_in_menu' => true,
 			'show_tagcloud' => true,
 			'update_count_callback' => '_update_post_term_count',
 			'query_var' => true,
 			'rewrite' => array(
-				'slug' => 'ticket_topic'
+				'slug' => 'ticket_priority'
 			) ,
 			'capabilities' => array(
-				'manage_terms' => 'manage_ticket_topic',
-				'edit_terms' => 'edit_ticket_topic',
-				'delete_terms' => 'delete_ticket_topic',
-				'assign_terms' => 'assign_ticket_topic'
+				'manage_terms' => 'manage_ticket_priority',
+				'edit_terms' => 'edit_ticket_priority',
+				'delete_terms' => 'delete_ticket_priority',
+				'assign_terms' => 'assign_ticket_priority'
 			) ,
 		));
 		$ticket_status_nohr_labels = array(
@@ -269,6 +270,7 @@ class Emd_Ticket extends Emd_Entity {
 			'public' => true,
 			'show_ui' => true,
 			'show_in_nav_menus' => true,
+			'show_in_menu' => true,
 			'show_tagcloud' => true,
 			'update_count_callback' => '_update_post_term_count',
 			'query_var' => true,
@@ -282,60 +284,74 @@ class Emd_Ticket extends Emd_Entity {
 				'assign_terms' => 'assign_ticket_status'
 			) ,
 		));
-		$ticket_priority_nohr_labels = array(
-			'name' => __('Priorities', 'wp-ticket-com') ,
-			'singular_name' => __('Priority', 'wp-ticket-com') ,
-			'search_items' => __('Search Priorities', 'wp-ticket-com') ,
-			'popular_items' => __('Popular Priorities', 'wp-ticket-com') ,
+		$ticket_topic_nohr_labels = array(
+			'name' => __('Topics', 'wp-ticket-com') ,
+			'singular_name' => __('Topic', 'wp-ticket-com') ,
+			'search_items' => __('Search Topics', 'wp-ticket-com') ,
+			'popular_items' => __('Popular Topics', 'wp-ticket-com') ,
 			'all_items' => __('All', 'wp-ticket-com') ,
 			'parent_item' => null,
 			'parent_item_colon' => null,
-			'edit_item' => __('Edit Priority', 'wp-ticket-com') ,
-			'update_item' => __('Update Priority', 'wp-ticket-com') ,
-			'add_new_item' => __('Add New Priority', 'wp-ticket-com') ,
-			'new_item_name' => __('Add New Priority Name', 'wp-ticket-com') ,
-			'separate_items_with_commas' => __('Seperate Priorities with commas', 'wp-ticket-com') ,
-			'add_or_remove_items' => __('Add or Remove Priorities', 'wp-ticket-com') ,
-			'choose_from_most_used' => __('Choose from the most used Priorities', 'wp-ticket-com') ,
-			'menu_name' => __('Priorities', 'wp-ticket-com') ,
+			'edit_item' => __('Edit Topic', 'wp-ticket-com') ,
+			'update_item' => __('Update Topic', 'wp-ticket-com') ,
+			'add_new_item' => __('Add New Topic', 'wp-ticket-com') ,
+			'new_item_name' => __('Add New Topic Name', 'wp-ticket-com') ,
+			'separate_items_with_commas' => __('Seperate Topics with commas', 'wp-ticket-com') ,
+			'add_or_remove_items' => __('Add or Remove Topics', 'wp-ticket-com') ,
+			'choose_from_most_used' => __('Choose from the most used Topics', 'wp-ticket-com') ,
+			'menu_name' => __('Topics', 'wp-ticket-com') ,
 		);
-		register_taxonomy('ticket_priority', array(
+		register_taxonomy('ticket_topic', array(
 			'emd_ticket'
 		) , array(
 			'hierarchical' => false,
-			'labels' => $ticket_priority_nohr_labels,
+			'labels' => $ticket_topic_nohr_labels,
 			'public' => true,
 			'show_ui' => true,
 			'show_in_nav_menus' => true,
+			'show_in_menu' => true,
 			'show_tagcloud' => true,
 			'update_count_callback' => '_update_post_term_count',
 			'query_var' => true,
 			'rewrite' => array(
-				'slug' => 'ticket_priority'
+				'slug' => 'ticket_topic'
 			) ,
 			'capabilities' => array(
-				'manage_terms' => 'manage_ticket_priority',
-				'edit_terms' => 'edit_ticket_priority',
-				'delete_terms' => 'delete_ticket_priority',
-				'assign_terms' => 'assign_ticket_priority'
+				'manage_terms' => 'manage_ticket_topic',
+				'edit_terms' => 'edit_ticket_topic',
+				'delete_terms' => 'delete_ticket_topic',
+				'assign_terms' => 'assign_ticket_topic'
 			) ,
 		));
 		if (!get_option('wp_ticket_com_emd_ticket_terms_init')) {
 			$set_tax_terms = Array(
 				Array(
-					'name' => __('Feature request', 'wp-ticket-com') ,
-					'slug' => sanitize_title('Feature request')
+					'name' => __('Critical', 'wp-ticket-com') ,
+					'slug' => sanitize_title('Critical') ,
+					'desc' => __('A problem or issue impacting a significant group of customers or any mission critical issue affecting a single customer.', 'wp-ticket-com')
 				) ,
 				Array(
-					'name' => __('Task', 'wp-ticket-com') ,
-					'slug' => sanitize_title('Task')
+					'name' => __('Major', 'wp-ticket-com') ,
+					'slug' => sanitize_title('Major') ,
+					'desc' => __('Non critical but significant issue affecting a single user or an issue that is degrading the performance and reliability of supported services, however, the services are still operational. Support issues that could escalate to Critical if not addressed quickly.', 'wp-ticket-com')
 				) ,
 				Array(
-					'name' => __('Bug', 'wp-ticket-com') ,
-					'slug' => sanitize_title('Bug')
+					'name' => __('Normal', 'wp-ticket-com') ,
+					'slug' => sanitize_title('Normal') ,
+					'desc' => __('Routine support requests that impact a single user or non-critical software or hardware error.', 'wp-ticket-com')
+				) ,
+				Array(
+					'name' => __('Minor', 'wp-ticket-com') ,
+					'slug' => sanitize_title('Minor') ,
+					'desc' => __('Work that has been scheduled in advance with the customer, a minor service issue, or general inquiry.', 'wp-ticket-com')
+				) ,
+				Array(
+					'name' => __('Uncategorized', 'wp-ticket-com') ,
+					'slug' => sanitize_title('Uncategorized') ,
+					'desc' => __('No priority assigned', 'wp-ticket-com')
 				)
 			);
-			self::set_taxonomy_init($set_tax_terms, 'ticket_topic');
+			self::set_taxonomy_init($set_tax_terms, 'ticket_priority');
 			$set_tax_terms = Array(
 				Array(
 					'name' => __('Open', 'wp-ticket-com') ,
@@ -386,32 +402,19 @@ class Emd_Ticket extends Emd_Entity {
 			self::set_taxonomy_init($set_tax_terms, 'ticket_status');
 			$set_tax_terms = Array(
 				Array(
-					'name' => __('Critical', 'wp-ticket-com') ,
-					'slug' => sanitize_title('Critical') ,
-					'desc' => __('A problem or issue impacting a significant group of customers or any mission critical issue affecting a single customer.', 'wp-ticket-com')
+					'name' => __('Feature request', 'wp-ticket-com') ,
+					'slug' => sanitize_title('Feature request')
 				) ,
 				Array(
-					'name' => __('Major', 'wp-ticket-com') ,
-					'slug' => sanitize_title('Major') ,
-					'desc' => __('Non critical but significant issue affecting a single user or an issue that is degrading the performance and reliability of supported services, however, the services are still operational. Support issues that could escalate to Critical if not addressed quickly.', 'wp-ticket-com')
+					'name' => __('Task', 'wp-ticket-com') ,
+					'slug' => sanitize_title('Task')
 				) ,
 				Array(
-					'name' => __('Normal', 'wp-ticket-com') ,
-					'slug' => sanitize_title('Normal') ,
-					'desc' => __('Routine support requests that impact a single user or non-critical software or hardware error.', 'wp-ticket-com')
-				) ,
-				Array(
-					'name' => __('Minor', 'wp-ticket-com') ,
-					'slug' => sanitize_title('Minor') ,
-					'desc' => __('Work that has been scheduled in advance with the customer, a minor service issue, or general inquiry.', 'wp-ticket-com')
-				) ,
-				Array(
-					'name' => __('Uncategorized', 'wp-ticket-com') ,
-					'slug' => sanitize_title('Uncategorized') ,
-					'desc' => __('No priority assigned', 'wp-ticket-com')
+					'name' => __('Bug', 'wp-ticket-com') ,
+					'slug' => sanitize_title('Bug')
 				)
 			);
-			self::set_taxonomy_init($set_tax_terms, 'ticket_priority');
+			self::set_taxonomy_init($set_tax_terms, 'ticket_topic');
 			update_option('wp_ticket_com_emd_ticket_terms_init', true);
 		}
 	}
@@ -422,10 +425,9 @@ class Emd_Ticket extends Emd_Entity {
 	 *
 	 */
 	public function set_filters() {
-		$search_args = array();
-		$filter_args = array();
 		$this->sing_label = __('Ticket', 'wp-ticket-com');
 		$this->plural_label = __('Tickets', 'wp-ticket-com');
+		$this->menu_entity = 'emd_ticket';
 		$this->boxes[] = array(
 			'id' => 'emd_ticket_info_emd_ticket_0',
 			'title' => __('Ticket Info', 'wp-ticket-com') ,
@@ -433,133 +435,8 @@ class Emd_Ticket extends Emd_Entity {
 				'emd_ticket'
 			) ,
 			'context' => 'normal',
-			'fields' => array(
-				'emd_ticket_id' => array(
-					'name' => __('Ticket ID', 'wp-ticket-com') ,
-					'id' => 'emd_ticket_id',
-					'type' => 'hidden',
-					'hidden_func' => 'unique_id',
-					'multiple' => false,
-					'desc' => __('Unique identifier for a ticket', 'wp-ticket-com') ,
-					'class' => 'emd_ticket_id',
-				) ,
-				'emd_ticket_first_name' => array(
-					'name' => __('First Name', 'wp-ticket-com') ,
-					'id' => 'emd_ticket_first_name',
-					'type' => 'text',
-					'multiple' => false,
-					'class' => 'emd_ticket_first_name',
-				) ,
-				'emd_ticket_last_name' => array(
-					'name' => __('Last Name', 'wp-ticket-com') ,
-					'id' => 'emd_ticket_last_name',
-					'type' => 'text',
-					'multiple' => false,
-					'class' => 'emd_ticket_last_name',
-				) ,
-				'emd_ticket_email' => array(
-					'name' => __('Email', 'wp-ticket-com') ,
-					'id' => 'emd_ticket_email',
-					'type' => 'text',
-					'multiple' => false,
-					'desc' => __('Our responses to your ticket will be sent to this email address.', 'wp-ticket-com') ,
-					'class' => 'emd_ticket_email',
-				) ,
-				'emd_ticket_phone' => array(
-					'name' => __('Phone', 'wp-ticket-com') ,
-					'id' => 'emd_ticket_phone',
-					'type' => 'text',
-					'multiple' => false,
-					'desc' => __('Please enter a phone number in case we need to contact you.', 'wp-ticket-com') ,
-					'class' => 'emd_ticket_phone',
-				) ,
-				'emd_ticket_duedate' => array(
-					'name' => __('Due', 'wp-ticket-com') ,
-					'id' => 'emd_ticket_duedate',
-					'type' => 'datetime',
-					'multiple' => false,
-					'js_options' => array(
-						'dateFormat' => 'mm-dd-yy',
-						'timeFormat' => 'hh:mm'
-					) ,
-					'desc' => __('The due date of the ticket', 'wp-ticket-com') ,
-					'class' => 'emd_ticket_duedate',
-				) ,
-				'emd_ticket_attachment' => array(
-					'name' => __('Attachments', 'wp-ticket-com') ,
-					'id' => 'emd_ticket_attachment',
-					'type' => 'file',
-					'multiple' => false,
-					'desc' => __('Attach related files to the ticket.', 'wp-ticket-com') ,
-					'class' => 'emd_ticket_attachment',
-				) ,
-				'wpas_form_name' => array(
-					'name' => __('Form Name', 'wp-ticket-com') ,
-					'id' => 'wpas_form_name',
-					'type' => 'hidden',
-					'no_update' => 1,
-					'multiple' => false,
-					'std' => 'admin',
-					'class' => 'wpas_form_name',
-				) ,
-				'wpas_form_submitted_by' => array(
-					'name' => __('Form Submitted By', 'wp-ticket-com') ,
-					'id' => 'wpas_form_submitted_by',
-					'type' => 'hidden',
-					'hidden_func' => 'user_login',
-					'no_update' => 1,
-					'multiple' => false,
-					'class' => 'wpas_form_submitted_by',
-				) ,
-				'wpas_form_submitted_ip' => array(
-					'name' => __('Form Submitted IP', 'wp-ticket-com') ,
-					'id' => 'wpas_form_submitted_ip',
-					'type' => 'hidden',
-					'hidden_func' => 'user_ip',
-					'no_update' => 1,
-					'multiple' => false,
-					'class' => 'wpas_form_submitted_ip',
-				) ,
-			) ,
-			'validation' => array(
-				'onfocusout' => false,
-				'onkeyup' => false,
-				'onclick' => false,
-				'rules' => array(
-					'emd_ticket_id' => array(
-						'required' => false,
-					) ,
-					'emd_ticket_first_name' => array(
-						'required' => true,
-					) ,
-					'emd_ticket_last_name' => array(
-						'required' => true,
-					) ,
-					'emd_ticket_email' => array(
-						'required' => true,
-						'email' => true,
-					) ,
-					'emd_ticket_phone' => array(
-						'required' => false,
-					) ,
-					'emd_ticket_duedate' => array(
-						'required' => false,
-					) ,
-					'emd_ticket_attachment' => array(
-						'required' => false,
-					) ,
-					'wpas_form_name' => array(
-						'required' => false,
-					) ,
-					'wpas_form_submitted_by' => array(
-						'required' => false,
-					) ,
-					'wpas_form_submitted_ip' => array(
-						'required' => false,
-					) ,
-				) ,
-			)
 		);
+		list($search_args, $filter_args) = $this->set_args_boxes();
 		if (!post_type_exists($this->post_type) || in_array($this->post_type, Array(
 			'post',
 			'page'

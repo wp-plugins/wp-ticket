@@ -12,6 +12,19 @@ if (!empty($blt_content)) { ?>
    </div>
 <?php
 } ?>
+<?php $emd_ticket_duedate = emd_mb_meta('emd_ticket_duedate');
+if (!empty($emd_ticket_duedate)) {
+	$emd_ticket_duedate = emd_translate_date_format($ent_attrs['emd_ticket']['emd_ticket_duedate'], $emd_ticket_duedate, 1);
+?>
+   <div id="emd-ticket-emd-ticket-duedate-div" class="emd-single-div">
+   <div id="emd-ticket-emd-ticket-duedate-key" class="emd-single-title">
+   <?php _e('Due', 'wp-ticket-com'); ?>
+   </div>
+   <div id="emd-ticket-emd-ticket-duedate-val" class="emd-single-val">
+   <?php echo esc_html($emd_ticket_duedate); ?>
+   </div></div>
+<?php
+} ?>
 <?php
 $emd_ticket_id = emd_mb_meta('emd_ticket_id');
 if (!empty($emd_ticket_id)) { ?>
@@ -75,19 +88,6 @@ if (!empty($emd_ticket_phone)) { ?>
 <?php echo $emd_ticket_phone; ?>
    </div>
    </div>
-<?php
-} ?>
-<?php $emd_ticket_duedate = emd_mb_meta('emd_ticket_duedate');
-if (!empty($emd_ticket_duedate)) {
-	$emd_ticket_duedate = emd_translate_date_format($ent_attrs['emd_ticket']['emd_ticket_duedate'], $emd_ticket_duedate, 1);
-?>
-   <div id="emd-ticket-emd-ticket-duedate-div" class="emd-single-div">
-   <div id="emd-ticket-emd-ticket-duedate-key" class="emd-single-title">
-   <?php _e('Due', 'wp-ticket-com'); ?>
-   </div>
-   <div id="emd-ticket-emd-ticket-duedate-val" class="emd-single-val">
-   <?php echo esc_html($emd_ticket_duedate); ?>
-   </div></div>
 <?php
 } ?>
 <?php $emd_mb_file = emd_mb_meta('emd_ticket_attachment', 'type=file');

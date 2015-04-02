@@ -16,8 +16,8 @@ echo (isset($zf_error) ? $zf_error : (isset($error) ? $error : ''));
 <label id="label_ticket_topic" class="control-label" for="ticket_topic">
 <?php _e('Topic', 'wp-ticket-com'); ?>
 <span style="display: inline-flex;right: 0px; position: relative; top:-6px;">
-<a href="#" data-toggle="tooltip" title="<?php _e('Topics are the categories for tickets.', 'wp-ticket-com'); ?>" id="info_ticket_topic" class="helptip"><span class="field-icons icons-help"></span></a>
-<a href="#" data-toggle="tooltip" title="<?php _e('Topic field is required', 'wp-ticket-com'); ?>" id="info_ticket_topic" class="helptip">
+<a data-html="true" href="#" data-toggle="tooltip" title="<?php _e('Topics are the categories for tickets.', 'wp-ticket-com'); ?>" id="info_ticket_topic" class="helptip"><span class="field-icons icons-help"></span></a>
+<a href="#" data-html="true" data-toggle="tooltip" title="<?php _e('Topic field is required', 'wp-ticket-com'); ?>" id="info_ticket_topic" class="helptip">
 <span class="field-icons icons-required"></span>
 </a>
 </span>
@@ -33,7 +33,7 @@ echo (isset($zf_error) ? $zf_error : (isset($error) ? $error : ''));
 <label id="label_emd_ticket_first_name" class="control-label" for="emd_ticket_first_name">
 <?php _e('First Name', 'wp-ticket-com'); ?>
 <span style="display: inline-flex;right: 0px; position: relative; top:-6px;">
-<a href="#" data-toggle="tooltip" title="<?php _e('First Name field is required', 'wp-ticket-com'); ?>" id="info_emd_ticket_first_name" class="helptip">
+<a href="#" data-html="true" data-toggle="tooltip" title="<?php _e('First Name field is required', 'wp-ticket-com'); ?>" id="info_emd_ticket_first_name" class="helptip">
 <span class="field-icons icons-required"></span>
 </a>
 </span>
@@ -49,7 +49,7 @@ echo (isset($zf_error) ? $zf_error : (isset($error) ? $error : ''));
 <label id="label_emd_ticket_last_name" class="control-label" for="emd_ticket_last_name">
 <?php _e('Last Name', 'wp-ticket-com'); ?>
 <span style="display: inline-flex;right: 0px; position: relative; top:-6px;">
-<a href="#" data-toggle="tooltip" title="<?php _e('Last Name field is required', 'wp-ticket-com'); ?>" id="info_emd_ticket_last_name" class="helptip">
+<a href="#" data-html="true" data-toggle="tooltip" title="<?php _e('Last Name field is required', 'wp-ticket-com'); ?>" id="info_emd_ticket_last_name" class="helptip">
 <span class="field-icons icons-required"></span>
 </a>
 </span>
@@ -65,8 +65,8 @@ echo (isset($zf_error) ? $zf_error : (isset($error) ? $error : ''));
 <label id="label_emd_ticket_email" class="control-label" for="emd_ticket_email">
 <?php _e('Email', 'wp-ticket-com'); ?>
 <span style="display: inline-flex;right: 0px; position: relative; top:-6px;">
-<a href="#" data-toggle="tooltip" title="<?php _e('Our responses to your ticket will be sent to this email address.', 'wp-ticket-com'); ?>" id="info_emd_ticket_email" class="helptip"><span class="field-icons icons-help"></span></a>
-<a href="#" data-toggle="tooltip" title="<?php _e('Email field is required', 'wp-ticket-com'); ?>" id="info_emd_ticket_email" class="helptip">
+<a data-html="true" href="#" data-toggle="tooltip" title="<?php _e('Our responses to your ticket will be sent to this email address.', 'wp-ticket-com'); ?>" id="info_emd_ticket_email" class="helptip"><span class="field-icons icons-help"></span></a>
+<a href="#" data-html="true" data-toggle="tooltip" title="<?php _e('Email field is required', 'wp-ticket-com'); ?>" id="info_emd_ticket_email" class="helptip">
 <span class="field-icons icons-required"></span>
 </a>
 </span>
@@ -82,8 +82,8 @@ echo (isset($zf_error) ? $zf_error : (isset($error) ? $error : ''));
 <label id="label_blt_title" class="control-label" for="blt_title">
 <?php _e('Subject', 'wp-ticket-com'); ?>
 <span style="display: inline-flex;right: 0px; position: relative; top:-6px;">
-<a href="#" data-toggle="tooltip" title="<?php _e('Ideally, a question title should be a question. It\'s important that the question title is specific and has at least some meaning with no other information. A question such as "Why doesn\'t this work?" makes absolutely no sense without the rest of the question.', 'wp-ticket-com'); ?>" id="info_blt_title" class="helptip"><span class="field-icons icons-help"></span></a>
-<a href="#" data-toggle="tooltip" title="<?php _e('Subject field is required', 'wp-ticket-com'); ?>" id="info_blt_title" class="helptip">
+<a data-html="true" href="#" data-toggle="tooltip" title="<?php _e('Ideally, a question title should be a question. It\'s important that the question title is specific and has at least some meaning with no other information. A question such as "Why doesn\'t this work?" makes absolutely no sense without the rest of the question.', 'wp-ticket-com'); ?>" id="info_blt_title" class="helptip"><span class="field-icons icons-help"></span></a>
+<a href="#" data-html="true" data-toggle="tooltip" title="<?php _e('Subject field is required', 'wp-ticket-com'); ?>" id="info_blt_title" class="helptip">
 <span class="field-icons icons-required"></span>
 </a>
 </span>
@@ -99,8 +99,8 @@ echo (isset($zf_error) ? $zf_error : (isset($error) ? $error : ''));
 <label id="label_blt_content" class="control-label" for="blt_content">
 <?php _e('Message', 'wp-ticket-com'); ?>
 <span style="display: inline-flex;right: 0px; position: relative; top:-6px;">
-<a href="#" data-toggle="tooltip" title="<?php _e('Describe the problem or question. Include all necessary details but no unnecessary ones. A short description is easier to understand and will save the reviewer time. Please avoid asking multiple questions in one ticket. Open a separate ticket so that we can better answer your question.', 'wp-ticket-com'); ?>" id="info_blt_content" class="helptip"><span class="field-icons icons-help"></span></a>
-<a href="#" data-toggle="tooltip" title="<?php _e('Message field is required', 'wp-ticket-com'); ?>" id="info_blt_content" class="helptip">
+<a data-html="true" href="#" data-toggle="tooltip" title="<?php _e('Describe the problem or question. Include all necessary details but no unnecessary ones. A short description is easier to understand and will save the reviewer time. Please avoid asking multiple questions in one ticket. Open a separate ticket so that we can better answer your question.', 'wp-ticket-com'); ?>" id="info_blt_content" class="helptip"><span class="field-icons icons-help"></span></a>
+<a href="#" data-html="true" data-toggle="tooltip" title="<?php _e('Message field is required', 'wp-ticket-com'); ?>" id="info_blt_content" class="helptip">
 <span class="field-icons icons-required"></span>
 </a>
 </span>
@@ -116,7 +116,7 @@ echo (isset($zf_error) ? $zf_error : (isset($error) ? $error : ''));
 <label id="label_emd_ticket_phone" class="control-label" for="emd_ticket_phone">
 <?php _e('Phone', 'wp-ticket-com'); ?>
 <span style="display: inline-flex;right: 0px; position: relative; top:-6px;">
-<a href="#" data-toggle="tooltip" title="<?php _e('Please enter a phone number in case we need to contact you.', 'wp-ticket-com'); ?>" id="info_emd_ticket_phone" class="helptip"><span class="field-icons icons-help"></span></a>
+<a data-html="true" href="#" data-toggle="tooltip" title="<?php _e('Please enter a phone number in case we need to contact you.', 'wp-ticket-com'); ?>" id="info_emd_ticket_phone" class="helptip"><span class="field-icons icons-help"></span></a>
 </span>
 </label>
 <?php echo $emd_ticket_phone; ?>
@@ -127,7 +127,7 @@ echo (isset($zf_error) ? $zf_error : (isset($error) ? $error : ''));
 <!-- file input-->
 <div class="col-md-12">
 <?php _e('Attachments', 'wp-ticket-com'); ?>
-<a href="#" data-toggle="tooltip" title="<?php _e('Attach related files to the ticket.', 'wp-ticket-com'); ?>" id="info_emd_ticket_attachment" class="helptip"><span class="field-icons icons-help"></span></a>
+<a data-html="true" href="#" data-toggle="tooltip" title="<?php _e('Attach related files to the ticket.', 'wp-ticket-com'); ?>" id="info_emd_ticket_attachment" class="helptip"><span class="field-icons icons-help"></span></a>
 <div class="form-group">
 <?php echo $emd_ticket_attachment; ?>
 </div>
@@ -143,7 +143,7 @@ echo (isset($zf_error) ? $zf_error : (isset($error) ? $error : ''));
 <div id="captcha-group" class="form-group">
 <?php echo $captcha_image; ?>
 <label style="padding:0px;" id="label_captcha_code" class="control-label" for="captcha_code">
-<a id="info_captcha_code_help" class="helptip" data-toggle="tooltip" href="#" title="<?php _e('Please enter the characters with black color in the image above.', 'wp-ticket-com'); ?>">
+<a id="info_captcha_code_help" class="helptip" data-html="true" data-toggle="tooltip" href="#" title="<?php _e('Please enter the characters with black color in the image above.', 'wp-ticket-com'); ?>">
 <span class="field-icons icons-help"></span>
 </a>
 <a id="info_captcha_code_req" class="helptip" title="<?php _e('Security Code field is required', 'wp-ticket-com'); ?>" data-toggle="tooltip" href="#">

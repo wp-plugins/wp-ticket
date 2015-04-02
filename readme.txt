@@ -5,7 +5,7 @@ Author URI: https://emarketdesign.com
 Donate link: https://emarketdesign.com/donate-emarket-design/
 Requires at least: 3.8
 Tested up to: 4.1.1
-Stable tag: 1.3.0
+Stable tag: 1.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: help, support, support ticket, ticket, email notification, user support plugin, support plugin , ticket plugin, support system, helpdesk, ticket system, ticketing system, help desk, customer service, submit tickets, CRM, ticket management, wp app studio, wpas, IMAP, POP3, incoming email, email, post by email, canned responses, quick responses
@@ -162,6 +162,11 @@ The simplest way to install is to click on 'Plugins' then 'Add' and type 'Wp Tic
 6. Displays WP Ticket Pro dashboard with statistics and charts in admin area
 
 == Changelog ==
+= 1.4.0 =
+* Fixed unique check for tickets
+* Moved all js and css from cdn to local
+* Visitor ticket submit status changed to published
+* Fixed misc bugs
 = 1.3.0 =
 * Fixed untranslatable search form results view header columns
 * Fixed file uploads issue with file names including spaces
@@ -179,6 +184,8 @@ The simplest way to install is to click on 'Plugins' then 'Add' and type 'Wp Tic
 == Frequently Asked Questions ==
 
 == Upgrade Notice ==
+= 1.4.0 =
+* Fixed unique check for tickets, moved all cdn files to local, visitor ticket submit status changed to published
 = 1.3.0 =
 * Fixed untranslatable search form results, file uploads, and compatibility issues related to other plugins
 = 1.2.0 =

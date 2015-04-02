@@ -3,7 +3,7 @@
  * Settings Glossary Functions
  *
  * @package WP_TICKET_COM
- * @version 1.3.0
+ * @version 1.4
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
@@ -85,6 +85,48 @@ function wp_ticket_com_settings_glossary() {
 <tr>
 <td><?php _e('Uncategorized', 'wp-ticket-com'); ?></td>
 <td><?php _e('No priority assigned', 'wp-ticket-com'); ?></td>
+</tr>
+</table>
+</div></td>
+</tr>
+<tr>
+<th><?php _e('Status', 'wp-ticket-com'); ?></th>
+
+<td><?php _e(' Status accepts multiple values like tags', 'wp-ticket-com'); ?>. <?php _e('Status has a default value of:', 'wp-ticket-com'); ?> <?php _e(' open', 'wp-ticket-com'); ?>. <div class="taxdef-block"><p><?php _e('The following are the preset values and value descriptions for <b>Status:</b>', 'wp-ticket-com'); ?></p>
+<table class="table tax-table form-table"><tr><td><?php _e('Open', 'wp-ticket-com'); ?></td>
+<td><?php _e('This ticket is in the initial state, ready for the assignee to start work on it.', 'wp-ticket-com'); ?></td>
+</tr>
+<tr>
+<td><?php _e('In Progress', 'wp-ticket-com'); ?></td>
+<td><?php _e('This ticket is being actively worked on at the moment.', 'wp-ticket-com'); ?></td>
+</tr>
+<tr>
+<td><?php _e('Reopened', 'wp-ticket-com'); ?></td>
+<td><?php _e('This ticket was once \'Resolved\' or \'Closed\', but is now being re-visited, e.g. an ticket with a Resolution of \'Cannot Reproduce\' is Reopened when more information becomes available and the ticket becomes reproducible. The next ticket states are either marked In Progress, Resolved or Closed.', 'wp-ticket-com'); ?></td>
+</tr>
+<tr>
+<td><?php _e('Closed', 'wp-ticket-com'); ?></td>
+<td><?php _e('This ticket is complete.', 'wp-ticket-com'); ?></td>
+</tr>
+<tr>
+<td><?php _e('Resolved - Fixed', 'wp-ticket-com'); ?></td>
+<td><?php _e('A fix for this ticket has been implemented.', 'wp-ticket-com'); ?></td>
+</tr>
+<tr>
+<td><?php _e('Resolved - Won\'t Fix', 'wp-ticket-com'); ?></td>
+<td><?php _e('This ticket will not be fixed, e.g. it may no longer be relevant.', 'wp-ticket-com'); ?></td>
+</tr>
+<tr>
+<td><?php _e('Resolved - Duplicate', 'wp-ticket-com'); ?></td>
+<td><?php _e('This ticket is a duplicate of an existing ticket. It is recommended you create a link to the duplicated ticket by creating a related ticket connection.', 'wp-ticket-com'); ?></td>
+</tr>
+<tr>
+<td><?php _e('Resolved - Incomplete', 'wp-ticket-com'); ?></td>
+<td><?php _e('There is not enough information to work on this ticket.', 'wp-ticket-com'); ?></td>
+</tr>
+<tr>
+<td><?php _e('Resolved - CNR', 'wp-ticket-com'); ?></td>
+<td><?php _e('This ticket could not be reproduced at this time, or not enough information was available to reproduce the ticket issue. If more information becomes available, reopen the ticket.', 'wp-ticket-com'); ?></td>
 </tr>
 </table>
 </div></td>

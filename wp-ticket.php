@@ -3,7 +3,7 @@
  * Plugin Name: Wp Ticket
  * Plugin URI: https://emdplugins.com
  * Description: WP Ticket enables support staff to receive, process, and respond to service requests efficiently and effectively.
- * Version: 1.3.0
+ * Version: 1.4.0
  * Author: eMarket Design
  * Author URI: https://emarketdesign.com
  * Text Domain: wp-ticket-com
@@ -74,7 +74,7 @@ if (!class_exists('Wp_Ticket')):
 		 * @return void
 		 */
 		private function define_constants() {
-			define('WP_TICKET_COM_VERSION', '1.3.0');
+			define('WP_TICKET_COM_VERSION', '1.4.0');
 			define('WP_TICKET_COM_AUTHOR', 'eMarket Design');
 			define('WP_TICKET_COM_NAME', 'Wp Ticket');
 			define('WP_TICKET_COM_PLUGIN_FILE', __FILE__);

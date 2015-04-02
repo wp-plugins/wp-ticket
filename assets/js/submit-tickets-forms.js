@@ -19,30 +19,30 @@ onkeyup: false,
 onclick: false,
 errorClass: 'text-danger',
 rules: {
-  emd_ticket_first_name : {
-required  : true,
-},
-emd_ticket_last_name : {
-required  : true,
-},
-emd_ticket_email : {
-required  : true,
-email  : true,
-},
-emd_ticket_phone : {
-required  : false,
-},
-blt_title : {
-required  : true,
-},
-blt_content : {
-required  : true,
-},
-emd_ticket_attachment : {
-required  : false,
-},
-'ticket_topic':{
+  'ticket_topic':{
 required:true,
+},
+emd_ticket_first_name:{
+required : true
+},
+emd_ticket_last_name:{
+required : true
+},
+emd_ticket_email:{
+email  : true,
+required : true
+},
+emd_ticket_phone:{
+required : false
+},
+blt_title:{
+required : true
+},
+blt_content:{
+required : true
+},
+emd_ticket_attachment:{
+required : false
 },
 },
 success: function(label) {

@@ -19,12 +19,12 @@ onkeyup: false,
 onclick: false,
 errorClass: 'text-danger',
 rules: {
-  emd_ticket_id : {
-required  : false,
+  emd_ticket_id:{
+required : false
 },
-emd_ticket_email : {
-required  : false,
+emd_ticket_email:{
 email  : true,
+required : false
 },
 },
 success: function(label) {

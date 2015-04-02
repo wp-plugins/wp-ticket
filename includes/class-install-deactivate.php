@@ -2,7 +2,7 @@
 /**
  * Install and Deactivate Plugin Functions
  * @package WP_TICKET_COM
- * @version 1.3.0
+ * @version 1.4
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
@@ -19,6 +19,12 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 		 */
 		public function __construct() {
 			$this->option_name = 'wp_ticket_com';
+			$curr_version = get_option($this->option_name . '_version', 1);
+			$new_version = constant(strtoupper($this->option_name) . '_VERSION');
+			if (version_compare($curr_version, $new_version, '<')) {
+				$this->set_options();
+				update_option($this->option_name . '_version', $new_version);
+			}
 			register_activation_hook(WP_TICKET_COM_PLUGIN_FILE, array(
 				$this,
 				'install'
@@ -263,69 +269,107 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 				update_option($this->option_name . '_shc_list', $shc_list);
 			}
 			$attr_list['emd_ticket']['emd_ticket_id'] = Array(
+				'visible' => 1,
 				'label' => __('Ticket ID', 'wp-ticket-com') ,
 				'display_type' => 'hidden',
 				'required' => 0,
-				"type" => "char"
+				'filterable' => 1,
+				'desc' => __('Unique identifier for a ticket', 'wp-ticket-com') ,
+				'type' => 'char',
+				'hidden_func' => 'unique_id',
+				'uniqueAttr' => true,
 			);
 			$attr_list['emd_ticket']['emd_ticket_first_name'] = Array(
+				'visible' => 1,
 				'label' => __('First Name', 'wp-ticket-com') ,
 				'display_type' => 'text',
 				'required' => 1,
-				"type" => "char"
+				'filterable' => 1,
+				'type' => 'char',
 			);
 			$attr_list['emd_ticket']['emd_ticket_last_name'] = Array(
+				'visible' => 1,
 				'label' => __('Last Name', 'wp-ticket-com') ,
 				'display_type' => 'text',
 				'required' => 1,
-				"type" => "char"
+				'filterable' => 1,
+				'type' => 'char',
 			);
 			$attr_list['emd_ticket']['emd_ticket_email'] = Array(
+				'visible' => 1,
 				'label' => __('Email', 'wp-ticket-com') ,
 				'display_type' => 'text',
 				'required' => 1,
-				"type" => "char"
+				'filterable' => 1,
+				'desc' => __('Our responses to your ticket will be sent to this email address.', 'wp-ticket-com') ,
+				'type' => 'char',
+				'email' => true,
 			);
 			$attr_list['emd_ticket']['emd_ticket_phone'] = Array(
+				'visible' => 1,
 				'label' => __('Phone', 'wp-ticket-com') ,
 				'display_type' => 'text',
 				'required' => 0,
-				"type" => "char"
+				'filterable' => 0,
+				'desc' => __('Please enter a phone number in case we need to contact you.', 'wp-ticket-com') ,
+				'type' => 'char',
 			);
 			$attr_list['emd_ticket']['emd_ticket_duedate'] = Array(
+				'visible' => 1,
 				'label' => __('Due', 'wp-ticket-com') ,
 				'display_type' => 'datetime',
 				'required' => 0,
-				"type" => "datetime",
-				"dformat" => array(
+				'filterable' => 1,
+				'desc' => __('The due date of the ticket', 'wp-ticket-com') ,
+				'type' => 'datetime',
+				'dformat' => array(
 					'dateFormat' => 'mm-dd-yy',
 					'timeFormat' => 'hh:mm'
-				)
+				) ,
+				'date_format' => 'm-d-Y H:i',
+				'time_format' => 'hh:mm',
 			);
 			$attr_list['emd_ticket']['emd_ticket_attachment'] = Array(
+				'visible' => 1,
 				'label' => __('Attachments', 'wp-ticket-com') ,
 				'display_type' => 'file',
 				'required' => 0,
-				"type" => "char"
+				'filterable' => 0,
+				'desc' => __('Attach related files to the ticket.', 'wp-ticket-com') ,
+				'type' => 'char',
 			);
 			$attr_list['emd_ticket']['wpas_form_name'] = Array(
+				'visible' => 1,
 				'label' => __('Form Name', 'wp-ticket-com') ,
 				'display_type' => 'hidden',
 				'required' => 0,
-				"default" => "admin",
-				"type" => "char"
+				'filterable' => 1,
+				'type' => 'char',
+				'options' => array() ,
+				'no_update' => 1,
+				'std' => 'admin',
 			);
 			$attr_list['emd_ticket']['wpas_form_submitted_by'] = Array(
+				'visible' => 1,
 				'label' => __('Form Submitted By', 'wp-ticket-com') ,
 				'display_type' => 'hidden',
 				'required' => 0,
-				"type" => "char"
+				'filterable' => 1,
+				'type' => 'char',
+				'options' => array() ,
+				'hidden_func' => 'user_login',
+				'no_update' => 1,
 			);
 			$attr_list['emd_ticket']['wpas_form_submitted_ip'] = Array(
+				'visible' => 1,
 				'label' => __('Form Submitted IP', 'wp-ticket-com') ,
 				'display_type' => 'hidden',
 				'required' => 0,
-				"type" => "char"
+				'filterable' => 1,
+				'type' => 'char',
+				'options' => array() ,
+				'hidden_func' => 'user_ip',
+				'no_update' => 1,
 			);
 			if (!empty($attr_list)) {
 				update_option($this->option_name . '_attr_list', $attr_list);
@@ -360,7 +404,7 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 				update_option('emd_activated_plugins', Array(
 					'wp-ticket-com'
 				));
-			} else {
+			} elseif (!in_array('wp-ticket-com', $emd_activated_plugins)) {
 				array_push($emd_activated_plugins, 'wp-ticket-com');
 				update_option('emd_activated_plugins', $emd_activated_plugins);
 			}
@@ -461,18 +505,8 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 			delete_option($this->option_name . '_attr_list');
 			delete_option($this->option_name . '_tax_list');
 			delete_option($this->option_name . '_rel_list');
-			$users = get_users();
-			foreach ($users as $user) {
-				delete_user_meta($user->ID, $this->option_name . '_adm_share');
-			}
-			$users = get_users();
-			foreach ($users as $user) {
-				delete_user_meta($user->ID, $this->option_name . '_adm_notice1');
-			}
-			$users = get_users();
-			foreach ($users as $user) {
-				delete_user_meta($user->ID, $this->option_name . '_adm_notice2');
-			}
+			delete_option($this->option_name . '_adm_notice1');
+			delete_option($this->option_name . '_adm_notice2');
 			delete_option($this->option_name . '_setup_pages');
 			$emd_activated_plugins = get_option('emd_activated_plugins');
 			if (!empty($emd_activated_plugins)) {
@@ -498,39 +532,10 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 		 * @return html
 		 */
 		public function install_notice() {
-			if (isset($_GET[$this->option_name . '_adm_share'])) {
-				update_user_meta(get_current_user_id() , $this->option_name . '_adm_share', true);
-			}
-			if (get_user_option($this->option_name . '_adm_share') != 1) {
-				$product_uri = 'goo.gl/5ZOaZh';
-				$product_desc = 'WP Ticket enables support staff to receive, process, and respond to service requests efficiently and effectively.';
-				$product_name = 'Wp Ticket';
-				$product_image = 'https://emdplugins.com/campaign_images/wp_ticket_banner.gif';
-?>
-<div class="updated">
-<span style="color:red;font-weight:700;">Share this delight with others! <i class="icon-arrow-right"></i></span>
-                <span class="dashicons dashicons-smiley"></span>
-                <ul style="margin:0 !important;display: inline-block;padding-left:20px;">
-                <li style="display: inline-block;"><a href="javascript:twitterShare('http://<?php echo $product_uri; ?>','<?php echo $product_desc; ?>', 602,496);" data-lang="en"><img src="<?php echo WP_TICKET_COM_PLUGIN_URL . 'assets/img/twitter_icon.jpg'; ?>" alt="Share on Twitter" /></a></li>
-                <li style="display: inline-block;"><a href="" onclick="javascript:fbShare('<?php echo $product_uri; ?>','<?php echo $product_name; ?>','<?php echo $product_desc; ?>', 600, 400);return false;" target="_blank"><img src="<?php echo WP_TICKET_COM_PLUGIN_URL . 'assets/img/fb_icon.jpg'; ?>" alt="Share on Facebook" /></a></li>
-                <li style="display: inline-block;"><a href="javascript:gplusShare('<?php echo $product_uri; ?>', 483, 540)"><img src="<?php echo WP_TICKET_COM_PLUGIN_URL . 'assets/img/gplus_icon.jpg'; ?>" alt="Share on Google+"/></a></li>
-                <li style="display: inline-block;"><a href="http://www.tumblr.com/share/link?url=<?php echo $product_uri; ?>&amp;name=<?php echo $product_name; ?>&amp;description=<?php echo $product_desc; ?>" title="Share on Tumblr" target="_blank"><img src="<?php echo WP_TICKET_COM_PLUGIN_URL . 'assets/img/tumblr_icon.jpg'; ?>" alt="Share on Tumblr"/></a></li>
-                <li style="display: inline-block;"><a href="javascript:pinterestShare('<?php echo $product_uri; ?>', '<?php echo $product_image; ?>', '<?php echo $product_desc; ?>', 774, 452)" data-pin-do="buttonPin" ><img src="<?php echo WP_TICKET_COM_PLUGIN_URL . 'assets/img/pinterest_icon.jpg'; ?>" alt="Share on Pinterest"/></a></li>
-                <li style="display: inline-block;"><a href="javascript:stumbleuponShare('<?php echo $product_uri; ?>', 802, 592)"><img src="<?php echo WP_TICKET_COM_PLUGIN_URL . 'assets/img/stumbleupon_icon.jpg'; ?>" alt="Share on Stumbleupon"/></a></li>
-                <li style="display: inline-block;"><a href="javascript:linkedinShare('<?php echo $product_uri; ?>', '<?php echo $product_name; ?>', '<?php echo $product_desc; ?>', 850, 450)"><img src="<?php echo WP_TICKET_COM_PLUGIN_URL . 'assets/img/linkedin_icon.jpg'; ?>" alt="Share on LinkedIn"/></a></li>
-                <li style="display: inline-block;"><a href="javascript:redditShare('<?php echo $product_uri; ?>', 800, 400)"><img src="<?php echo WP_TICKET_COM_PLUGIN_URL . 'assets/img/reddit_icon.jpg'; ?>" alt="Share on Reddit"/></a></li>
-                <li style="display: inline-block;"><a href="mailto:?subject=<?php echo $product_name; ?>&amp;body=<?php echo $product_desc . "
- http://" . $product_uri; ?>"><img src="<?php echo WP_TICKET_COM_PLUGIN_URL . 'assets/img/email_icon.jpg'; ?>" alt="Email to a friend"/></a></li>
-                </ul>
-                <a style="float:right;" href="<?php echo esc_url(add_query_arg($this->option_name . '_adm_share', true)); ?>"><span class="dashicons dashicons-dismiss" style="font-size:15px;"></span><?php _e('Dismiss', 'wp_ticket_com'); ?></a>
-                
-</div>
-<?php
-			}
 			if (isset($_GET[$this->option_name . '_adm_notice1'])) {
-				update_user_meta(get_current_user_id() , $this->option_name . '_adm_notice1', true);
+				update_option($this->option_name . '_adm_notice1', true);
 			}
-			if (get_user_option($this->option_name . '_adm_notice1') != 1) {
+			if (current_user_can('manage_options') && get_option($this->option_name . '_adm_notice1') != 1) {
 ?>
 <div class="updated">
 <?php
@@ -540,9 +545,9 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 <?php
 			}
 			if (isset($_GET[$this->option_name . '_adm_notice2'])) {
-				update_user_meta(get_current_user_id() , $this->option_name . '_adm_notice2', true);
+				update_option($this->option_name . '_adm_notice2', true);
 			}
-			if (get_user_option($this->option_name . '_adm_notice2') != 1) {
+			if (current_user_can('manage_options') && get_option($this->option_name . '_adm_notice2') != 1) {
 ?>
 <div class="updated">
 <?php
@@ -551,7 +556,7 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 </div>
 <?php
 			}
-			if (get_option($this->option_name . '_setup_pages') == 1) {
+			if (current_user_can('manage_options') && get_option($this->option_name . '_setup_pages') == 1) {
 				echo "<div id=\"message\" class=\"updated\"><p><strong>" . __('Welcome to Wp Ticket', 'wp-ticket-com') . "</strong></p>
            <p class=\"submit\"><a href=\"" . add_query_arg('setup_wp_ticket_com_pages', 'true', admin_url('index.php')) . "\" class=\"button-primary\">" . __('Setup Wp Ticket Pages', 'wp-ticket-com') . "</a> <a class=\"skip button-primary\" href=\"" . add_query_arg('skip_setup_wp_ticket_com_pages', 'true', admin_url('index.php')) . "\">" . __('Skip setup', 'wp-ticket-com') . "</a></p>
          </div>";

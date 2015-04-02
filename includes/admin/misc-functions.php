@@ -3,7 +3,7 @@
  * Misc Admin Functions
  *
  * @package WP_TICKET_COM
- * @version 1.3.0
+ * @version 1.4
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
