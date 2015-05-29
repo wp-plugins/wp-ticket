@@ -1,0 +1,835 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2015-05-29T13:48:50-04:00\n"
+"POT-Creation-Date: 2015-05-29T13:48:50-04:00\n"
+
+#: wp-ticket/forms/search-tickets.php:19
+msgid "Ticket ID"
+msgstr ""
+
+#: wp-ticket/forms/search-tickets.php:21
+msgid "Unique identifier for a ticket"
+msgstr ""
+
+#: wp-ticket/forms/search-tickets.php:36
+msgid "Email"
+msgstr ""
+
+#: wp-ticket/forms/search-tickets.php:38
+msgid "Our responses to your ticket will be sent to this email address."
+msgstr ""
+
+#: wp-ticket/forms/search-tickets.php:54
+msgid "Please enter the characters with black color in the image above."
+msgstr ""
+
+#: wp-ticket/forms/search-tickets.php:57
+msgid "Security Code field is required"
+msgstr ""
+
+#: wp-ticket/forms/submit-tickets.php:20
+msgid "Topic"
+msgstr ""
+
+#: wp-ticket/forms/submit-tickets.php:22
+msgid "Topics are the categories for tickets."
+msgstr ""
+
+#: wp-ticket/forms/submit-tickets.php:37
+msgid "First Name"
+msgstr ""
+
+#: wp-ticket/forms/submit-tickets.php:39
+msgid "First Name field is required"
+msgstr ""
+
+#: wp-ticket/forms/submit-tickets.php:56
+msgid "Last Name"
+msgstr ""
+
+#: wp-ticket/forms/submit-tickets.php:75
+msgid "Email field is required"
+msgstr ""
+
+#: wp-ticket/forms/submit-tickets.php:92
+msgid "Subject"
+msgstr ""
+
+#: wp-ticket/forms/submit-tickets.php:94
+msgid "Ideally, a question title should be a question. It's important that the question title is specific and has at least some meaning with no other information. A question such as \"Why doesn't this work?\" makes absolutely no sense without the rest of the question."
+msgstr ""
+
+#: wp-ticket/forms/submit-tickets.php:95
+msgid "Subject field is required"
+msgstr ""
+
+#: wp-ticket/forms/submit-tickets.php:112
+msgid "Message"
+msgstr ""
+
+#: wp-ticket/forms/submit-tickets.php:114
+msgid "Describe the problem or question. Include all necessary details but no unnecessary ones. A short description is easier to understand and will save the reviewer time. Please avoid asking multiple questions in one ticket. Open a separate ticket so that we can better answer your question."
+msgstr ""
+
+#: wp-ticket/forms/submit-tickets.php:115
+msgid "Message field is required"
+msgstr ""
+
+#: wp-ticket/forms/submit-tickets.php:132
+msgid "Phone"
+msgstr ""
+
+#: wp-ticket/forms/submit-tickets.php:134
+msgid "Please enter a phone number in case we need to contact you."
+msgstr ""
+
+#: wp-ticket/forms/submit-tickets.php:147
+msgid "Attachments"
+msgstr ""
+
+#: wp-ticket/forms/submit-tickets.php:148
+msgid "Attach related files to the ticket."
+msgstr ""
+
+#: wp-ticket/forms/submit-tickets.php:162
+msgid "Priority"
+msgstr ""
+
+#: wp-ticket/forms/submit-tickets.php:164
+msgid "When you create a ticket, you should prioritize the ticket based on the scope and impact of the request."
+msgstr ""
+
+#: wp-ticket/forms/submit-tickets.php:179
+msgid "Due"
+msgstr ""
+
+#: wp-ticket/forms/submit-tickets.php:180
+msgid "The due date of the ticket"
+msgstr ""
+
+#: wp-ticket/includes/admin/dashboard-widgets.php:17
+#: wp-ticket/includes/admin/dashboard-widgets.php:19
+msgid "Recent Tickets"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:22
+msgid "WP Ticket enables support staff to receive, process, and respond to service requests efficiently and effectively."
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:23
+msgid "The below are the definitions of entities, attributes, and terms included in Wp Ticket."
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:27
+msgid "Tickets"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:30
+msgid "A tickets represents a help request."
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:32
+msgid "Unique identifier for a ticket Ticket ID is filterable in the admin area. Ticket ID does not have a default value. "
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:35
+msgid " First Name is a required field. First Name is filterable in the admin area. First Name does not have a default value. "
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:38
+msgid " Last Name is filterable in the admin area. Last Name does not have a default value. "
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:41
+msgid "Our responses to your ticket will be sent to this email address. Email is a required field. Email is filterable in the admin area. Email does not have a default value. "
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:44
+msgid "Please enter a phone number in case we need to contact you. Phone does not have a default value. "
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:47
+msgid "The due date of the ticket Due is filterable in the admin area. Due does not have a default value. "
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:50
+msgid "Ideally, a question title should be a question. It's important that the question title is specific and has at least some meaning with no other information. A question such as \"Why doesn't this work?\" makes absolutely no sense without the rest of the question. Subject is a required field. Subject does not have a default value. "
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:53
+msgid "Describe the problem or question. Include all necessary details but no unnecessary ones. A short description is easier to understand and will save the reviewer time. Please avoid asking multiple questions in one ticket. Open a separate ticket so that we can better answer your question. Message is a required field. Message does not have a default value. "
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:56
+msgid "Attach related files to the ticket. Attachments does not have a default value. "
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:58
+msgid "Form Name"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:59
+msgid " Form Name is filterable in the admin area. Form Name has a default value of <b>admin</b>."
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:61
+msgid "Form Submitted By"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:62
+msgid " Form Submitted By is filterable in the admin area. Form Submitted By does not have a default value. "
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:64
+msgid "Form Submitted IP"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:65
+msgid " Form Submitted IP is filterable in the admin area. Form Submitted IP does not have a default value. "
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:69
+msgid "When you create a ticket, you should prioritize the ticket based on the scope and impact of the request. Priority accepts multiple values like tags"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:69
+msgid "Priority has a default value of:"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:69
+msgid " uncategorized"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:69
+msgid "The following are the preset values and value descriptions for <b>Priority:</b>"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:70
+msgid "Critical"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:71
+msgid "A problem or issue impacting a significant group of customers or any mission critical issue affecting a single customer."
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:74
+msgid " Major"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:75
+msgid "Non critical but significant issue affecting a single user or an issue that is degrading the performance and reliability of supported services, however, the services are still operational. Support issues that could escalate to Critical if not addressed quickly."
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:78
+msgid "Normal"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:79
+msgid "Routine support requests that impact a single user or non-critical software or hardware error."
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:82
+msgid "Minor"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:83
+msgid "Work that has been scheduled in advance with the customer, a minor service issue, or general inquiry."
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:86
+msgid "Uncategorized"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:87
+msgid "No priority assigned"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:93
+msgid "Status"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:95
+msgid " Status accepts multiple values like tags"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:95
+msgid "Status has a default value of:"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:95
+msgid " open"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:95
+msgid "The following are the preset values and value descriptions for <b>Status:</b>"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:96
+msgid "Open"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:97
+msgid "This ticket is in the initial state, ready for the assignee to start work on it."
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:100
+msgid "In Progress"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:101
+msgid "This ticket is being actively worked on at the moment."
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:104
+msgid "Reopened"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:105
+msgid "This ticket was once 'Resolved' or 'Closed', but is now being re-visited, e.g. an ticket with a Resolution of 'Cannot Reproduce' is Reopened when more information becomes available and the ticket becomes reproducible. The next ticket states are either marked In Progress, Resolved or Closed."
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:108
+msgid "Closed"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:109
+msgid "This ticket is complete."
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:112
+msgid "Resolved - Fixed"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:113
+msgid "A fix for this ticket has been implemented."
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:116
+msgid "Resolved - Won't Fix"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:117
+msgid "This ticket will not be fixed, e.g. it may no longer be relevant."
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:120
+msgid "Resolved - Duplicate"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:121
+msgid "This ticket is a duplicate of an existing ticket. It is recommended you create a link to the duplicated ticket by creating a related ticket connection."
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:124
+msgid "Resolved - Incomplete"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:125
+msgid "There is not enough information to work on this ticket."
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:128
+msgid "Resolved - CNR"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:129
+msgid "This ticket could not be reproduced at this time, or not enough information was available to reproduce the ticket issue. If more information becomes available, reopen the ticket."
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:137
+msgid "Topics are the categories for tickets. Topic accepts multiple values like tags"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:137
+msgid "Topic does not have a default value"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:137
+msgid "The following are the preset values for <b>Topic:</b>"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:137
+msgid "Feature request"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:137
+msgid "Task"
+msgstr ""
+
+#: wp-ticket/includes/admin/glossary.php:137
+msgid "Bug"
+msgstr ""
+
+#: wp-ticket/includes/admin/license-functions.php:28
+msgid "Please enter and activate your <b>license keys</b>."
+msgstr ""
+
+#: wp-ticket/includes/admin/license-functions.php:81
+msgid "Deactivate License"
+msgstr ""
+
+#: wp-ticket/includes/admin/license-functions.php:85
+msgid "Activate License"
+msgstr ""
+
+#: wp-ticket/includes/admin/store-functions.php:22
+#: wp-ticket/includes/admin/store-functions.php:42
+msgid "Browse All"
+msgstr ""
+
+#: wp-ticket/includes/admin/store-functions.php:24
+msgid "The following plugins extend and expand the functionality of your app."
+msgstr ""
+
+#: wp-ticket/includes/admin/store-functions.php:44
+msgid "The following <a href=\"%s\" title=\"WP App Studio Prodev\" target=\"_blank\">WP App Studio Prodev</a> plugin designs can be used as a template:"
+msgstr ""
+
+#: wp-ticket/includes/admin/store-functions.php:46
+msgid "To customize the functionality of their corresponding plugins"
+msgstr ""
+
+#: wp-ticket/includes/admin/store-functions.php:49
+msgid "To create your own plugin"
+msgstr ""
+
+#: wp-ticket/includes/admin/store-functions.php:74
+msgid "There was an error retrieving the extensions list from the server. Please try again later."
+msgstr ""
+
+#: wp-ticket/includes/admin/store-functions.php:92
+msgid "Thanks for installing %s."
+msgstr ""
+
+#: wp-ticket/includes/admin/store-functions.php:92
+msgid "All support requests are accepted through <a href=\"%s\" target=\"_blank\">our support site.</a>"
+msgstr ""
+
+#: wp-ticket/includes/admin/store-functions.php:115
+msgid "Like our plugin? Leave us a review"
+msgstr ""
+
+#: wp-ticket/includes/class-install-deactivate.php:270
+msgid "Title"
+msgstr ""
+
+#: wp-ticket/includes/class-install-deactivate.php:273
+msgid "Content"
+msgstr ""
+
+#: wp-ticket/includes/class-install-deactivate.php:284
+msgid "Open a Ticket"
+msgstr ""
+
+#: wp-ticket/includes/class-install-deactivate.php:290
+msgid "Search Tickets"
+msgstr ""
+
+#: wp-ticket/includes/class-install-deactivate.php:494
+msgid "Priorities"
+msgstr ""
+
+#: wp-ticket/includes/class-install-deactivate.php:504
+msgid "Topics"
+msgstr ""
+
+#: wp-ticket/includes/class-install-deactivate.php:512
+msgid "Statuses"
+msgstr ""
+
+#: wp-ticket/includes/class-install-deactivate.php:584
+msgid "Business"
+msgstr ""
+
+#: wp-ticket/includes/class-install-deactivate.php:588
+msgid "Education"
+msgstr ""
+
+#: wp-ticket/includes/class-install-deactivate.php:592
+#: wp-ticket/includes/class-install-deactivate.php:601
+msgid "Science"
+msgstr ""
+
+#: wp-ticket/includes/class-install-deactivate.php:596
+msgid "Technology"
+msgstr ""
+
+#: wp-ticket/includes/class-install-deactivate.php:667
+msgid "New To WP Ticket? Review the documentation!"
+msgstr ""
+
+#: wp-ticket/includes/class-install-deactivate.php:667
+#: wp-ticket/includes/class-install-deactivate.php:679
+msgid "&#187;"
+msgstr ""
+
+#: wp-ticket/includes/class-install-deactivate.php:667
+#: wp-ticket/includes/class-install-deactivate.php:679
+msgid "Dismiss"
+msgstr ""
+
+#: wp-ticket/includes/class-install-deactivate.php:679
+msgid "Upgrade Now to WP Ticket Premium Editions! Save 20% - Use WP20 code at checkout."
+msgstr ""
+
+#: wp-ticket/includes/class-install-deactivate.php:685
+msgid "Welcome to Wp Ticket"
+msgstr ""
+
+#: wp-ticket/includes/class-install-deactivate.php:686
+msgid "Setup Wp Ticket Pages"
+msgstr ""
+
+#: wp-ticket/includes/class-install-deactivate.php:686
+msgid "Skip setup"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket-widgets.php:37
+msgid "The most recent tickets"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:172
+#: wp-ticket/includes/entities/class-emd-ticket.php:428
+msgid "Ticket"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:173
+msgid "Add New"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:174
+msgid "Add New Ticket"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:175
+msgid "Edit Ticket"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:176
+msgid "New Ticket"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:177
+msgid "All Tickets"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:178
+msgid "View Ticket"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:180
+msgid "No Tickets Found"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:181
+msgid "No Tickets Found In Trash"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:212
+msgid "Search Priorities"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:213
+msgid "Popular Priorities"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:214
+#: wp-ticket/includes/entities/class-emd-ticket.php:253
+#: wp-ticket/includes/entities/class-emd-ticket.php:292
+msgid "All"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:217
+msgid "Edit Priority"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:218
+msgid "Update Priority"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:219
+msgid "Add New Priority"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:220
+msgid "Add New Priority Name"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:221
+msgid "Seperate Priorities with commas"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:222
+msgid "Add or Remove Priorities"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:223
+msgid "Choose from the most used Priorities"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:251
+msgid "Search Statuses"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:252
+msgid "Popular Statuses"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:256
+msgid "Edit Status"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:257
+msgid "Update Status"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:258
+msgid "Add New Status"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:259
+msgid "Add New Status Name"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:260
+msgid "Seperate Statuses with commas"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:261
+msgid "Add or Remove Statuses"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:262
+msgid "Choose from the most used Statuses"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:290
+msgid "Search Topics"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:291
+msgid "Popular Topics"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:295
+msgid "Edit Topic"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:296
+msgid "Update Topic"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:297
+msgid "Add New Topic"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:298
+msgid "Add New Topic Name"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:299
+msgid "Seperate Topics with commas"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:300
+msgid "Add or Remove Topics"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:301
+msgid "Choose from the most used Topics"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:334
+msgid "Major"
+msgstr ""
+
+#: wp-ticket/includes/entities/class-emd-ticket.php:433
+msgid "Ticket Info"
+msgstr ""
+
+#: wp-ticket/includes/forms.php:68
+#: wp-ticket/includes/forms.php:183
+msgid "Please Select"
+msgstr ""
+
+#: wp-ticket/includes/forms.php:94
+msgid "First Name is required"
+msgstr ""
+
+#: wp-ticket/includes/forms.php:120
+msgid "Email is required"
+msgstr ""
+
+#: wp-ticket/includes/forms.php:124
+#: wp-ticket/includes/forms.php:328
+msgid "Email: Please enter a valid email address"
+msgstr ""
+
+#: wp-ticket/includes/forms.php:138
+msgid "Subject is required"
+msgstr ""
+
+#: wp-ticket/includes/forms.php:146
+msgid "Enter text ..."
+msgstr ""
+
+#: wp-ticket/includes/forms.php:153
+msgid "Message is required"
+msgstr ""
+
+#: wp-ticket/includes/forms.php:210
+msgid "Due: Please enter a valid date format"
+msgstr ""
+
+#: wp-ticket/includes/forms.php:225
+#: wp-ticket/includes/forms.php:335
+msgid "Please enter the characters with black color."
+msgstr ""
+
+#: wp-ticket/includes/forms.php:227
+#: wp-ticket/includes/forms.php:337
+msgid "Code"
+msgstr ""
+
+#: wp-ticket/includes/forms.php:232
+#: wp-ticket/includes/forms.php:342
+msgid "Captcha is required"
+msgstr ""
+
+#: wp-ticket/includes/forms.php:236
+#: wp-ticket/includes/forms.php:346
+msgid "Characters from captcha image entered incorrectly!"
+msgstr ""
+
+#: wp-ticket/includes/forms.php:240
+msgid "Submit Ticket"
+msgstr ""
+
+#: wp-ticket/includes/forms.php:269
+#: wp-ticket/includes/forms.php:377
+msgid "<p>You are not allowed to access to this area. Please contact the site administrator.</p>"
+msgstr ""
+
+#: wp-ticket/includes/forms.php:374
+msgid "Your search returned no results."
+msgstr ""
+
+#: wp-ticket/includes/scripts.php:43
+#: wp-ticket/includes/scripts.php:125
+msgid "Please enter a unique value."
+msgstr ""
+
+#: wp-ticket/includes/scripts.php:44
+msgid "required"
+msgstr ""
+
+#: wp-ticket/includes/scripts.php:60
+msgid "Taxonomy"
+msgstr ""
+
+#: wp-ticket/includes/scripts.php:109
+msgid "This field is required."
+msgstr ""
+
+#: wp-ticket/includes/scripts.php:110
+msgid "Please fix this field."
+msgstr ""
+
+#: wp-ticket/includes/scripts.php:111
+msgid "Please enter a valid email address."
+msgstr ""
+
+#: wp-ticket/includes/scripts.php:112
+msgid "Please enter a valid URL."
+msgstr ""
+
+#: wp-ticket/includes/scripts.php:113
+msgid "Please enter a valid date."
+msgstr ""
+
+#: wp-ticket/includes/scripts.php:114
+msgid "Please enter a valid date ( ISO )"
+msgstr ""
+
+#: wp-ticket/includes/scripts.php:115
+msgid "Please enter a valid number."
+msgstr ""
+
+#: wp-ticket/includes/scripts.php:116
+msgid "Please enter only digits."
+msgstr ""
+
+#: wp-ticket/includes/scripts.php:117
+msgid "Please enter a valid credit card number."
+msgstr ""
+
+#: wp-ticket/includes/scripts.php:118
+msgid "Please enter the same value again."
+msgstr ""
+
+#: wp-ticket/includes/scripts.php:119
+msgid "Please enter no more than {0} characters."
+msgstr ""
+
+#: wp-ticket/includes/scripts.php:120
+msgid "Please enter at least {0} characters."
+msgstr ""
+
+#: wp-ticket/includes/scripts.php:121
+msgid "Please enter a value between {0} and {1} characters long."
+msgstr ""
+
+#: wp-ticket/includes/scripts.php:122
+msgid "Please enter a value between {0} and {1}."
+msgstr ""
+
+#: wp-ticket/includes/scripts.php:123
+msgid "Please enter a value less than or equal to {0}."
+msgstr ""
+
+#: wp-ticket/includes/scripts.php:124
+msgid "Please enter a value greater than or equal to {0}."
+msgstr ""
+
+#: wp-ticket/layouts/shc-search-tickets-header.php:11
+msgid "Last Updated"
+msgstr ""
+
+#: wp-ticket/wp-ticket.php:68
+msgid "Cheatin&#8217; huh?"
+msgstr ""
+
+#: wp-ticket/wp-ticket.php:219
+msgid "WP Ticket"
+msgstr ""
+
+#: wp-ticket/wp-ticket.php:223
+msgid "Glossary"
+msgstr ""
+
+#: wp-ticket/wp-ticket.php:224
+msgid "Settings"
+msgstr ""
+
+#: wp-ticket/wp-ticket.php:228
+msgid "Add-Ons"
+msgstr ""
+
+#: wp-ticket/wp-ticket.php:232
+msgid "Designs"
+msgstr ""
+
+#: wp-ticket/wp-ticket.php:236
+msgid "Support"
+msgstr ""
+
+#: wp-ticket/wp-ticket.php:253
+msgid "Licenses"
+msgstr ""
