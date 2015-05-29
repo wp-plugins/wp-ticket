@@ -13,6 +13,8 @@ $.validator.setDefaults({
     ignore: [],
 });
 $.extend($.validator.messages,submit_tickets_vars.validate_msg);
+$('#emd_ticket_duedate').datetimepicker({
+'dateFormat' : 'mm-dd-yy','timeFormat' : 'hh:mm'});
 $('#submit_tickets').validate({
 onfocusout: false,
 onkeyup: false,
@@ -20,19 +22,25 @@ onclick: false,
 errorClass: 'text-danger',
 rules: {
   'ticket_topic':{
-required:true,
+required:false,
+},
+'ticket_priority':{
+required:false,
 },
 emd_ticket_first_name:{
 required : true
 },
 emd_ticket_last_name:{
-required : true
+required : false
 },
 emd_ticket_email:{
 email  : true,
 required : true
 },
 emd_ticket_phone:{
+required : false
+},
+emd_ticket_duedate:{
 required : false
 },
 blt_title:{

@@ -2,15 +2,18 @@
 <div class="form-alerts">
 <?php
 echo (isset($zf_error) ? $zf_error : (isset($error) ? $error : ''));
+$form_list = get_option('wp_ticket_com_glob_forms_list');
+$form_variables = $form_list['search_tickets'];
 ?>
 </div>
 <fieldset>
 <div class="search_tickets-btn-fields">
 <!-- search_tickets Form Attributes -->
 <div class="search_tickets_attributes">
-<div id="row9" class="row">
+<div id="row11" class="row">
 <!-- text input-->
-<div class="col-md-12 woptdiv">
+<?php if ($form_variables['emd_ticket_id']['show'] == 1) { ?>
+<div class="col-md-<?php echo $form_variables['emd_ticket_id']['size']; ?> woptdiv">
 <div class="form-group">
 <label id="label_emd_ticket_id" class="control-label" for="emd_ticket_id">
 <?php _e('Ticket ID', 'wp-ticket-com'); ?>
@@ -21,10 +24,13 @@ echo (isset($zf_error) ? $zf_error : (isset($error) ? $error : ''));
 <?php echo $emd_ticket_id; ?>
 </div>
 </div>
+<?php
+} ?>
 </div>
-<div id="row10" class="row">
+<div id="row12" class="row">
 <!-- text input-->
-<div class="col-md-12 woptdiv">
+<?php if ($form_variables['emd_ticket_email']['show'] == 1) { ?>
+<div class="col-md-<?php echo $form_variables['emd_ticket_email']['size']; ?> woptdiv">
 <div class="form-group">
 <label id="label_emd_ticket_email" class="control-label" for="emd_ticket_email">
 <?php _e('Email', 'wp-ticket-com'); ?>
@@ -35,10 +41,8 @@ echo (isset($zf_error) ? $zf_error : (isset($error) ? $error : ''));
 <?php echo $emd_ticket_email; ?>
 </div>
 </div>
-</div>
-<div id="row11" class="row">
-<!-- HR-->
-<hr>
+<?php
+} ?>
 </div>
 </div><!--form-attributes-->
 <?php if ($show_captcha == 1) { ?>

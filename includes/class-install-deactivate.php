@@ -2,7 +2,7 @@
 /**
  * Install and Deactivate Plugin Functions
  * @package WP_TICKET_COM
- * @version 1.4
+ * @version 2.0.0
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
@@ -43,6 +43,10 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 			));
 			add_action('generate_rewrite_rules', 'emd_create_rewrite_rules');
 			add_filter('query_vars', 'emd_query_vars');
+			add_action('admin_init', array(
+				$this,
+				'register_settings'
+			));
 			if (is_admin()) {
 				$this->stax = new Emd_Single_Taxonomy('wp-ticket-com');
 			}
@@ -78,6 +82,14 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 			flush_rewrite_rules();
 			$this->remove_caps_roles();
 			$this->reset_options();
+		}
+		/**
+		 * Register notification and/or license settings
+		 * @since WPAS 4.0
+		 *
+		 */
+		public function register_settings() {
+			emd_glob_register_settings($this->option_name);
 		}
 		/**
 		 * Sets caps and roles
@@ -252,17 +264,29 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 					'label' => __('Tickets', 'wp-ticket-com') ,
 					'unique_keys' => Array(
 						'emd_ticket_id'
-					)
+					) ,
+					'req_blt' => Array(
+						'blt_title' => Array(
+							'msg' => __('Title', 'wp-ticket-com')
+						) ,
+						'blt_content' => Array(
+							'msg' => __('Content', 'wp-ticket-com')
+						) ,
+					) ,
 				) ,
 			);
 			update_option($this->option_name . '_ent_list', $ent_list);
 			$shc_list['app'] = 'Wp Ticket';
 			$shc_list['forms']['submit_tickets'] = Array(
 				'name' => 'submit_tickets',
+				'type' => 'submit',
+				'ent' => 'emd_ticket',
 				'page_title' => __('Open a Ticket', 'wp-ticket-com')
 			);
 			$shc_list['forms']['search_tickets'] = Array(
 				'name' => 'search_tickets',
+				'type' => 'search',
+				'ent' => 'emd_ticket',
 				'page_title' => __('Search Tickets', 'wp-ticket-com')
 			);
 			if (!empty($shc_list)) {
@@ -273,7 +297,9 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 				'label' => __('Ticket ID', 'wp-ticket-com') ,
 				'display_type' => 'hidden',
 				'required' => 0,
+				'srequired' => 0,
 				'filterable' => 1,
+				'list_visible' => 1,
 				'desc' => __('Unique identifier for a ticket', 'wp-ticket-com') ,
 				'type' => 'char',
 				'hidden_func' => 'unique_id',
@@ -284,15 +310,19 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 				'label' => __('First Name', 'wp-ticket-com') ,
 				'display_type' => 'text',
 				'required' => 1,
+				'srequired' => 0,
 				'filterable' => 1,
+				'list_visible' => 1,
 				'type' => 'char',
 			);
 			$attr_list['emd_ticket']['emd_ticket_last_name'] = Array(
 				'visible' => 1,
 				'label' => __('Last Name', 'wp-ticket-com') ,
 				'display_type' => 'text',
-				'required' => 1,
+				'required' => 0,
+				'srequired' => 0,
 				'filterable' => 1,
+				'list_visible' => 1,
 				'type' => 'char',
 			);
 			$attr_list['emd_ticket']['emd_ticket_email'] = Array(
@@ -300,7 +330,9 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 				'label' => __('Email', 'wp-ticket-com') ,
 				'display_type' => 'text',
 				'required' => 1,
+				'srequired' => 0,
 				'filterable' => 1,
+				'list_visible' => 1,
 				'desc' => __('Our responses to your ticket will be sent to this email address.', 'wp-ticket-com') ,
 				'type' => 'char',
 				'email' => true,
@@ -310,7 +342,9 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 				'label' => __('Phone', 'wp-ticket-com') ,
 				'display_type' => 'text',
 				'required' => 0,
+				'srequired' => 0,
 				'filterable' => 0,
+				'list_visible' => 0,
 				'desc' => __('Please enter a phone number in case we need to contact you.', 'wp-ticket-com') ,
 				'type' => 'char',
 			);
@@ -319,7 +353,9 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 				'label' => __('Due', 'wp-ticket-com') ,
 				'display_type' => 'datetime',
 				'required' => 0,
+				'srequired' => 0,
 				'filterable' => 1,
+				'list_visible' => 0,
 				'desc' => __('The due date of the ticket', 'wp-ticket-com') ,
 				'type' => 'datetime',
 				'dformat' => array(
@@ -334,7 +370,9 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 				'label' => __('Attachments', 'wp-ticket-com') ,
 				'display_type' => 'file',
 				'required' => 0,
+				'srequired' => 0,
 				'filterable' => 0,
+				'list_visible' => 1,
 				'desc' => __('Attach related files to the ticket.', 'wp-ticket-com') ,
 				'type' => 'char',
 			);
@@ -343,7 +381,9 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 				'label' => __('Form Name', 'wp-ticket-com') ,
 				'display_type' => 'hidden',
 				'required' => 0,
+				'srequired' => 0,
 				'filterable' => 1,
+				'list_visible' => 0,
 				'type' => 'char',
 				'options' => array() ,
 				'no_update' => 1,
@@ -354,7 +394,9 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 				'label' => __('Form Submitted By', 'wp-ticket-com') ,
 				'display_type' => 'hidden',
 				'required' => 0,
+				'srequired' => 0,
 				'filterable' => 1,
+				'list_visible' => 0,
 				'type' => 'char',
 				'options' => array() ,
 				'hidden_func' => 'user_login',
@@ -365,7 +407,9 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 				'label' => __('Form Submitted IP', 'wp-ticket-com') ,
 				'display_type' => 'hidden',
 				'required' => 0,
+				'srequired' => 0,
 				'filterable' => 1,
+				'list_visible' => 0,
 				'type' => 'char',
 				'options' => array() ,
 				'hidden_func' => 'user_ip',
@@ -374,24 +418,105 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 			if (!empty($attr_list)) {
 				update_option($this->option_name . '_attr_list', $attr_list);
 			}
+			if (!empty($glob_list)) {
+				update_option($this->option_name . '_glob_list', $glob_list);
+			}
+			$glob_forms_list['search_tickets']['captcha'] = 'show-to-visitors';
+			$glob_forms_list['search_tickets']['emd_ticket_id'] = Array(
+				'show' => 1,
+				'row' => 1,
+				'size' => 12,
+			);
+			$glob_forms_list['search_tickets']['emd_ticket_email'] = Array(
+				'show' => 1,
+				'row' => 2,
+				'size' => 12,
+			);
+			$glob_forms_list['submit_tickets']['captcha'] = 'show-to-visitors';
+			$glob_forms_list['submit_tickets']['ticket_topic'] = Array(
+				'show' => 1,
+				'row' => 2,
+				'size' => 12,
+			);
+			$glob_forms_list['submit_tickets']['emd_ticket_first_name'] = Array(
+				'show' => 1,
+				'row' => 3,
+				'size' => 12,
+			);
+			$glob_forms_list['submit_tickets']['emd_ticket_last_name'] = Array(
+				'show' => 1,
+				'row' => 4,
+				'size' => 12,
+			);
+			$glob_forms_list['submit_tickets']['emd_ticket_email'] = Array(
+				'show' => 1,
+				'row' => 5,
+				'size' => 12,
+			);
+			$glob_forms_list['submit_tickets']['blt_title'] = Array(
+				'show' => 1,
+				'row' => 6,
+				'size' => 12,
+				'label' => __('Subject', 'wp-ticket-com') ,
+				'required' => 1
+			);
+			$glob_forms_list['submit_tickets']['blt_content'] = Array(
+				'show' => 1,
+				'row' => 7,
+				'size' => 12,
+				'label' => __('Message', 'wp-ticket-com') ,
+				'required' => 1
+			);
+			$glob_forms_list['submit_tickets']['emd_ticket_phone'] = Array(
+				'show' => 1,
+				'row' => 8,
+				'size' => 12,
+			);
+			$glob_forms_list['submit_tickets']['emd_ticket_attachment'] = Array(
+				'show' => 1,
+				'row' => 9,
+				'size' => 12,
+			);
+			$glob_forms_list['submit_tickets']['ticket_priority'] = Array(
+				'show' => 1,
+				'row' => 10,
+				'size' => 12,
+			);
+			$glob_forms_list['submit_tickets']['emd_ticket_duedate'] = Array(
+				'show' => 1,
+				'row' => 11,
+				'size' => 12,
+			);
+			if (!empty($glob_forms_list)) {
+				update_option($this->option_name . '_glob_forms_list', $glob_forms_list);
+			}
 			$tax_list['emd_ticket']['ticket_priority'] = Array(
 				'label' => __('Priorities', 'wp-ticket-com') ,
 				'default' => Array(
 					__('Uncategorized', 'wp-ticket-com')
 				) ,
-				'type' => 'single'
+				'type' => 'single',
+				'hier' => 0,
+				'required' => 0,
+				'srequired' => 0
 			);
 			$tax_list['emd_ticket']['ticket_topic'] = Array(
 				'label' => __('Topics', 'wp-ticket-com') ,
 				'default' => '',
-				'type' => 'single'
+				'type' => 'single',
+				'hier' => 0,
+				'required' => 0,
+				'srequired' => 0
 			);
 			$tax_list['emd_ticket']['ticket_status'] = Array(
 				'label' => __('Statuses', 'wp-ticket-com') ,
 				'default' => Array(
 					__('Open', 'wp-ticket-com')
 				) ,
-				'type' => 'single'
+				'type' => 'single',
+				'hier' => 0,
+				'required' => 0,
+				'srequired' => 0
 			);
 			if (!empty($tax_list)) {
 				update_option($this->option_name . '_tax_list', $tax_list);
@@ -551,7 +676,7 @@ if (!class_exists('Wp_Ticket_Com_Install_Deactivate')):
 ?>
 <div class="updated">
 <?php
-				printf('<p><a href="%1s" target="_blank"> %2$s </a>%3$s<a style="float:right;" href="%4$s"><span class="dashicons dashicons-dismiss" style="font-size:15px;"></span>%5$s</a></p>', 'https://emdplugins.com/plugins/wp-ticket-professional/?pk_campaign=wpticket&pk_source=plugin&pk_medium=link&pk_content=notice', __('Upgrade to Professional Version Now!', 'wpas') , __('&#187;', 'wpas') , esc_url(add_query_arg($this->option_name . '_adm_notice2', true)) , __('Dismiss', 'wpas'));
+				printf('<p><a href="%1s" target="_blank"> %2$s </a>%3$s<a style="float:right;" href="%4$s"><span class="dashicons dashicons-dismiss" style="font-size:15px;"></span>%5$s</a></p>', 'https://emdplugins.com/plugin_tag/wp-ticket/?pk_campaign=wpticket&pk_source=plugin&pk_medium=link&pk_content=notice&discount=WP20', __('Upgrade Now to WP Ticket Premium Editions! Save 20% - Use WP20 code at checkout.', 'wpas') , __('&#187;', 'wpas') , esc_url(add_query_arg($this->option_name . '_adm_notice2', true)) , __('Dismiss', 'wpas'));
 ?>
 </div>
 <?php

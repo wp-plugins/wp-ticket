@@ -3,7 +3,7 @@
  * Query Filter Functions
  *
  * @package WP_TICKET_COM
- * @version 1.4
+ * @version 2.0.0
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;

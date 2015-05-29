@@ -3,7 +3,7 @@
  * Settings Glossary Functions
  *
  * @package WP_TICKET_COM
- * @version 1.4
+ * @version 2.0.0
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
@@ -35,7 +35,7 @@ function wp_ticket_com_settings_glossary() {
 <td><?php _e(' First Name is a required field. First Name is filterable in the admin area. First Name does not have a default value. ', 'wp-ticket-com'); ?></td>
 </tr><tr>
 <th><?php _e('Last Name', 'wp-ticket-com'); ?></th>
-<td><?php _e(' Last Name is a required field. Last Name is filterable in the admin area. Last Name does not have a default value. ', 'wp-ticket-com'); ?></td>
+<td><?php _e(' Last Name is filterable in the admin area. Last Name does not have a default value. ', 'wp-ticket-com'); ?></td>
 </tr><tr>
 <th><?php _e('Email', 'wp-ticket-com'); ?></th>
 <td><?php _e('Our responses to your ticket will be sent to this email address. Email is a required field. Email is filterable in the admin area. Email does not have a default value. ', 'wp-ticket-com'); ?></td>
@@ -134,7 +134,7 @@ function wp_ticket_com_settings_glossary() {
 <tr>
 <th><?php _e('Topic', 'wp-ticket-com'); ?></th>
 
-<td><?php _e('Topics are the categories for tickets. Topic accepts multiple values like tags', 'wp-ticket-com'); ?>. <?php _e('Topic does not have a default value', 'wp-ticket-com'); ?>.<?php _e('Topic is a required field therefore must be assigned to a value', 'wp-ticket-com'); ?>.<div class="taxdef-block"><p><?php _e('The following are the preset values for <b>Topic:</b>', 'wp-ticket-com'); ?></p><p class="taxdef-values"><?php _e('Feature request', 'wp-ticket-com'); ?>, <?php _e('Task', 'wp-ticket-com'); ?>, <?php _e('Bug', 'wp-ticket-com'); ?></p></div></td>
+<td><?php _e('Topics are the categories for tickets. Topic accepts multiple values like tags', 'wp-ticket-com'); ?>. <?php _e('Topic does not have a default value', 'wp-ticket-com'); ?>.<div class="taxdef-block"><p><?php _e('The following are the preset values for <b>Topic:</b>', 'wp-ticket-com'); ?></p><p class="taxdef-values"><?php _e('Feature request', 'wp-ticket-com'); ?>, <?php _e('Task', 'wp-ticket-com'); ?>, <?php _e('Bug', 'wp-ticket-com'); ?></p></div></td>
 </tr>
 </table>
 </div>

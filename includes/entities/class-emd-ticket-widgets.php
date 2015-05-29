@@ -3,7 +3,7 @@
  * Entity Widget Classes
  *
  * @package WP_TICKET_COM
- * @version 1.4
+ * @version 2.0.0
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
@@ -42,6 +42,7 @@ class wp_ticket_com_recent_tickets_sidebar_widget extends Emd_Widget {
 	 * @since WPAS 4.0
 	 */
 	public static function layout() {
+		global $post;
 		$layout = "* <a title=\"" . esc_html(emd_mb_meta('emd_ticket_id')) . " - " . get_the_date() . " - " . get_the_time() . "\" href=\"" . get_permalink() . "\">" . get_the_title() . "</a><br />
 ";
 		return $layout;

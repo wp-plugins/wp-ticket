@@ -3,7 +3,7 @@
  * Entity Class
  *
  * @package WP_TICKET_COM
- * @version 1.4
+ * @version 2.0.0
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
@@ -59,7 +59,7 @@ class Emd_Ticket extends Emd_Entity {
 				)) && !in_array($mybox_field['type'], Array(
 					'textarea',
 					'wysiwyg'
-				))) {
+				)) && $mybox_field['list_visible'] == 1) {
 					$columns[$fkey] = $mybox_field['name'];
 				}
 			}
@@ -309,7 +309,7 @@ class Emd_Ticket extends Emd_Entity {
 			'public' => true,
 			'show_ui' => true,
 			'show_in_nav_menus' => true,
-			'show_in_menu' => true,
+			'show_in_menu' => false,
 			'show_tagcloud' => true,
 			'update_count_callback' => '_update_post_term_count',
 			'query_var' => true,

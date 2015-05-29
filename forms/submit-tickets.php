@@ -2,6 +2,8 @@
 <div class="form-alerts">
 <?php
 echo (isset($zf_error) ? $zf_error : (isset($error) ? $error : ''));
+$form_list = get_option('wp_ticket_com_glob_forms_list');
+$form_variables = $form_list['submit_tickets'];
 ?>
 </div>
 <fieldset>
@@ -11,24 +13,25 @@ echo (isset($zf_error) ? $zf_error : (isset($error) ? $error : ''));
  
 <div id="row1" class="row">
 <!-- Taxonomy input-->
-<div class="col-md-12">
+<?php if ($form_variables['ticket_topic']['show'] == 1) { ?>
+<div class="col-md-<?php echo $form_variables['ticket_topic']['size']; ?>">
 <div class="form-group">
 <label id="label_ticket_topic" class="control-label" for="ticket_topic">
 <?php _e('Topic', 'wp-ticket-com'); ?>
 <span style="display: inline-flex;right: 0px; position: relative; top:-6px;">
 <a data-html="true" href="#" data-toggle="tooltip" title="<?php _e('Topics are the categories for tickets.', 'wp-ticket-com'); ?>" id="info_ticket_topic" class="helptip"><span class="field-icons icons-help"></span></a>
-<a href="#" data-html="true" data-toggle="tooltip" title="<?php _e('Topic field is required', 'wp-ticket-com'); ?>" id="info_ticket_topic" class="helptip">
-<span class="field-icons icons-required"></span>
-</a>
 </span>
 </label>
 <?php echo $ticket_topic; ?>
 </div>
 </div>
+<?php
+} ?>
 </div>
 <div id="row2" class="row">
 <!-- text input-->
-<div class="col-md-12 woptdiv">
+<?php if ($form_variables['emd_ticket_first_name']['show'] == 1) { ?>
+<div class="col-md-<?php echo $form_variables['emd_ticket_first_name']['size']; ?> woptdiv">
 <div class="form-group">
 <label id="label_emd_ticket_first_name" class="control-label" for="emd_ticket_first_name">
 <?php _e('First Name', 'wp-ticket-com'); ?>
@@ -41,26 +44,29 @@ echo (isset($zf_error) ? $zf_error : (isset($error) ? $error : ''));
 <?php echo $emd_ticket_first_name; ?>
 </div>
 </div>
+<?php
+} ?>
 </div>
 <div id="row3" class="row">
 <!-- text input-->
-<div class="col-md-12 woptdiv">
+<?php if ($form_variables['emd_ticket_last_name']['show'] == 1) { ?>
+<div class="col-md-<?php echo $form_variables['emd_ticket_last_name']['size']; ?> woptdiv">
 <div class="form-group">
 <label id="label_emd_ticket_last_name" class="control-label" for="emd_ticket_last_name">
 <?php _e('Last Name', 'wp-ticket-com'); ?>
 <span style="display: inline-flex;right: 0px; position: relative; top:-6px;">
-<a href="#" data-html="true" data-toggle="tooltip" title="<?php _e('Last Name field is required', 'wp-ticket-com'); ?>" id="info_emd_ticket_last_name" class="helptip">
-<span class="field-icons icons-required"></span>
-</a>
 </span>
 </label>
 <?php echo $emd_ticket_last_name; ?>
 </div>
 </div>
+<?php
+} ?>
 </div>
 <div id="row4" class="row">
 <!-- text input-->
-<div class="col-md-12 woptdiv">
+<?php if ($form_variables['emd_ticket_email']['show'] == 1) { ?>
+<div class="col-md-<?php echo $form_variables['emd_ticket_email']['size']; ?> woptdiv">
 <div class="form-group">
 <label id="label_emd_ticket_email" class="control-label" for="emd_ticket_email">
 <?php _e('Email', 'wp-ticket-com'); ?>
@@ -74,10 +80,13 @@ echo (isset($zf_error) ? $zf_error : (isset($error) ? $error : ''));
 <?php echo $emd_ticket_email; ?>
 </div>
 </div>
+<?php
+} ?>
 </div>
 <div id="row5" class="row">
 <!-- text input-->
-<div class="col-md-12 woptdiv">
+<?php if ($form_variables['blt_title']['show'] == 1) { ?>
+<div class="col-md-<?php echo $form_variables['blt_title']['size']; ?> woptdiv">
 <div class="form-group">
 <label id="label_blt_title" class="control-label" for="blt_title">
 <?php _e('Subject', 'wp-ticket-com'); ?>
@@ -91,10 +100,13 @@ echo (isset($zf_error) ? $zf_error : (isset($error) ? $error : ''));
 <?php echo $blt_title; ?>
 </div>
 </div>
+<?php
+} ?>
 </div>
 <div id="row6" class="row">
 <!-- wysiwyg input-->
-<div class="col-md-12">
+<?php if ($form_variables['blt_content']['show'] == 1) { ?>
+<div class="col-md-<?php echo $form_variables['blt_content']['size']; ?>">
 <div class="form-group">
 <label id="label_blt_content" class="control-label" for="blt_content">
 <?php _e('Message', 'wp-ticket-com'); ?>
@@ -108,10 +120,13 @@ echo (isset($zf_error) ? $zf_error : (isset($error) ? $error : ''));
 <?php echo $blt_content; ?>
 </div>
 </div>
+<?php
+} ?>
 </div>
 <div id="row7" class="row">
 <!-- text input-->
-<div class="col-md-12 woptdiv">
+<?php if ($form_variables['emd_ticket_phone']['show'] == 1) { ?>
+<div class="col-md-<?php echo $form_variables['emd_ticket_phone']['size']; ?> woptdiv">
 <div class="form-group">
 <label id="label_emd_ticket_phone" class="control-label" for="emd_ticket_phone">
 <?php _e('Phone', 'wp-ticket-com'); ?>
@@ -122,16 +137,54 @@ echo (isset($zf_error) ? $zf_error : (isset($error) ? $error : ''));
 <?php echo $emd_ticket_phone; ?>
 </div>
 </div>
+<?php
+} ?>
 </div>
 <div id="row8" class="row">
 <!-- file input-->
-<div class="col-md-12">
+<?php if ($form_variables['emd_ticket_attachment']['show'] == 1) { ?>
+<div class="col-md-<?php echo $form_variables['emd_ticket_attachment']['size']; ?>">
 <?php _e('Attachments', 'wp-ticket-com'); ?>
 <a data-html="true" href="#" data-toggle="tooltip" title="<?php _e('Attach related files to the ticket.', 'wp-ticket-com'); ?>" id="info_emd_ticket_attachment" class="helptip"><span class="field-icons icons-help"></span></a>
 <div class="form-group">
 <?php echo $emd_ticket_attachment; ?>
 </div>
 </div>
+<?php
+} ?>
+</div>
+<div id="row9" class="row">
+<!-- Taxonomy input-->
+<?php if ($form_variables['ticket_priority']['show'] == 1) { ?>
+<div class="col-md-<?php echo $form_variables['ticket_priority']['size']; ?>">
+<div class="form-group">
+<label id="label_ticket_priority" class="control-label" for="ticket_priority">
+<?php _e('Priority', 'wp-ticket-com'); ?>
+<span style="display: inline-flex;right: 0px; position: relative; top:-6px;">
+<a data-html="true" href="#" data-toggle="tooltip" title="<?php _e('When you create a ticket, you should prioritize the ticket based on the scope and impact of the request.', 'wp-ticket-com'); ?>" id="info_ticket_priority" class="helptip"><span class="field-icons icons-help"></span></a>
+</span>
+</label>
+<?php echo $ticket_priority; ?>
+</div>
+</div>
+<?php
+} ?>
+</div>
+<div id="row10" class="row">
+<!-- datetime-->
+<?php if ($form_variables['emd_ticket_duedate']['show'] == 1) { ?>
+<div class="col-md-<?php echo $form_variables['emd_ticket_duedate']['size']; ?> woptdiv">
+<div class="form-group">
+<label id="label_emd_ticket_duedate" class="control-label" for="emd_ticket_duedate">
+<?php _e('Due', 'wp-ticket-com'); ?>
+<span style="display: inline-flex;right: 0px; position: relative; top:-6px;"> <a data-html="true" href="#" data-toggle="tooltip" title="<?php _e('The due date of the ticket', 'wp-ticket-com'); ?>" id="info_emd_ticket_duedate" class="helptip"><span class="field-icons icons-help"></span></a>
+ </span>
+</label>
+<?php echo $emd_ticket_duedate; ?>
+</div>
+</div>
+<?php
+} ?>
 </div>
  
  

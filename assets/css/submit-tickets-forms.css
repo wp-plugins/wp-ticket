@@ -160,6 +160,19 @@ div.emd-container #emd_ticket_phone {
     vertical-align: middle;
     width: 100%;
 }
+div.emd-container #emd_ticket_duedate {
+    border: 1px solid #CCCCCC;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    display: block;
+    font-size: 14px;
+    height: 34px;
+    line-height: 1.42857;
+    padding: 6px 12px 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    vertical-align: middle;
+    width: 100%;
+}
 #blt_title {
     border: 1px solid #CCCCCC;
     border-radius: 4px 4px 4px 4px;
@@ -195,3 +208,4 @@ position: absolute;
 left: 50px;
 top: 50px;
 }
+

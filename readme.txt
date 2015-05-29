@@ -4,8 +4,8 @@ Plugin URI: https://emdplugins.com
 Author URI: https://emarketdesign.com
 Donate link: https://emarketdesign.com/donate-emarket-design/
 Requires at least: 3.8
-Tested up to: 4.1.1
-Stable tag: 1.4.0
+Tested up to: 4.2.1
+Stable tag: 2.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: help, support, support ticket, ticket, email notification, user support plugin, support plugin , ticket plugin, support system, helpdesk, ticket system, ticketing system, help desk, customer service, submit tickets, CRM, ticket management, wp app studio, wpas, IMAP, POP3, incoming email, email, post by email, canned responses, quick responses
@@ -16,27 +16,7 @@ WP Ticket is a very easy to use helpdesk and support ticket management system to
 
 WP Ticket enables support staff to receive, process, and respond to service requests efficiently and effectively.
 
-For project based issue tracking and management, check out [Software Issue Manager](https://wordpress.org/plugins/software-issue-manager/).
-
-[Premium editions](https://emdplugins.com/plugins) are available.
-
-> <strong>Customization using your WP App Studio ProdDev account</strong><br>
-> WP Ticket is designed and developed using WP App Studio AUTOBAHN (4.3+) without writing a single line of PHP code. Customize it to your needs by: <br>
-> 1. [Download App signature.](https://emdplugins.com/designs/)<br>
-> 2. [Download WP App Studio.](https://wordpress.org/plugins/wp-app-studio/) <br>
-> 3. [Import App signature to WP App Studio AUTOBAHN by clicking on Import button in the app list screen](https://wpas.emdplugins.com/articles/importing-and-exporting-apps/)<br>
-> 4. [Open up a ProDev account.](https://wpas.emdplugins.com/)<br>
-> 5. Go to WP App Studio menu Applications page Click on the app signature imported and change the *app name* and *text domain* to your ProDev *app name* and *text domain* you purchased.<br>
-> 6. Make modifications to the design and Generate your plugin.<br>
-> 7. Download/Install/Activate your plugin.<br>
-> 8. Set your ProDev license in your plugins setting page, licenses tab. You have 1 year to customize, update your plugin. After initial activation, all other updates are done through WordPress Plugin page like other WP plugins.<br>
-
-= Works with WPAS Extensions and Addons =
-[WPAS incoming email extension](https://emdplugins.com/plugins/incoming-email-extension/)
-* Allows tickets to be created through email (POP3/IMAP supported).<br>
-[WPAS canned responses extension](https://emdplugins.com/plugins/canned-responses-extension/)
-* Allows to create, categorize, and utilize predetermined responses in WPAS app comments.<br>
-* Advanced Knowledgebase plugin is coming soon.<br>
+For project based issue tracking and management, check out [Software Issue Manager](https://wordpress.org/plugins/software-issue-manager/)
 
 <strong>Community Edition Features</strong><br>
 * Useful for small teams *without* organizational content access requirements.<br>
@@ -51,6 +31,8 @@ For project based issue tracking and management, check out [Software Issue Manag
 * Recent Tickets sidebar widget.<br>
 * Recent Tickets dashboard widget.<br>
 * No content access restrictions.<br>
+* Enable/disable available form elements, display/hide captcha, and adjust element sizes in the settings page<br>
+* Incoming Email and Canned responses extensions ready<br>
 
 [Plugin Documentation](https://docs.emdplugins.com/docs/wp-ticket-community-documentation/)
 
@@ -60,7 +42,127 @@ For project based issue tracking and management, check out [Software Issue Manag
 3. The customer can view, search and add comment for the ticket from frontend.<br>
 4. Admin user sets a resolution status to the ticket when the resolution is reached.<br>
 
+= Works with WPAS Extensions and Addons =
+[WPAS incoming email extension](https://emdplugins.com/plugins/incoming-email-extension/)
+* Allows tickets to be created through email (POP3/IMAP supported).<br>
+[WPAS canned responses extension](https://emdplugins.com/plugins/canned-responses-extension/)
+* Allows to create, categorize, and utilize predetermined responses in WPAS app comments.<br>
+* Advanced Knowledgebase plugin is coming soon.<br>
 
+[Premium editions](https://emdplugins.com/plugin_tag/wp-ticket/) are available:<br>
+
+<strong>Support Ticket - Lite Edition</strong><br>
+* For small teams<br>
+* Community Edition features + <br>
+* Agent and Manager custom roles<br>
+* Define, categorize, tag tickets for efficient problem resolution.<br>
+* Assign responsibility and monitor resolution progress.<br>
+* Monitor service performance.<br>
+* Create custom email notifications to keep customers and employees updated<br>
+* Advanced ticket filtering<br>
+* Custom Ticket commenting; separate from posts and page comments<br>
+* Create custom reports with Visual Shortcode builder<br>
+* Internal ticket notes and more<br>
+* Incoming Email and Canned responses extensions ready<br>
+* Visually import/export from CSV files<br>
+* U.S. based support (US EST)<br>
+
+[Support Ticket WordPress Plugin page](https://emdplugins.com/plugins/support-ticket-professional/)<br>
+
+[youtube https://www.youtube.com/watch?v=uVgWZd7oGOk]
+
+<strong>WP Ticket Pro</strong><br>
+* For small to medium size teams<br>
+* All Support Ticket Edition features +<br>
+* Custom Request Analytics Dashboard with 7 charts for performance and load insight<br>
+* Visual Shortcode builder with Analytics module - for summarizations<br>
+
+[WP Ticket Pro WordPress Plugin Documentation](https://docs.emdplugins.com/docs/wp-ticket-professional-documentation/)<br>
+[WP Ticket Pro WordPress Plugin Page - full demo available](https://emdplugins.com/plugins/wp-ticket-professional/)
+
+<strong>WP Ticket Enterprise</strong><br>
+* For enterprise level support <br>
+* Most advanced and fully featured WordPress based support system <br>
+* All extensions included <br>
+* All WP Ticket Pro features + <br>
+* Todo lists for tickets <br>
+* Custom Request Analytics Dashboard with 10 charts for performance and load insight <br>
+* Relate tickets to other tickets;parent, sibling, child, duplicate <br>
+* Agent specific frontend dashboard with charts <br>
+
+[WP Ticket Enterprise WordPress Plugin Documentation](https://docs.emdplugins.com/docs/wp-ticket-enterprise-documentation/)<br>
+[WP Ticket Enterprise WordPress Plugin Page - full demo available](https://emdplugins.com/plugins/wp-ticket-enterprise/)
+
+> <strong>Customization using your WP App Studio ProdDev account</strong><br>
+> WP Ticket is designed and developed using WP App Studio AUTOBAHN (4.3+) without writing a single line of PHP code. Customize it to your needs by: <br>
+> 1. [Download App signature.](https://emdplugins.com/designs/)<br>
+> 2. [Download WP App Studio.](https://wordpress.org/plugins/wp-app-studio/) <br>
+> 3. [Import App signature to WP App Studio AUTOBAHN by clicking on Import button in the app list screen](https://wpas.emdplugins.com/articles/importing-and-exporting-apps/)<br>
+> 4. [Purchase ProDev API access for full customization.](https://wpas.emdplugins.com/)<br>
+> 5. Go to WP App Studio menu Applications page Click on the app signature imported and change the *app name* and *text domain* to your ProDev *app name* and *text domain* you purchased.<br>
+> 6. Make modifications to the design and Generate your plugin.<br>
+> 7. Download/Install/Activate your plugin.<br>
+> 8. Set your ProDev license in your plugins setting page, licenses tab. You have 1 year to customize, update your plugin. After initial activation, all other updates are done through WordPress Plugin page like other WP plugins.<br>
+
+
+== Installation ==
+
+The simplest way to install is to click on 'Plugins' then 'Add' and type 'Wp Ticket' in the search field.
+
+= Manual Installation Type 1 =
+
+* Login to your website and go to the Plugins section of your admin panel.
+* Click the Add New button.
+* Under Install Plugins, click the Upload link.
+* Select the plugin zip file from your computer then click the Install Now button.
+* You should see a message stating that the plugin was installed successfully.
+* Click the Activate Plugin link.
+
+= Manual Installation Type 2 =
+
+* You should have access to the server where WordPress is installed. If you don't, see your system administrator.
+* Copy the plugin zip file up to your server and unzip it somewhere on the file system.
+* Copy the "wp-ticket" folder into the /wp-content/plugins directory of your WordPress installation.
+* Login to your website and go to the Plugins section of your admin panel.
+* Look for "WP Ticket" and click Activate.
+
+== Screenshots ==
+1. Ticket Entry form can be added in a page using a shortcode
+2. Search Tickets form can be added in a page using a shortcode
+3. Displays Ticket single page and Recent Tickets sidebar widget on the frontend
+4. Displays Ticket Edit screen in admin area
+5. Displays Ticket List in admin area
+6. Displays WP Ticket Pro dashboard with statistics and charts in admin area
+7. Admin Settings page for WP Ticket Form customization. Advanced customisation can be done by purchasing WP App Studio ProDev access and theplugin design you want to customize; the plugin designs for all editions are available at emdplugins.com. You do not need to purchase the plugin if you need advanced customization; ProDev access and plugin design are enough.
+
+== Changelog ==
+= 2.0.0 =
+* Added settings page for form customization such enable/disable fields, captcha and change field sizes
+* Removed unnecessary fields from the ticket list page
+* Made some fields optional so that they can be disabled
+* Fixed some minor bugs to improve stability
+= 1.4.0 =
+* Fixed unique check for tickets
+* Moved all js and css from cdn to local
+* Visitor ticket submit status changed to published
+* Fixed misc bugs
+= 1.3.0 =
+* Fixed untranslatable search form results view header columns
+* Fixed file uploads issue with file names including spaces
+* Fixed various compatibility issues related to other plugins
+= 1.2.0 =
+* Added the required configuration to use WPAS Canned Responses extension
+* Fixed Misc bugs.
+* TinyMCE visual editor fix for p tags
+= 1.1.0 =
+* Added the required configuration to use WPAS Incoming Email extension
+* Fixed Misc bugs.
+= 1.0.0 =
+* Initial release
+
+== More Info ==
+
+Premium edition details:
 
 <strong>Pro Edition Features</strong><br>
 * Designed for support teams *with* organizational content access requirements.<br>
@@ -128,62 +230,10 @@ For project based issue tracking and management, check out [Software Issue Manag
 4. The assignee processes the ticket: insert expected time spent, remaining time to resolution, adds/moderates comments. Customers and the assignee get notified on comments on the ticket.<br>
 5. The assignee sets a resolution status, actual time spent in to the ticket after an acceptable solution is reached.<br>
 
-[WP Ticket Enterprise Plugin Documentation](https://docs.emdplugins.com/docs/wp-ticket-enterprise-documentation/)<br>
-[WP Ticket Enterprise Plugin Page - full demo available](https://emdplugins.com/plugins/wp-ticket-enterprise/)
-
-
-== Installation ==
-
-The simplest way to install is to click on 'Plugins' then 'Add' and type 'Wp Ticket' in the search field.
-
-= Manual Installation Type 1 =
-
-* Login to your website and go to the Plugins section of your admin panel.
-* Click the Add New button.
-* Under Install Plugins, click the Upload link.
-* Select the plugin zip file from your computer then click the Install Now button.
-* You should see a message stating that the plugin was installed successfully.
-* Click the Activate Plugin link.
-
-= Manual Installation Type 2 =
-
-* You should have access to the server where WordPress is installed. If you don't, see your system administrator.
-* Copy the plugin zip file up to your server and unzip it somewhere on the file system.
-* Copy the "wp-ticket" folder into the /wp-content/plugins directory of your WordPress installation.
-* Login to your website and go to the Plugins section of your admin panel.
-* Look for "WP Ticket" and click Activate.
-
-== Screenshots ==
-1. Ticket Entry form can be added in a page using a shortcode
-2. Search Tickets form can be added in a page using a shortcode
-3. Displays Ticket single page and Recent Tickets sidebar widget on the frontend
-4. Displays Ticket Edit screen in admin area
-5. Displays Ticket List in admin area
-6. Displays WP Ticket Pro dashboard with statistics and charts in admin area
-
-== Changelog ==
-= 1.4.0 =
-* Fixed unique check for tickets
-* Moved all js and css from cdn to local
-* Visitor ticket submit status changed to published
-* Fixed misc bugs
-= 1.3.0 =
-* Fixed untranslatable search form results view header columns
-* Fixed file uploads issue with file names including spaces
-* Fixed various compatibility issues related to other plugins
-= 1.2.0 =
-* Added the required configuration to use WPAS Canned Responses extension
-* Fixed Misc bugs.
-* TinyMCE visual editor fix for p tags
-= 1.1.0 =
-* Added the required configuration to use WPAS Incoming Email extension
-* Fixed Misc bugs.
-= 1.0.0 =
-* Initial release
-
-== Frequently Asked Questions ==
 
 == Upgrade Notice ==
+= 2.0.0 =
+* Added settings page for form customization such enable/disable fields, captcha and change field sizes and more
 = 1.4.0 =
 * Fixed unique check for tickets, moved all cdn files to local, visitor ticket submit status changed to published
 = 1.3.0 =
