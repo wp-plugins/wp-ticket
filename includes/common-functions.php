@@ -380,3 +380,26 @@ function emd_check_uniq_from_wpdb($data, $post_id, $post_type) {
 	}
 	return false;
 }
+/**
+ * Enqueue if allview css is not enqueued
+ *
+ * @since WPAS 4.5
+ *
+ */
+function emd_enq_allview(){
+        if(!wp_style_is('allview-css','enqueued')){
+                wp_enqueue_style('allview-css');
+        }
+}
+/**
+ * Show insert into post button for media uploads
+ *
+ * @since WPAS 4.5
+ * @param array $args
+ * @return array $args
+ *
+ */
+function emd_media_item_args($args){
+        $args['send'] = true;
+        return $args;
+}

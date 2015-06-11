@@ -7,8 +7,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-05-29T13:48:50-04:00\n"
-"POT-Creation-Date: 2015-05-29T13:48:50-04:00\n"
+"PO-Revision-Date: 2015-06-10T20:22:32-04:00\n"
+"POT-Creation-Date: 2015-06-10T20:22:32-04:00\n"
 
 #: wp-ticket/forms/search-tickets.php:19
 msgid "Ticket ID"
@@ -495,229 +495,229 @@ msgstr ""
 msgid "The most recent tickets"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:172
-#: wp-ticket/includes/entities/class-emd-ticket.php:428
+#: wp-ticket/includes/entities/class-emd-ticket.php:181
+#: wp-ticket/includes/entities/class-emd-ticket.php:437
 msgid "Ticket"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:173
+#: wp-ticket/includes/entities/class-emd-ticket.php:182
 msgid "Add New"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:174
+#: wp-ticket/includes/entities/class-emd-ticket.php:183
 msgid "Add New Ticket"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:175
+#: wp-ticket/includes/entities/class-emd-ticket.php:184
 msgid "Edit Ticket"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:176
+#: wp-ticket/includes/entities/class-emd-ticket.php:185
 msgid "New Ticket"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:177
+#: wp-ticket/includes/entities/class-emd-ticket.php:186
 msgid "All Tickets"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:178
+#: wp-ticket/includes/entities/class-emd-ticket.php:187
 msgid "View Ticket"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:180
+#: wp-ticket/includes/entities/class-emd-ticket.php:189
 msgid "No Tickets Found"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:181
+#: wp-ticket/includes/entities/class-emd-ticket.php:190
 msgid "No Tickets Found In Trash"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:212
+#: wp-ticket/includes/entities/class-emd-ticket.php:221
 msgid "Search Priorities"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:213
+#: wp-ticket/includes/entities/class-emd-ticket.php:222
 msgid "Popular Priorities"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:214
-#: wp-ticket/includes/entities/class-emd-ticket.php:253
-#: wp-ticket/includes/entities/class-emd-ticket.php:292
+#: wp-ticket/includes/entities/class-emd-ticket.php:223
+#: wp-ticket/includes/entities/class-emd-ticket.php:262
+#: wp-ticket/includes/entities/class-emd-ticket.php:301
 msgid "All"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:217
+#: wp-ticket/includes/entities/class-emd-ticket.php:226
 msgid "Edit Priority"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:218
+#: wp-ticket/includes/entities/class-emd-ticket.php:227
 msgid "Update Priority"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:219
+#: wp-ticket/includes/entities/class-emd-ticket.php:228
 msgid "Add New Priority"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:220
+#: wp-ticket/includes/entities/class-emd-ticket.php:229
 msgid "Add New Priority Name"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:221
+#: wp-ticket/includes/entities/class-emd-ticket.php:230
 msgid "Seperate Priorities with commas"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:222
+#: wp-ticket/includes/entities/class-emd-ticket.php:231
 msgid "Add or Remove Priorities"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:223
+#: wp-ticket/includes/entities/class-emd-ticket.php:232
 msgid "Choose from the most used Priorities"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:251
+#: wp-ticket/includes/entities/class-emd-ticket.php:260
 msgid "Search Statuses"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:252
+#: wp-ticket/includes/entities/class-emd-ticket.php:261
 msgid "Popular Statuses"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:256
+#: wp-ticket/includes/entities/class-emd-ticket.php:265
 msgid "Edit Status"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:257
+#: wp-ticket/includes/entities/class-emd-ticket.php:266
 msgid "Update Status"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:258
+#: wp-ticket/includes/entities/class-emd-ticket.php:267
 msgid "Add New Status"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:259
+#: wp-ticket/includes/entities/class-emd-ticket.php:268
 msgid "Add New Status Name"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:260
+#: wp-ticket/includes/entities/class-emd-ticket.php:269
 msgid "Seperate Statuses with commas"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:261
+#: wp-ticket/includes/entities/class-emd-ticket.php:270
 msgid "Add or Remove Statuses"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:262
+#: wp-ticket/includes/entities/class-emd-ticket.php:271
 msgid "Choose from the most used Statuses"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:290
+#: wp-ticket/includes/entities/class-emd-ticket.php:299
 msgid "Search Topics"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:291
+#: wp-ticket/includes/entities/class-emd-ticket.php:300
 msgid "Popular Topics"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:295
+#: wp-ticket/includes/entities/class-emd-ticket.php:304
 msgid "Edit Topic"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:296
+#: wp-ticket/includes/entities/class-emd-ticket.php:305
 msgid "Update Topic"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:297
+#: wp-ticket/includes/entities/class-emd-ticket.php:306
 msgid "Add New Topic"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:298
+#: wp-ticket/includes/entities/class-emd-ticket.php:307
 msgid "Add New Topic Name"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:299
+#: wp-ticket/includes/entities/class-emd-ticket.php:308
 msgid "Seperate Topics with commas"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:300
+#: wp-ticket/includes/entities/class-emd-ticket.php:309
 msgid "Add or Remove Topics"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:301
+#: wp-ticket/includes/entities/class-emd-ticket.php:310
 msgid "Choose from the most used Topics"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:334
+#: wp-ticket/includes/entities/class-emd-ticket.php:343
 msgid "Major"
 msgstr ""
 
-#: wp-ticket/includes/entities/class-emd-ticket.php:433
+#: wp-ticket/includes/entities/class-emd-ticket.php:442
 msgid "Ticket Info"
 msgstr ""
 
-#: wp-ticket/includes/forms.php:68
-#: wp-ticket/includes/forms.php:183
+#: wp-ticket/includes/forms.php:70
+#: wp-ticket/includes/forms.php:185
 msgid "Please Select"
 msgstr ""
 
-#: wp-ticket/includes/forms.php:94
+#: wp-ticket/includes/forms.php:96
 msgid "First Name is required"
 msgstr ""
 
-#: wp-ticket/includes/forms.php:120
+#: wp-ticket/includes/forms.php:122
 msgid "Email is required"
 msgstr ""
 
-#: wp-ticket/includes/forms.php:124
-#: wp-ticket/includes/forms.php:328
+#: wp-ticket/includes/forms.php:126
+#: wp-ticket/includes/forms.php:330
 msgid "Email: Please enter a valid email address"
 msgstr ""
 
-#: wp-ticket/includes/forms.php:138
+#: wp-ticket/includes/forms.php:140
 msgid "Subject is required"
 msgstr ""
 
-#: wp-ticket/includes/forms.php:146
+#: wp-ticket/includes/forms.php:148
 msgid "Enter text ..."
 msgstr ""
 
-#: wp-ticket/includes/forms.php:153
+#: wp-ticket/includes/forms.php:155
 msgid "Message is required"
 msgstr ""
 
-#: wp-ticket/includes/forms.php:210
+#: wp-ticket/includes/forms.php:212
 msgid "Due: Please enter a valid date format"
-msgstr ""
-
-#: wp-ticket/includes/forms.php:225
-#: wp-ticket/includes/forms.php:335
-msgid "Please enter the characters with black color."
 msgstr ""
 
 #: wp-ticket/includes/forms.php:227
 #: wp-ticket/includes/forms.php:337
+msgid "Please enter the characters with black color."
+msgstr ""
+
+#: wp-ticket/includes/forms.php:229
+#: wp-ticket/includes/forms.php:339
 msgid "Code"
 msgstr ""
 
-#: wp-ticket/includes/forms.php:232
-#: wp-ticket/includes/forms.php:342
+#: wp-ticket/includes/forms.php:234
+#: wp-ticket/includes/forms.php:344
 msgid "Captcha is required"
 msgstr ""
 
-#: wp-ticket/includes/forms.php:236
-#: wp-ticket/includes/forms.php:346
+#: wp-ticket/includes/forms.php:238
+#: wp-ticket/includes/forms.php:348
 msgid "Characters from captcha image entered incorrectly!"
 msgstr ""
 
-#: wp-ticket/includes/forms.php:240
+#: wp-ticket/includes/forms.php:242
 msgid "Submit Ticket"
 msgstr ""
 
-#: wp-ticket/includes/forms.php:269
-#: wp-ticket/includes/forms.php:377
+#: wp-ticket/includes/forms.php:271
+#: wp-ticket/includes/forms.php:379
 msgid "<p>You are not allowed to access to this area. Please contact the site administrator.</p>"
 msgstr ""
 
-#: wp-ticket/includes/forms.php:374
+#: wp-ticket/includes/forms.php:376
 msgid "Your search returned no results."
 msgstr ""
 

@@ -7,8 +7,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-05-29T13:48:48-04:00\n"
-"POT-Creation-Date: 2015-05-29T13:48:48-04:00\n"
+"PO-Revision-Date: 2015-06-10T20:22:28-04:00\n"
+"POT-Creation-Date: 2015-06-10T20:22:28-04:00\n"
 
 #: ./wp-ticket/assets/ext/edd/EDD_SL_Plugin_Updater.php:177
 msgid "There is a new version of %1$s available. <a target=\"_blank\" class=\"thickbox\" href=\"%2$s\">View version %3$s details</a>."
@@ -521,31 +521,31 @@ msgstr ""
 msgid "Settings Saved."
 msgstr ""
 
-#: ./wp-ticket/includes/admin/settings-functions.php:86
+#: ./wp-ticket/includes/admin/settings-functions.php:90
 msgid "%s is required."
 msgstr ""
 
-#: ./wp-ticket/includes/admin/settings-functions.php:296
+#: ./wp-ticket/includes/admin/settings-functions.php:300
 msgid "Use the section below to show or hide corresponding form elements. Size column refers to the form elements length relative to the other elements in the same row. Total element size in each row can not exceed 12 units. When you hide or show an element you may adjust sizes of the other elements in the same row. The required form elements are disabled however you can change their sizes. The form elements which are in the same row are color coded."
 msgstr ""
 
-#: ./wp-ticket/includes/admin/settings-functions.php:356
+#: ./wp-ticket/includes/admin/settings-functions.php:360
 msgid "Show %s"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/settings-functions.php:375
+#: ./wp-ticket/includes/admin/settings-functions.php:379
 msgid "Show Captcha"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/settings-functions.php:377
+#: ./wp-ticket/includes/admin/settings-functions.php:381
 msgid "Never Show"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/settings-functions.php:378
+#: ./wp-ticket/includes/admin/settings-functions.php:382
 msgid "Always Show"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/settings-functions.php:379
+#: ./wp-ticket/includes/admin/settings-functions.php:383
 msgid "Visitors Only"
 msgstr ""
 

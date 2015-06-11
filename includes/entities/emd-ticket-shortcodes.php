@@ -3,7 +3,7 @@
  * Entity Related Shortcode Functions
  *
  * @package WP_TICKET_COM
- * @version 2.0.0
+ * @version 2.0.1
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;

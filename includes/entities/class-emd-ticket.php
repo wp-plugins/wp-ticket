@@ -3,7 +3,7 @@
  * Entity Class
  *
  * @package WP_TICKET_COM
- * @version 2.0.0
+ * @version 2.0.1
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
@@ -27,6 +27,10 @@ class Emd_Ticket extends Emd_Entity {
 		add_action('init', array(
 			$this,
 			'set_filters'
+		));
+		add_action('admin_init', array(
+			$this,
+			'set_metabox'
 		));
 		add_filter('post_updated_messages', array(
 			$this,
@@ -155,6 +159,11 @@ class Emd_Ticket extends Emd_Entity {
 				$select_list = get_post_meta($post_id, $column_id, false);
 				if (!empty($select_list)) {
 					$value = implode(', ', $select_list);
+				}
+			break;
+			case 'checkbox':
+				if ($value == 1) {
+					$value = '<span class="dashicons dashicons-yes"></span>';
 				}
 			break;
 		}
@@ -309,7 +318,7 @@ class Emd_Ticket extends Emd_Entity {
 			'public' => true,
 			'show_ui' => true,
 			'show_in_nav_menus' => true,
-			'show_in_menu' => false,
+			'show_in_menu' => true,
 			'show_tagcloud' => true,
 			'update_count_callback' => '_update_post_term_count',
 			'query_var' => true,
@@ -443,12 +452,16 @@ class Emd_Ticket extends Emd_Entity {
 		))) {
 			self::register();
 		}
-		global $pagenow;
-		if ('post-new.php' === $pagenow || 'post.php' === $pagenow) {
-			if (class_exists('EMD_Meta_Box') && is_array($this->boxes)) {
-				foreach ($this->boxes as $meta_box) {
-					new EMD_Meta_Box($meta_box);
-				}
+	}
+	/**
+	 * Initialize metaboxes
+	 * @since WPAS 4.5
+	 *
+	 */
+	public function set_metabox() {
+		if (class_exists('EMD_Meta_Box') && is_array($this->boxes)) {
+			foreach ($this->boxes as $meta_box) {
+				new EMD_Meta_Box($meta_box);
 			}
 		}
 	}

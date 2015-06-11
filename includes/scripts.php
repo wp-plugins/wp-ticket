@@ -3,7 +3,7 @@
  * Enqueue Scripts Functions
  *
  * @package WP_TICKET_COM
- * @version 2.0.0
+ * @version 2.0.1
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
@@ -145,10 +145,5 @@ function wp_ticket_com_frontend_scripts() {
 	}
 	if (is_single() && get_post_type() == 'emd_ticket') {
 		wp_enqueue_style("wp-ticket-com-default-single-css", WP_TICKET_COM_PLUGIN_URL . 'assets/css/wp-ticket-com-default-single.css');
-	}
-}
-function emd_enq_allview() {
-	if (!wp_style_is('allview-css', 'enqueued')) {
-		wp_enqueue_style('allview-css');
 	}
 }

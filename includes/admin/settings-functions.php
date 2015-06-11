@@ -56,8 +56,12 @@ function emd_show_settings_page($app){
 		echo '<a href="' . esc_url($tab_url[$ktab]) . '" class="nav-tab ' . $active . '" id="nav-' . $ktab . '">' . $mytab . '</a>';
 	}
 	echo '</h2><form method="post" action="options.php">';
-	emd_glob_view_tab($app,$active_tab,$variables);
-	emd_glob_forms_tab($app,$active_tab,$form_variables);
+	if(!empty($variables)){
+		emd_glob_view_tab($app,$active_tab,$variables);
+	}
+	if(!empty($form_variables)){
+		emd_glob_forms_tab($app,$active_tab,$form_variables);
+	}
 	submit_button(); 
 	echo '</form></div>';
 }

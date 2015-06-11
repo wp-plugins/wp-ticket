@@ -5,7 +5,7 @@ Author URI: https://emarketdesign.com
 Donate link: https://emarketdesign.com/donate-emarket-design/
 Requires at least: 3.8
 Tested up to: 4.2.1
-Stable tag: 2.0.0
+Stable tag: 2.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: help, support, support ticket, ticket, email notification, user support plugin, support plugin , ticket plugin, support system, helpdesk, ticket system, ticketing system, help desk, customer service, submit tickets, CRM, ticket management, wp app studio, wpas, IMAP, POP3, incoming email, email, post by email, canned responses, quick responses
@@ -136,6 +136,8 @@ The simplest way to install is to click on 'Plugins' then 'Add' and type 'Wp Tic
 7. Admin Settings page for WP Ticket Form customization. Advanced customisation can be done by purchasing WP App Studio ProDev access and theplugin design you want to customize; the plugin designs for all editions are available at emdplugins.com. You do not need to purchase the plugin if you need advanced customization; ProDev access and plugin design are enough.
 
 == Changelog ==
+= 2.0.1 =
+* Fixed the issue related to some taxonomies not displaying in the admin backend
 = 2.0.0 =
 * Added settings page for form customization such enable/disable fields, captcha and change field sizes
 * Removed unnecessary fields from the ticket list page
@@ -232,6 +234,8 @@ Premium edition details:
 
 
 == Upgrade Notice ==
+= 2.0.1 =
+* Fixed the issue related to some taxonomies not displaying in the admin backend
 = 2.0.0 =
 * Added settings page for form customization such enable/disable fields, captcha and change field sizes and more
 = 1.4.0 =
