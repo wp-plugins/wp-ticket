@@ -83,6 +83,7 @@ For project based issue tracking and management, check out [Software Issue Manag
 <strong>WP Ticket Enterprise</strong><br>
 * For enterprise level support <br>
 * Most advanced and fully featured WordPress based support system <br>
+* Comes with a client area; if you need your users to be logged in to see their tickets <br>
 * All extensions included <br>
 * All WP Ticket Pro features + <br>
 * Todo lists for tickets <br>
@@ -92,6 +93,8 @@ For project based issue tracking and management, check out [Software Issue Manag
 
 [WP Ticket Enterprise WordPress Plugin Documentation](https://docs.emdplugins.com/docs/wp-ticket-enterprise-documentation/)<br>
 [WP Ticket Enterprise WordPress Plugin Page - full demo available](https://emdplugins.com/plugins/wp-ticket-enterprise/)
+
+For detailed feature by feauture comparison of all editions, go to one of the premium plugin pages and click "Compare" in the menu. You can also open a [support ticket](https://support.emarketdesign.com).
 
 > <strong>Customization using your WP App Studio ProdDev account</strong><br>
 > WP Ticket is designed and developed using WP App Studio AUTOBAHN (4.3+) without writing a single line of PHP code. Customize it to your needs by: <br>
