@@ -84,12 +84,17 @@ class Zebra_Form
         // default filesysyem permissions for uploaded files
         $this->file_upload_permissions = '0755';
 
+	if(!empty($attributes['session_obj'])){	
+		$this->session = $attributes['session_obj']; 
+		unset($attributes['session_obj']);
+	}
+
         // default values for the form's properties
         $this->form_properties = array(
 
             'action'                    =>  ($action == '' ? $_SERVER['REQUEST_URI'] : $action),
-            'assets_server_path'        =>  rtrim(dirname(__FILE__), '\\/') . DIRECTORY_SEPARATOR,
-            'assets_url'                =>  rtrim(str_replace('\\', '/', 'http' . (!empty($_SERVER['HTTPS']) ? 's' : '') . '://' . rtrim($_SERVER['HTTP_HOST'], '\\/') . '/' . substr(rtrim(dirname(__FILE__), '\\/'), strlen($_SERVER['DOCUMENT_ROOT']))), '\\/') . '/',
+	    'assets_server_path'        =>  plugin_dir_path(__FILE__),
+	    'assets_url'                =>  plugin_dir_url(__FILE__),
             'attributes'                =>  $attributes,
             'auto_fill'                 =>  false,
             'captcha_storage'           =>  'cookie',
@@ -112,7 +117,7 @@ class Zebra_Form
 	    'is_ajax'                   => $is_ajax,
 
         );
-
+	
         // set default client-side validation properties
         $this->clientside_validation(true);
 
@@ -332,7 +337,6 @@ class Zebra_Form
 
             // append the error message to the error block
             $this->errors[$error_block][] = trim($error_message);
-
     }
 
     /**
@@ -532,7 +536,8 @@ class Zebra_Form
             if ($this->form_properties['csrf_storage_method'] == 'auto')
 
                 // use sessions as storage method
-                if (isset($_SESSION)) $this->form_properties['csrf_storage_method'] = 'session';
+                if (isset($this->session)) $this->form_properties['csrf_storage_method'] = 'session';
+		
 
                 // if a session is not already started, use cookies as storage method
                 else $this->form_properties['csrf_storage_method'] = 'cookie';
@@ -1157,7 +1162,6 @@ class Zebra_Form
                     if ($this->form_properties['show_all_error_messages'] === false) break;
 
                 }
-
                 // switch the array entry with it's rendered form
 		$this->errors[$error_block] = '<div class="well">' . $content . '</div>';
 
@@ -1551,7 +1555,7 @@ class Zebra_Form
             }
             else
             {
-                $output = '<div id="success-error" class="well" style="display:none;"></div>' . $output;
+                $output = '<div id="' . $this->form_properties['name'] . '-success-error" class="well" style="display:none;"></div>' . $output;
             }
 	
 
@@ -1584,8 +1588,7 @@ class Zebra_Form
 
         // finish building the output
         $output = $output . $contents . '</form>';
-
-	$output .= '<div id="search-success-error" style="display:none;"></div>';
+	$output .= '<div id="' . $this->form_properties['name'] . '-search-success-error" class="search-success-error" style="display:none;"></div>';
 
 	if($clear_hide_form == 2 && empty($this->errors) && $this->form_properties['is_ajax']  == 0)
 	{
@@ -2293,7 +2296,7 @@ class Zebra_Form
                                 $attribute['type'] == 'text' &&
 
                                 // control's value is not the one showed in the picture
-                                md5(md5(md5(strtolower($control->submitted_value)))) !=  ($this->form_properties['captcha_storage'] == 'session' ? @$_SESSION['captcha'] : @$_COOKIE['captcha'])
+                                md5(md5(md5(strtolower($control->submitted_value)))) !=  ($this->form_properties['captcha_storage'] == 'session' ? @$this->session->get('captcha') : @$_COOKIE['captcha'])
 
                             ) {
 
@@ -3340,14 +3343,14 @@ class Zebra_Form
                 // CSRF token is stored in a session variable
                 $this->form_properties['csrf_storage_method'] == 'session' &&
                 // the session variable exists
-                isset($_SESSION[$this->form_properties['csrf_cookie_name']]) &&
+                (null !== $this->session->get($this->form_properties['csrf_cookie_name'])) &&
                 // the session variable holds an array
-                is_array($_SESSION[$this->form_properties['csrf_cookie_name']]) &&
+                is_array($this->session->get($this->form_properties['csrf_cookie_name'])) &&
                 // the array has 2 entries
-                count($_SESSION[$this->form_properties['csrf_cookie_name']]) == 2
+                count($this->session->get($this->form_properties['csrf_cookie_name'])) == 2
 
             // use the already existing CSRF token
-            ) $this->form_properties['csrf_token'] = $_SESSION[$this->form_properties['csrf_cookie_name']][0];
+            ) $this->form_properties['csrf_token'] = $this->session->get($this->form_properties['csrf_cookie_name'])[0];
 
             // else if
             elseif (
@@ -3375,10 +3378,10 @@ class Zebra_Form
                 if ($this->form_properties['csrf_storage_method'] == 'session') {
 
                     // if no session is started, trigger an error message
-                    if (!isset($_SESSION)) _zebra_form_show_error('You have chosen to enable protection against cross-site request forgery (CSRF) attacks and to use sessions for storing the CSRF token, but a session is not started! Start a session prior to calling the "csrf()" method', E_USER_ERROR);
+                    if (!isset($this->session)) _zebra_form_show_error('You have chosen to enable protection against cross-site request forgery (CSRF) attacks and to use sessions for storing the CSRF token, but a session is not started! Start a session prior to calling the "csrf()" method', E_USER_ERROR);
 
                     // if sessions are on, store the CSRF token and the expiration data in session
-                    $_SESSION[$this->form_properties['csrf_cookie_name']] = array($this->form_properties['csrf_token'], $csrf_token_expiry);
+                    $this->session->set($this->form_properties['csrf_cookie_name'],array($this->form_properties['csrf_token'], $csrf_token_expiry));
 
                 // if storage method is "cookie"
                 } else {
@@ -3446,15 +3449,15 @@ class Zebra_Form
                     // CSRF token is stored in a session variable
                     ($this->form_properties['csrf_storage_method'] == 'session' &&
                     // the session variable exists
-                    isset($_SESSION[$this->form_properties['csrf_cookie_name']]) &&
+                    (null !== $this->session->get($this->form_properties['csrf_cookie_name'])) &&
                     // the session variable holds an array
-                    is_array($_SESSION[$this->form_properties['csrf_cookie_name']]) &&
+                    is_array($this->session->get($this->form_properties['csrf_cookie_name'])) &&
                     // the array has 2 entries
-                    count($_SESSION[$this->form_properties['csrf_cookie_name']]) == 2 &&
+                    count($this->session->get($this->form_properties['csrf_cookie_name'])) == 2 &&
                     // the value of the hidden field and the value in the session match
-                    $method[$this->form_properties['csrf_token_name']] == $_SESSION[$this->form_properties['csrf_cookie_name']][0] &&
+                    $method[$this->form_properties['csrf_token_name']] == $this->session->get($this->form_properties['csrf_cookie_name'])[0] &&
                     // if CSRF token doesn't expire or it does but it didn't yet
-                    ($_SESSION[$this->form_properties['csrf_cookie_name']][1] == 0 || $_SESSION[$this->form_properties['csrf_cookie_name']][1] > time()))
+                    ($this->session->get($this->form_properties['csrf_cookie_name'])[1] == 0 || $this->session->get($this->form_properties['csrf_cookie_name'])[1] > time()))
 
                     ||
 
@@ -4049,6 +4052,10 @@ class Zebra_Form
 					include_once ABSPATH . 'wp-admin/includes/file.php';
 					include_once ABSPATH . 'wp-admin/includes/image.php';
 					$file = wp_handle_upload($myupload , array( 'test_form' => false ) );
+					if(!empty($file['error'])){
+                    				$this->add_error('error', $file['error']);
+						return false;
+					}
 					$myupload['path'] = $file['file'];
 				    // if file could be uploaded
 				    /*if (@move_uploaded_file($myupload['tmp_name'], $path . $file_name . $file_extension)) {

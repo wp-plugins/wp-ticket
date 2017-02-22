@@ -59,6 +59,10 @@ jQuery( function ( $ )
 				minWidth: 200
 			} );
 
+			if( options.load_info) {
+				infoWindow.open( map, marker );
+			}
+
 			google.maps.event.addListener( marker, 'click', function ()
 			{
 				infoWindow.open( map, marker );
@@ -68,4 +72,13 @@ jQuery( function ( $ )
 
 	// Loop through all map instances and display them
 	$( '.emd-mb-map-canvas' ).each( displayMap );
+	$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+                        $( '.emd-mb-map-canvas' ).each(displayMap);
+        });
+	$('.emd-bs-modal').on('shown.bs.modal', function () {
+                $( '.emd-mb-map-canvas' ).each(displayMap);
+	});
+	$('.emd-modal').click(function(event){
+                $( '.emd-mb-map-canvas' ).each(displayMap);
+        });
 } );

@@ -216,6 +216,10 @@ if ( ! class_exists( 'EMD_MB_Helper' ) )
 				);
 				$meta = EMD_MB_Map_Field::the_value( $field, $args, $post_id );
 			}
+			elseif ( 'oembed' == $args['type'] )
+			{
+				$meta = ( $embed = @wp_oembed_get( $meta ) ) ? $embed : $meta;	
+			}
 
 			return apply_filters( __FUNCTION__, $meta, $key, $args, $post_id );
 		}
@@ -322,7 +326,7 @@ if ( ! class_exists( 'EMD_MB_Helper' ) )
 
 			// Load Google Maps script only when needed
 			$html .= '<script>if ( typeof google !== "object" || typeof google.maps !== "object" )
-						document.write(\'<script src="//maps.google.com/maps/api/js?sensor=false"><\/script>\')</script>';
+						document.write(\'<script src="//maps.google.com/maps/api/js"><\/script>\')</script>';
 			$html .= '<script>
 				( function()
 				{

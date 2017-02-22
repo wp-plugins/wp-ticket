@@ -14,7 +14,9 @@ if ( ! class_exists( 'EMD_MB_Time_Field' ) )
 		static function admin_enqueue_scripts( )
 		{
 			$url = EMD_MB_JS_URL . 'jqueryui';
+			$url_css = EMD_MB_CSS_URL . 'jqueryui';
 			wp_register_script( 'jquery-ui-timepicker', "{$url}/jquery-ui-timepicker-addon.js", array( 'jquery-ui-datepicker', 'jquery-ui-slider' ), '0.9.7', true );
+			wp_register_style( 'jquery-ui-timepicker-css', "{$url_css}/jquery-ui-timepicker-addon.css");
 
 			wp_enqueue_script( 'emd-mb-time', EMD_MB_JS_URL.'time.js', array( 'jquery-ui-timepicker' ), EMD_MB_VER, true );
 		}

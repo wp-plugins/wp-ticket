@@ -3,7 +3,6 @@
  * Entity Widget Classes
  *
  * @package WP_TICKET_COM
- * @version 2.0.1
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
@@ -25,16 +24,40 @@ class wp_ticket_com_recent_tickets_sidebar_widget extends Emd_Widget {
 		'post_type' => 'emd_ticket',
 		'post_status' => 'publish',
 		'orderby' => 'date',
-		'order' => 'DESC'
+		'order' => 'DESC',
+		'context' => 'wp_ticket_com_recent_tickets_sidebar_widget',
 	);
 	public $filter = '';
+	public $header = '';
+	public $footer = '';
 	/**
 	 * Instantiate entity widget class with params
 	 *
 	 * @since WPAS 4.0
 	 */
-	function wp_ticket_com_recent_tickets_sidebar_widget() {
-		$this->Emd_Widget(__('Recent Tickets', 'wp-ticket-com') , __('Tickets', 'wp-ticket-com') , __('The most recent tickets', 'wp-ticket-com'));
+	public function __construct() {
+		parent::__construct($this->id, __('Recent Tickets', 'wp-ticket-com') , __('Tickets', 'wp-ticket-com') , __('The most recent tickets', 'wp-ticket-com'));
+	}
+	/**
+	 * Get header and footer for layout
+	 *
+	 * @since WPAS 4.6
+	 */
+	protected function get_header_footer() {
+		ob_start();
+		emd_get_template_part('wp_ticket_com', 'widget', 'recent-tickets-header');
+		$this->header = ob_get_clean();
+		ob_start();
+		emd_get_template_part('wp_ticket_com', 'widget', 'recent-tickets-footer');
+		$this->footer = ob_get_clean();
+	}
+	/**
+	 * Enqueue css and js for widget
+	 *
+	 * @since WPAS 4.5
+	 */
+	protected function enqueue_scripts() {
+		wp_ticket_com_enq_custom_css();
 	}
 	/**
 	 * Returns widget layout
@@ -42,9 +65,9 @@ class wp_ticket_com_recent_tickets_sidebar_widget extends Emd_Widget {
 	 * @since WPAS 4.0
 	 */
 	public static function layout() {
-		global $post;
-		$layout = "* <a title=\"" . esc_html(emd_mb_meta('emd_ticket_id')) . " - " . get_the_date() . " - " . get_the_time() . "\" href=\"" . get_permalink() . "\">" . get_the_title() . "</a><br />
-";
+		ob_start();
+		emd_get_template_part('wp_ticket_com', 'widget', 'recent-tickets-sidebar-content');
+		$layout = ob_get_clean();
 		return $layout;
 	}
 }

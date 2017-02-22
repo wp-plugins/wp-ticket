@@ -15,45 +15,48 @@ $.validator.setDefaults({
 $.extend($.validator.messages,submit_tickets_vars.validate_msg);
 $('#emd_ticket_duedate').datetimepicker({
 'dateFormat' : 'mm-dd-yy','timeFormat' : 'hh:mm'});
+$.validator.addMethod('uniqueAttr',function(val,element){
+  var unique = true;
+  var data_input = $("form").serialize();
+  $.ajax({
+    type: 'GET',
+    url: submit_tickets_vars.ajax_url,
+    cache: false,
+    async: false,
+    data: {action:'emd_check_unique',data_input:data_input, ptype:'emd_ticket',myapp:'wp_ticket_com'},
+    success: function(response)
+    {
+      unique = response;
+    },
+  });
+  return unique;                
+}, submit_tickets_vars.unique_msg);
 $('#submit_tickets').validate({
 onfocusout: false,
 onkeyup: false,
 onclick: false,
 errorClass: 'text-danger',
 rules: {
-  'ticket_topic':{
-required:false,
-},
-'ticket_priority':{
-required:false,
-},
-emd_ticket_first_name:{
-required : true
+  emd_ticket_first_name:{
 },
 emd_ticket_last_name:{
-required : false
 },
 emd_ticket_email:{
 email  : true,
-required : true
 },
 emd_ticket_phone:{
-required : false
 },
 emd_ticket_duedate:{
-required : false
 },
 blt_title:{
-required : true
 },
 blt_content:{
-required : true
 },
 emd_ticket_attachment:{
-required : false
 },
 },
 success: function(label) {
+label.remove();
 },
 errorPlacement: function(error, element) {
 if (typeof(element.parent().attr("class")) != "undefined" && element.parent().attr("class").search(/date|time/) != -1) {
@@ -75,5 +78,18 @@ else {
 error.insertAfter(element.parent());
 }
 },
+});
+$(document).on('click','#singlebutton_submit_tickets',function(event){
+     var form_id = $(this).closest('form').attr('id');
+     $.each(submit_tickets_vars.submit_tickets.req, function (ind, val){
+         if(!$('input[name='+val+'],#'+ val).closest('.row').is(":hidden")){
+             $('input[name='+val+'],#'+ val).rules("add","required"); 
+         }
+     });
+     var valid = $('#' + form_id).valid();
+     if(!valid) {
+        event.preventDefault();
+        return false;
+     }
 });
 });

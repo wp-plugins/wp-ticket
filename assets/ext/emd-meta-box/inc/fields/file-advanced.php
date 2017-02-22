@@ -40,9 +40,9 @@ if ( ! class_exists( 'EMD_MB_File_Advanced_Field' ) )
 
 		static function wp_ajax_attach_file()
 		{
-			$post_id = is_numeric( $_REQUEST['post_id'] ) ? $_REQUEST['post_id'] : 0;
-			$field_id = isset( $_POST['field_id'] ) ? $_POST['field_id'] : 0;
-			$attachment_ids = isset( $_POST['attachment_ids'] ) ? $_POST['attachment_ids'] : array();
+			$post_id = is_numeric( $_REQUEST['post_id'] ) ? (int) $_REQUEST['post_id'] : 0;
+			$field_id = isset( $_POST['field_id'] ) ? (string) $_POST['field_id'] : 0;
+			$attachment_ids = isset( $_POST['attachment_ids'] ) ? array_map( 'intval', $_POST['attachment_ids']) : array();
 
 			check_ajax_referer( "emd-mb-attach-file_{$field_id}" );
 			foreach( $attachment_ids as $attachment_id )

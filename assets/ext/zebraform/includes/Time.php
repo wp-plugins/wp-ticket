@@ -35,7 +35,7 @@ class Zebra_Form_Time extends Zebra_Form_Control
      *      // values will be available as a single merged value (in the form of
      *      // mm:mm:ss AM/PM, depending on the format), with the name as given by
      *      // the "id" argument:
-     *      echo $_POST['my_time'];
+     *      //echo $_POST['my_time'];
      *
      *  }
      *

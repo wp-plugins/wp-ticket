@@ -7,31 +7,27 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2015-06-10T20:22:28-04:00\n"
-"POT-Creation-Date: 2015-06-10T20:22:28-04:00\n"
+"PO-Revision-Date: 2016-12-29T10:37:52-05:00\n"
+"POT-Creation-Date: 2016-12-29T10:37:52-05:00\n"
 
-#: ./wp-ticket/assets/ext/edd/EDD_SL_Plugin_Updater.php:177
-msgid "There is a new version of %1$s available. <a target=\"_blank\" class=\"thickbox\" href=\"%2$s\">View version %3$s details</a>."
+#: ./wp-ticket/assets/ext/edd/EDD_SL_Plugin_Updater.php:196
+msgid "There is a new version of %1$s available. %2$sView version %3$s details%4$s."
 msgstr ""
 
-#: ./wp-ticket/assets/ext/edd/EDD_SL_Plugin_Updater.php:184
-msgid "There is a new version of %1$s available. <a target=\"_blank\" class=\"thickbox\" href=\"%2$s\">View version %3$s details</a> or <a href=\"%4$s\">update now</a>."
+#: ./wp-ticket/assets/ext/edd/EDD_SL_Plugin_Updater.php:204
+msgid "There is a new version of %1$s available. %2$sView version %3$s details%4$s or %5$supdate now%6$s."
 msgstr ""
 
-#: ./wp-ticket/assets/ext/edd/EDD_SL_Plugin_Updater.php:324
+#: ./wp-ticket/assets/ext/edd/EDD_SL_Plugin_Updater.php:358
 msgid "You do not have permission to install plugin updates"
 msgstr ""
 
-#: ./wp-ticket/assets/ext/edd/EDD_SL_Plugin_Updater.php:324
+#: ./wp-ticket/assets/ext/edd/EDD_SL_Plugin_Updater.php:358
 msgid "Error"
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/field.php:189
-msgid "+"
-msgstr ""
-
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/field.php:206
-msgid "&#8211;"
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/field.php:234
+msgid "+ Add more"
 msgstr ""
 
 #: ./wp-ticket/assets/ext/emd-meta-box/inc/fields/button.php:35
@@ -235,35 +231,35 @@ msgstr ""
 msgid "Wk"
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/fields/datetime.php:32
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/fields/datetime.php:33
 msgid "Choose Time"
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/fields/datetime.php:33
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/fields/datetime.php:34
 msgid "Time"
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/fields/datetime.php:34
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/fields/datetime.php:35
 msgid "Hour"
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/fields/datetime.php:35
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/fields/datetime.php:36
 msgid "Minute"
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/fields/datetime.php:36
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/fields/datetime.php:37
 msgid "Second"
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/fields/datetime.php:37
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/fields/datetime.php:38
 msgid "Millisecond"
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/fields/datetime.php:38
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/fields/datetime.php:39
 msgid "Time Zone"
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/fields/datetime.php:39
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/fields/datetime.php:40
 msgid "Now"
 msgstr ""
 
@@ -324,17 +320,17 @@ msgstr ""
 msgid "Select Images"
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/fields/image-advanced.php:70
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/fields/image-advanced.php:69
 msgctxt "image upload"
 msgid "Select or Upload Images"
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/fields/image-advanced.php:106
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/fields/image-advanced.php:105
 msgctxt "image upload"
 msgid "Delete"
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/fields/image-advanced.php:107
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/fields/image-advanced.php:106
 msgctxt "image upload"
 msgid "Edit"
 msgstr ""
@@ -393,72 +389,169 @@ msgstr ""
 msgid "User"
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:107
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:115
 msgid "This field is required."
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:108
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:116
 msgid "Please fix this field."
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:109
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:117
 msgid "Please enter a valid email address."
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:110
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:118
 msgid "Please enter a valid URL."
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:111
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:119
 msgid "Please enter a valid date."
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:112
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:120
 msgid "Please enter a valid date ( ISO )"
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:113
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:121
 msgid "Please enter a valid number."
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:114
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:122
 msgid "Please enter only digits."
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:115
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:123
 msgid "Please enter a valid credit card number."
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:116
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:124
 msgid "Please enter the same value again."
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:117
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:125
 msgid "Please enter no more than {0} characters."
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:118
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:126
 msgid "Please enter at least {0} characters."
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:119
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:127
 msgid "Please enter a value between {0} and {1} characters long."
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:120
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:128
 msgid "Please enter a value between {0} and {1}."
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:121
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:129
 msgid "Please enter a value less than or equal to {0}."
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:122
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:130
 msgid "Please enter a value greater than or equal to {0}."
 msgstr ""
 
-#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:272
+#: ./wp-ticket/assets/ext/emd-meta-box/inc/meta-box.php:280
 msgid "Please correct the errors highlighted below and try again."
+msgstr ""
+
+#: ./wp-ticket/assets/ext/posts-to-posts/admin/box.php:55
+msgid "Are you sure you want to delete all connections?"
+msgstr ""
+
+#: ./wp-ticket/assets/ext/posts-to-posts/admin/box.php:137
+msgid "Search"
+msgstr ""
+
+#: ./wp-ticket/assets/ext/posts-to-posts/admin/box.php:216
+msgid "previous"
+msgstr ""
+
+#: ./wp-ticket/assets/ext/posts-to-posts/admin/box.php:217
+msgid "next"
+msgstr ""
+
+#: ./wp-ticket/assets/ext/posts-to-posts/admin/box.php:218
+msgid "of"
+msgstr ""
+
+#: ./wp-ticket/assets/ext/posts-to-posts/admin/factory.php:46
+msgid " (from)"
+msgstr ""
+
+#: ./wp-ticket/assets/ext/posts-to-posts/admin/factory.php:47
+msgid " (to)"
+msgstr ""
+
+#: ./wp-ticket/assets/ext/posts-to-posts/admin/fields.php:7
+msgid "Delete all connections"
+msgstr ""
+
+#: ./wp-ticket/assets/ext/posts-to-posts/admin/fields.php:16
+msgid "Delete connection"
+msgstr ""
+
+#: ./wp-ticket/assets/ext/posts-to-posts/core/extra.php:19
+msgid "Posts 2 Posts"
+msgstr ""
+
+#: ./wp-ticket/assets/ext/posts-to-posts/core/extra.php:20
+msgid "A list of posts connected to the current post"
+msgstr ""
+
+#: ./wp-ticket/assets/ext/posts-to-posts/core/extra.php:37
+msgid "Title:"
+msgstr ""
+
+#: ./wp-ticket/assets/ext/posts-to-posts/core/extra.php:44
+msgid "Connection type:"
+msgstr ""
+
+#: ./wp-ticket/assets/ext/posts-to-posts/core/extra.php:49
+msgid "Connection listing:"
+msgstr ""
+
+#: ./wp-ticket/assets/ext/posts-to-posts/core/extra.php:55
+msgid "connected"
+msgstr ""
+
+#: ./wp-ticket/assets/ext/posts-to-posts/core/extra.php:56
+msgid "related"
+msgstr ""
+
+#: ./wp-ticket/assets/ext/posts-to-posts/core/side.php:247
+msgid "Users"
+msgstr ""
+
+#: ./wp-ticket/assets/ext/posts-to-posts/core/side.php:257
+msgid "Search Users"
+msgstr ""
+
+#: ./wp-ticket/assets/ext/posts-to-posts/core/side.php:258
+msgid "No users found."
+msgstr ""
+
+#: ./wp-ticket/assets/ext/posts-to-posts/core/type.php:101
+msgid "Create connections"
+msgstr ""
+
+#: ./wp-ticket/assets/ext/posts-to-posts/core/type.php:121
+msgid "Connected %s"
+msgstr ""
+
+#: ./wp-ticket/assets/ext/posts-to-posts/scb/AdminPage.php:170
+msgid "Settings <strong>saved</strong>."
+msgstr ""
+
+#: ./wp-ticket/assets/ext/posts-to-posts/scb/AdminPage.php:183
+#: ./wp-ticket/assets/ext/posts-to-posts/scb/AdminPage.php:194
+msgid "Save Changes"
+msgstr ""
+
+#: ./wp-ticket/assets/ext/posts-to-posts/scb/AdminPage.php:343
+msgid "Settings"
 msgstr ""
 
 #: ./wp-ticket/assets/ext/zebraform/languages/english.php:11
@@ -485,11 +578,196 @@ msgstr ""
 msgid "Possible spam attempt detected. The posted form data was rejected."
 msgstr ""
 
-#: ./wp-ticket/includes/admin/dashboard-widget-functions.php:57
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:54
+msgid "Active"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:61
+msgid "Frontend Add"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:69
+msgid "Backend Add"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:77
+msgid "Change"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:85
+msgid "Delete"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:93
+msgid "Add"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:101
+msgid "Trash"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:109
+msgid "Change Value"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:110
+msgid "If change value is empty, this notification is triggered in every value change."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:116
+msgid "User Message"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:123
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:186
+msgid "Send To"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:131
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:194
+msgid "Reply To"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:139
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:202
+msgid "Cc"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:147
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:210
+msgid "BCc"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:155
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:218
+msgid "Subject"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:163
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:226
+msgid "Message"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:179
+msgid "Admin Message"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:497
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:498
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:499
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:500
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:501
+msgid "Not available"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:503
+msgid "Use template tags below to customize your email. Taxonomy and relationship tags produce link(s) to the related record(s). For no link tag, add %s to relationship or taxonomy tag. For example, for {mytag%s} tag produces a no link version of the tag. Check glossary tab for definitions."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:507
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:514
+msgid "Builtin"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:508
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:513
+msgid "Title"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:508
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:513
+msgid "Permalink"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:508
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:513
+msgid "Edit Link"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:508
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:513
+msgid "Delete Link"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:508
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:513
+msgid "Excerpt"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:508
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:513
+msgid "Content"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:508
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:513
+msgid "Author Display Name"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:508
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:513
+msgid "Author NickName"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:508
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:513
+msgid "Author First Name"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:508
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:513
+msgid "Author Last Name"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:508
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:513
+msgid "Author Username"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:508
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:513
+msgid "Author Bio"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:508
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:513
+msgid "Author Googleplus"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:508
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:513
+msgid "Author Twitter"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:518
+msgid "Globals"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:521
+msgid "Attributes"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:524
+msgid "Taxonomies"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:527
+msgid "Relationships"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:530
+msgid "Comments"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/class-emd-notifications.php:586
+msgid "Below is your notification list"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/dashboard-widget-functions.php:59
 msgid "No %s found"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/dashboard-widget-functions.php:128
+#: ./wp-ticket/includes/admin/dashboard-widget-functions.php:130
 msgid "Number of %s to show:"
 msgstr ""
 
@@ -497,151 +775,480 @@ msgstr ""
 msgid "Please enter and activate your <b>license keys</b>."
 msgstr ""
 
-#: ./wp-ticket/includes/admin/license-functions.php:81
+#: ./wp-ticket/includes/admin/license-functions.php:79
 msgid "Deactivate License"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/license-functions.php:85
+#: ./wp-ticket/includes/admin/license-functions.php:83
 msgid "Activate License"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/settings-functions.php:31
-msgid "Global"
+#: ./wp-ticket/includes/admin/license-functions.php:89
+msgid "Error:"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/settings-functions.php:36
+#: ./wp-ticket/includes/admin/license-functions.php:202
+#: ./wp-ticket/includes/admin/license-functions.php:236
+msgid "An error occurred, please try again."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/license-functions.php:214
+msgid "Your license key expired on %s."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/license-functions.php:219
+msgid "Your license key has been disabled."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/license-functions.php:222
+msgid "Invalid license."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/license-functions.php:226
+msgid "Your license is not active for this URL."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/license-functions.php:229
+msgid "This appears to be an invalid license key for %s."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/license-functions.php:233
+msgid "Your license key has reached its activation limit."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions-forms.php:20
 msgid "Forms"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/settings-functions.php:40
-msgid "No settings found."
+#: ./wp-ticket/includes/admin/settings-functions-forms.php:122
+msgid "Use the section below to show or hide corresponding form elements. Size column refers to the form elements length relative to the other elements in the same row. Total element size in each row can not exceed 12 units. When you hide or show an element you may adjust sizes of the other elements in the same row. The form elements which are in the same row are color coded."
 msgstr ""
 
-#: ./wp-ticket/includes/admin/settings-functions.php:45
-msgid "Settings Saved."
+#: ./wp-ticket/includes/admin/settings-functions-forms.php:126
+msgid "Error Message"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/settings-functions.php:90
-msgid "%s is required."
+#: ./wp-ticket/includes/admin/settings-functions-forms.php:126
+msgid "Success Mesage"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/settings-functions.php:300
-msgid "Use the section below to show or hide corresponding form elements. Size column refers to the form elements length relative to the other elements in the same row. Total element size in each row can not exceed 12 units. When you hide or show an element you may adjust sizes of the other elements in the same row. The required form elements are disabled however you can change their sizes. The form elements which are in the same row are color coded."
+#: ./wp-ticket/includes/admin/settings-functions-forms.php:126
+msgid "No Access Message"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/settings-functions.php:360
+#: ./wp-ticket/includes/admin/settings-functions-forms.php:126
+msgid "No Result Message"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions-forms.php:198
 msgid "Show %s"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/settings-functions.php:379
+#: ./wp-ticket/includes/admin/settings-functions-forms.php:232
 msgid "Show Captcha"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/settings-functions.php:381
+#: ./wp-ticket/includes/admin/settings-functions-forms.php:234
 msgid "Never Show"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/settings-functions.php:382
+#: ./wp-ticket/includes/admin/settings-functions-forms.php:235
 msgid "Always Show"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/settings-functions.php:383
+#: ./wp-ticket/includes/admin/settings-functions-forms.php:236
 msgid "Visitors Only"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/singletax/class-emd-single-taxonomy.php:139
+#: ./wp-ticket/includes/admin/settings-functions-forms.php:253
+msgid "CSRF Check"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions-forms.php:258
+msgid "Enables Cross-site request forgery protection when selected."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions-forms.php:266
+msgid "Show Register / Login Form"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions-forms.php:268
+msgid "None"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions-forms.php:269
+msgid "Registration and Login Forms"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions-forms.php:270
+msgid "Login Form only"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions-forms.php:279
+msgid "Displays or hides registration and login forms on this form for non-logged-in users."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions-forms.php:298
+msgid "The unique form elements are disabled however you can change their sizes."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions-misc.php:17
+msgid "Misc"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions-misc.php:63
+msgid "Disable Bootstrap CSS"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions-misc.php:73
+msgid "Disables loading of Bootstrap stylesheet in plugin related pages when checked. You may need to disable it if your theme already uses Bootstrap based stylesheet."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions-misc.php:75
+msgid "Disable Bootstrap JS"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions-misc.php:85
+msgid "Disables loading of Bootstrap JavaScript in plugin related pages when checked. You may need to disable it if your theme already uses Bootstrap based JavaScript."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions-misc.php:89
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions-misc.php:94
+msgid "Only Message"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions-misc.php:96
+msgid "Only Login Form"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions-misc.php:105
+msgid "Display the registration and login forms on the pages non-logged-in users don't have access to."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:28
+msgid "Entities"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:46
+msgid "Tools"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:49
+msgid "Settings Saved."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:126
+#: ./wp-ticket/includes/admin/settings-functions.php:533
+msgid "Base Slug"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:129
+msgid "Sets the custom base slug for single and archive posts. After you update,  flush the rewrite rules by going to the Permalink Settings page. This works only if post name based permalink structure is selected."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:131
+msgid "Single Template"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:135
+#: ./wp-ticket/includes/admin/settings-functions.php:543
+msgid "Right Sidebar"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:135
+#: ./wp-ticket/includes/admin/settings-functions.php:543
+msgid "Left Sidebar"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:135
+#: ./wp-ticket/includes/admin/settings-functions.php:543
+msgid "Full Width"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:143
+msgid "Sets the template for a single post."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:145
+msgid "Hide Previous Next Links"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:152
+msgid "Hides the previous and next post links on the frontend for single posts."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:155
+msgid "Archive Template"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:166
+msgid "Sets the template for archive posts."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:168
+#: ./wp-ticket/includes/admin/settings-functions.php:553
+msgid "Hide Page Navigation"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:175
+#: ./wp-ticket/includes/admin/settings-functions.php:560
+msgid "Hides the page navigation links on the frontend for archive posts."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:183
+#: ./wp-ticket/includes/admin/settings-functions.php:202
+#: ./wp-ticket/includes/admin/settings-functions.php:208
+#: ./wp-ticket/includes/admin/settings-functions.php:277
+#: ./wp-ticket/includes/admin/settings-functions.php:301
+#: ./wp-ticket/includes/admin/settings-functions.php:519
+msgid "Enable"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:184
+#: ./wp-ticket/includes/admin/settings-functions.php:203
+#: ./wp-ticket/includes/admin/settings-functions.php:278
+#: ./wp-ticket/includes/admin/settings-functions.php:302
+#: ./wp-ticket/includes/admin/settings-functions.php:520
+msgid "Disable"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:185
+#: ./wp-ticket/includes/admin/settings-functions.php:204
+#: ./wp-ticket/includes/admin/settings-functions.php:209
+#: ./wp-ticket/includes/admin/settings-functions.php:279
+#: ./wp-ticket/includes/admin/settings-functions.php:303
+#: ./wp-ticket/includes/admin/settings-functions.php:521
+msgid "Hide on FrontEnd Pages"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:226
+msgid "Enable: Display this attribute on everywhere</br>Disable: Remove this attribute from everywhere</br>Hide on FrontEnd Pages: This attribute is still enabled on admin area. If you want to hide this attribute on the frontend forms go to Forms tab."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:239
+msgid "Hide Custom Fields"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:248
+msgid "Check the custom fields you would like to hide on the frontend."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:272
+msgid "Enable: Display this relationship on everywhere</br>Disable: Remove this relationship from everywhere</br>Hide on FrontEnd Pages: This relationship is still enabled on admin area. If you want to hide this relationship on the frontend forms go to Forms tab."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:294
+msgid "Relationship Attributes"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:296
+msgid "Enable: Display this relationship attribute on everywhere</br>Disable: Remove this relationship attribute from everywhere</br>Hide on FrontEnd Pages: This relationship attribute is still enabled on admin area."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:347
+msgid "Frontend Map Settings"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:348
+msgid "Width"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:348
+msgid "Sets the map width.You can use '%' or 'px'. Default is 100%."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:349
+msgid "Height"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:349
+msgid "Sets the map height. You can use 'px'. Default is 480px."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:350
+msgid "Zoom"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:359
+msgid "Type"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:369
+msgid "Marker"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:370
+msgid "Display Info Window on Page Load"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:516
+msgid "Availability"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:531
+msgid "Enable: Display this taxonomy on everywhere</br>Disable: Remove this taxonomy from everywhere</br>Hide on FrontEnd Pages: This taxonomy is still enabled on admin area. If you want to hide this taxonomy on the frontend forms go to Forms tab."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:536
+msgid "Sets the custom base slug for this taxonomy. After you update,  flush the rewrite rules by going to the Permalink Settings page."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:539
+msgid "Template"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:551
+msgid "Sets the template for the posts which belong to this taxonomy."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:621
+msgid "All missing pages were installed successfully."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:632
+msgid "Install Pages"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:634
+msgid "Install pages"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:636
+msgid "This tool will install all the missing %s pages. Pages already defined and set up will not be replaced."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:638
+msgid "Remove All Settings"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:645
+msgid "This tool will remove all settings/options data when using the \"Delete\" link on the plugins screen."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:647
+msgid "Remove All Data"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:660
+msgid "This tool will remove all %s data and related taxonomies when using the \"Delete\" link on the plugins screen."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:662
+msgid "Custom CSS"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/settings-functions.php:666
+msgid "Custom CSS allows you to add your own styles or override the default CSS of this plugin. The CSS code written here is only applied to this plugin's frontend pages."
+msgstr ""
+
+#: ./wp-ticket/includes/admin/singletax/class-emd-single-taxonomy.php:144
 msgid "Most Used"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/singletax/class-emd-single-taxonomy.php:203
+#: ./wp-ticket/includes/admin/singletax/class-emd-single-taxonomy.php:208
 msgid "+ %s"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/store-functions.php:22
-#: ./wp-ticket/includes/admin/store-functions.php:42
+#: ./wp-ticket/includes/admin/store-functions.php:24
+#: ./wp-ticket/includes/admin/store-functions.php:47
 msgid "Browse All"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/store-functions.php:24
+#: ./wp-ticket/includes/admin/store-functions.php:26
 msgid "The following plugins extend and expand the functionality of your app."
 msgstr ""
 
-#: ./wp-ticket/includes/admin/store-functions.php:44
+#: ./wp-ticket/includes/admin/store-functions.php:49
 msgid "The following <a href=\"%s\" title=\"WP App Studio Prodev\" target=\"_blank\">WP App Studio Prodev</a> plugin designs can be used as a template:"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/store-functions.php:46
+#: ./wp-ticket/includes/admin/store-functions.php:51
 msgid "To customize the functionality of their corresponding plugins"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/store-functions.php:49
+#: ./wp-ticket/includes/admin/store-functions.php:54
 msgid "To create your own plugin"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/store-functions.php:74
+#: ./wp-ticket/includes/admin/store-functions.php:81
 msgid "There was an error retrieving the extensions list from the server. Please try again later."
 msgstr ""
 
-#: ./wp-ticket/includes/admin/store-functions.php:92
+#: ./wp-ticket/includes/admin/store-functions.php:101
 msgid "Thanks for installing %s."
 msgstr ""
 
-#: ./wp-ticket/includes/admin/store-functions.php:92
+#: ./wp-ticket/includes/admin/store-functions.php:101
 msgid "All support requests are accepted through <a href=\"%s\" target=\"_blank\">our support site.</a>"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/store-functions.php:115
+#: ./wp-ticket/includes/admin/store-functions.php:126
 msgid "Like our plugin? Leave us a review"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/wpas-btn-functions.php:37
+#: ./wp-ticket/includes/admin/wpas-btn-functions.php:42
 msgid "Standards"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/wpas-btn-functions.php:48
+#: ./wp-ticket/includes/admin/wpas-btn-functions.php:59
+msgid "AutoCompletes"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/wpas-btn-functions.php:67
 msgid "Integrations"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/wpas-btn-functions.php:55
+#: ./wp-ticket/includes/admin/wpas-btn-functions.php:78
 msgid "Charts"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/wpas-btn-functions.php:62
+#: ./wp-ticket/includes/admin/wpas-btn-functions.php:94
 msgid "Datagrids"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/wpas-btn-functions.php:124
+#: ./wp-ticket/includes/admin/wpas-btn-functions.php:102
+msgid "Calendars"
+msgstr ""
+
+#: ./wp-ticket/includes/admin/wpas-btn-functions.php:179
 msgid "Insert WPAS Shortcode"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/wpas-btn-functions.php:125
+#: ./wp-ticket/includes/admin/wpas-btn-functions.php:180
 msgid "Select a component below to insert into any Post or Page."
 msgstr ""
 
-#: ./wp-ticket/includes/admin/wpas-btn-functions.php:130
+#: ./wp-ticket/includes/admin/wpas-btn-functions.php:185
 msgid "Insert Shortcode"
 msgstr ""
 
-#: ./wp-ticket/includes/admin/wpas-btn-functions.php:150
-#: ./wp-ticket/includes/admin/wpas-btn-functions.php:151
+#: ./wp-ticket/includes/admin/wpas-btn-functions.php:207
+#: ./wp-ticket/includes/admin/wpas-btn-functions.php:208
 msgid "Add WPAS Shortcode"
 msgstr ""
 
-#: ./wp-ticket/includes/class-emd-widget.php:117
-msgid "Title"
-msgstr ""
-
-#: ./wp-ticket/includes/class-emd-widget.php:122
+#: ./wp-ticket/includes/class-emd-widget.php:137
 msgid "%s to show"
 msgstr ""
 
-#: ./wp-ticket/includes/class-emd-widget.php:123
+#: ./wp-ticket/includes/class-emd-widget.php:138
 msgid "Max: 10"
 msgstr ""
 
-#: ./wp-ticket/includes/class-emd-widget.php:186
-#: ./wp-ticket/includes/class-emd-widget.php:199
+#: ./wp-ticket/includes/class-emd-widget.php:209
+#: ./wp-ticket/includes/class-emd-widget.php:222
 msgid "%1$s on %2$s"
+msgstr ""
+
+#: ./wp-ticket/includes/common-functions.php:348
+msgid "Author:"
+msgstr ""
+
+#: ./wp-ticket/includes/common-functions.php:349
+msgid "%s \a\t %s"
 msgstr ""
 
 #: ./wp-ticket/includes/entities/class-emd-entity.php:152
@@ -690,4 +1297,107 @@ msgstr ""
 
 #: ./wp-ticket/includes/entities/class-emd-entity.php:181
 msgid "Operations"
+msgstr ""
+
+#: ./wp-ticket/includes/form-functions.php:825
+#: ./wp-ticket/includes/form-functions.php:835
+msgid "Invalid username"
+msgstr ""
+
+#: ./wp-ticket/includes/form-functions.php:830
+msgid "Username already taken"
+msgstr ""
+
+#: ./wp-ticket/includes/form-functions.php:840
+msgid "Email address already taken"
+msgstr ""
+
+#: ./wp-ticket/includes/form-functions.php:845
+msgid "Invalid Email"
+msgstr ""
+
+#: ./wp-ticket/includes/form-functions.php:849
+msgid "Please enter a password"
+msgstr ""
+
+#: ./wp-ticket/includes/form-functions.php:853
+msgid "Passwords do not match"
+msgstr ""
+
+#: ./wp-ticket/includes/form-functions.php:914
+msgid "The password you entered is incorrect"
+msgstr ""
+
+#: ./wp-ticket/includes/form-functions.php:918
+msgid "The username you entered does not exist"
+msgstr ""
+
+#: ./wp-ticket/layouts/emd-archive.php:46
+msgid "<i class=\"fa fa-angle-left\"></i> Previous"
+msgstr ""
+
+#: ./wp-ticket/layouts/emd-archive.php:48
+msgid "Next <i class=\"fa fa-angle-right\"></i>"
+msgstr ""
+
+#: ./wp-ticket/layouts/emd-login.php:4
+msgid "Log into Your Account"
+msgstr ""
+
+#: ./wp-ticket/layouts/emd-login.php:6
+msgid "Username or Email"
+msgstr ""
+
+#: ./wp-ticket/layouts/emd-login.php:10
+msgid "Password"
+msgstr ""
+
+#: ./wp-ticket/layouts/emd-login.php:14
+msgid "Remember Me"
+msgstr ""
+
+#: ./wp-ticket/layouts/emd-login.php:21
+msgid "Log In"
+msgstr ""
+
+#: ./wp-ticket/layouts/emd-login.php:26
+msgid "Lost Password?"
+msgstr ""
+
+#: ./wp-ticket/layouts/emd-login.php:31
+msgid "Register"
+msgstr ""
+
+#: ./wp-ticket/layouts/emd-register.php:6
+msgid "Username"
+msgstr ""
+
+#: ./wp-ticket/layouts/emd-register.php:10
+msgid "Email"
+msgstr ""
+
+#: ./wp-ticket/layouts/emd-register.php:14
+msgid "First Name"
+msgstr ""
+
+#: ./wp-ticket/layouts/emd-register.php:18
+msgid "Last Name"
+msgstr ""
+
+#: ./wp-ticket/layouts/emd-register.php:26
+msgid "Confirm Password"
+msgstr ""
+
+#: ./wp-ticket/layouts/emd-register.php:39
+msgid "Login"
+msgstr ""
+
+#: ./wp-ticket/layouts/emd-single.php:43
+msgctxt "Previous post link"
+msgid "<i class=\"fa fa-angle-left\"></i>"
+msgstr ""
+
+#: ./wp-ticket/layouts/emd-single.php:44
+msgctxt "Next post link"
+msgid "<i class=\"fa fa-angle-right\"></i>"
 msgstr ""

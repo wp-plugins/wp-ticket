@@ -18,7 +18,7 @@ if ( ! class_exists( 'EMD_MB_Checkbox_List_Field' ) )
 		{
 			$meta = (array) $meta;
 			$html = array();
-			$tpl = '<label><input type="checkbox" class="emd-mb-checkbox-list" name="%s" value="%s"%s> %s</label>';
+			$tpl = '<label><input type="checkbox" class="emd-mb-checkbox-list" name="%s" value="%s"%s %s> %s</label>';
 
 			foreach ( $field['options'] as $value => $label )
 			{
@@ -27,6 +27,7 @@ if ( ! class_exists( 'EMD_MB_Checkbox_List_Field' ) )
 					$field['field_name'],
 					$value,
 					checked( in_array( $value, $meta ), 1, false ),
+					isset($field['data-cell'][$value]) ? "data-cell='{$field['data-cell'][$value]}'" : '',
 					$label
 				);
 			}

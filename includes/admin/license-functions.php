@@ -59,13 +59,11 @@ function emd_show_license_page($app){
  */
 function emd_show_license_row($app,$name){
 	$license = false;
-	$status = "inactive";
 	$licenses = get_option('emd_licenses',Array());
+	$status = get_option($app . '_license_status','inactive');
+	$error = get_option($app . '_license_error','');
 	if(!empty($licenses) && isset($licenses[$app . '_license_key'])){
 		$license = $licenses[$app . '_license_key'];
-	}
-	if(!empty($licenses) && isset($licenses[$app . '_license_status'])){
-		$status = $licenses[$app . '_license_status'];
 	}
 	?>
 		<tr>
@@ -75,7 +73,7 @@ function emd_show_license_row($app,$name){
 		<td>
 		<input id="<?php esc_attr_e($app) ?>_license_key" name="emd_licenses[<?php esc_attr_e($app) ?>_license_key]" type="text" class="regular-text" value="<?php esc_attr_e($license); ?>" />
 		<?php if (false !== $license) { ?>
-		<input type="hidden" id="<?php esc_attr_e($app) ?>_license_status" name="emd_licenses[<?php esc_attr_e($app) ?>_license_status]" value="<?php echo $status;?>">
+		<input type="hidden" id="<?php esc_attr_e($app) ?>_license_status" name="<?php esc_attr_e($app) ?>_license_status" value="<?php echo $status;?>">
 			<?php if ($status == 'valid') { ?>
 				<?php wp_nonce_field($app . '_license_nonce', $app . '_license_nonce'); ?>
 					<input type="submit" class="button-secondary" name="<?php esc_attr_e($app) ?>_license_deactivate" value="<?php _e('Deactivate License', 'emd-plugins'); ?>"/>
@@ -86,7 +84,11 @@ function emd_show_license_row($app,$name){
 					<?php
 			}
 			echo "&nbsp;<span style='color:red;font-weight:700;'>" . strtoupper($status) . "</span>";
-		}?>
+		}
+		if(!empty($error)){
+			echo "<div style='padding:5px;'><span style='color:red;font-weight:700;background-color:white;'>" . __('Error:','emd-plugins') . '&nbsp;' . $error . "</span></div>";
+		}
+		?>
 	</td>
 		</tr>
 		<?php 
@@ -107,12 +109,7 @@ function emd_license_register(){
 	$settings = get_option('emd_license_settings');
 	if(!empty($settings)){
 		foreach($settings as $key => $val){
-			$status = "";
-			if(isset($_POST[$key . '_license_status'])){
-				$status = $_POST[$key . '_license_status'];
-			}
 			add_settings_field($key . '_license_key', $val['name'],'','emd_licenses');
-			add_settings_field($key . '_license_status', $status,'','emd_licenses');
 		}
 	}
 	register_setting('emd_licenses','emd_licenses','emd_sanitize_license');
@@ -126,27 +123,29 @@ function emd_license_register(){
  * @return array $new
  */
 function emd_sanitize_license($new){
-	if ( empty( $_POST['_wp_http_referer'] ) ) {
-                return $new;
-        }
 	$old = get_option('emd_licenses');
+	if(empty($_POST)){ return $new; }
+	if(!isset($_POST['submit'])) { return $old; }
+	if ( empty( $_POST['_wp_http_referer'] ) ) {
+		return $old;
+        }
 	foreach($new as $nkey => $nval){
 		if(preg_match('/_license_key$/',$nkey)){
 			$match = str_replace("_license_key","",$nkey);
+			if($new[$nkey] != $old[$nkey]){
+				update_option($match.'_license_status','inactive');
+			}
 			if(empty($new[$nkey])){
-				unset($new[$nkey]);
-				unset($_POST['emd_licenses'][$nkey]);
+				unset($old[$nkey]);
 			}
-			elseif (isset($old[$nkey]) && $old[$nkey] != $new[$nkey]) {
-				unset($new[$match.'_license_status']); //new license has been entered, so must reactivate
-			}
-			elseif(isset($new[$match .'_license_status'])) {
-				$_POST['emd_licenses'][$match .'_license_status'] = $new[$match .'_license_status'];
+			else {
+				$old[$nkey] = $new[$nkey];
 			}
 		}
 	}
-	return $new;
+	return $old;
 }
+
 add_action( 'admin_init', 'emd_activate_deactivate_license');
 /**
  * Activate/Deactivate license by calling edd api on plugin author's site
@@ -155,17 +154,19 @@ add_action( 'admin_init', 'emd_activate_deactivate_license');
  */
 function emd_activate_deactivate_license() {
 	if(!isset($_POST['emd_licenses'])) return;
+	if(isset($_POST['submit'])) return;
 	$license_action = "";
 	$license_on = "";
 	$license_settings = get_option('emd_license_settings');
+	
 	if(!empty($license_settings)){
 		foreach($license_settings as $key => $val){
-			// listen for our activate button to be clicked
-			if (isset($_POST[$key . '_license_activate'])) {
+			$license_status = get_option($key . '_license_status','');
+			if($license_status != 'valid' && isset($_POST[$key . '_license_activate'])){
 				$license_action = "activate";
 				$license_on = $key;
 				break;
-			} elseif (isset($_POST[$key . '_license_deactivate'])) {
+			} elseif ($license_status != 'deactivated' && isset($_POST[$key . '_license_deactivate'])) {
 				$license_action = "deactivate";
 				$license_on = $key;
 				break;
@@ -173,11 +174,11 @@ function emd_activate_deactivate_license() {
 		}
 	}
 	if (!empty($license_action)) {
-		$emd_licenses = $_POST['emd_licenses'];
+		$post_licenses = $_POST['emd_licenses'];
 		// run a quick security check
 		if (!check_admin_referer($license_on . '_license_nonce', $license_on . '_license_nonce')) return;
 		// retrieve the license from the database
-		$license = trim($emd_licenses[$license_on . '_license_key']);
+		$license = trim($post_licenses[$license_on . '_license_key']);
 		// data to send in our API request
 		$api_params = array(
 				'edd_action' => $license_action . '_license',
@@ -187,22 +188,65 @@ function emd_activate_deactivate_license() {
 				);
 
 		// Call the custom API.
-		$response = wp_remote_get(add_query_arg($api_params, constant(strtoupper($license_on) . '_EDD_STORE_URL')) , array(
+		$response = wp_remote_post(constant(strtoupper($license_on) . '_EDD_STORE_URL') , array(
 					'timeout' => 15,
-					'sslverify' => false
+					'sslverify' => false,
+					'body' => $api_params
 					));
+		$error = '';
 		// make sure the response came back okay
-		if (is_wp_error($response)) return false;
+		if (is_wp_error($response) || 200 !== wp_remote_retrieve_response_code($response)) {
+			if(is_wp_error($response)){
+                                $error = $response->get_error_message();
+                        } else {
+                                $error = __('An error occurred, please try again.','emd-plugins');
+                        }
+			update_option($license_on . '_license_error', $error);
+			return false;
+		}
 		// decode the license data
 		$license_data = json_decode(wp_remote_retrieve_body($response));
 
+		if($license_action == 'activate' && false === $license_data->success){
+			switch($license_data->error){
+				case 'expired':
+					$error = sprintf(
+						__('Your license key expired on %s.','emd-plugins'),
+						date_i18n(get_option('date_format'), strtotime($license_data->expires, current_time('timestamp')))
+					);
+					break;
+				case 'revoked':
+					$error = __('Your license key has been disabled.','emd-plugins');
+					break;
+				case 'missing':
+					$error = __('Invalid license.','emd-plugins');
+					break;
+				case 'invalid':
+				case 'site_inactive':
+					$error = __('Your license is not active for this URL.','emd-plugins');
+					break;
+				case 'item_name_mismatch':
+					$error = sprintf(__('This appears to be an invalid license key for %s.','emd-plugins'), constant(strtoupper($license_on) . '_EDD_ITEM_NAME'));
+					break;
+
+				case 'no_activations_left':
+					$error = __('Your license key has reached its activation limit.','emd-plugins');
+					break;
+				default :
+					$error = __( 'An error occurred, please try again.','emd-plugins');
+					break;
+			}
+			if(!empty($error)){
+				update_option($license_on . '_license_error', $error);
+				return false;
+			}
+		}
+		update_option($license_on . '_license_error', '');
+
 		if ($license_action == 'activate') {
-			$emd_licenses[$license_on . '_license_status']= $license_data->license;
-			update_option('emd_licenses',$emd_licenses);
+			update_option($license_on . '_license_status',$license_data->license);
 		} elseif ($license_action == 'deactivate' && $license_data->license == 'deactivated') {
-			$emd_licenses[$license_on . '_license_status']= $license_data->license;
-			update_option('emd_licenses',$emd_licenses);
+			update_option($license_on . '_license_status',$license_data->license);
 		}
 	}
 }
-

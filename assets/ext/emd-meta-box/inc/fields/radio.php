@@ -17,7 +17,7 @@ if ( ! class_exists( 'EMD_MB_Radio_Field' ) )
 		static function html( $meta, $field )
 		{
 			$html = array();
-			$tpl = '<label><input type="radio" class="emd-mb-radio" name="%s" value="%s"%s> %s</label>';
+			$tpl = '<label><input type="radio" class="emd-mb-radio" name="%s" value="%s"%s %s> %s</label>';
 
 			foreach ( $field['options'] as $value => $label )
 			{
@@ -26,6 +26,7 @@ if ( ! class_exists( 'EMD_MB_Radio_Field' ) )
 					$field['field_name'],
 					$value,
 					checked( $value, $meta, false ),
+					isset($field['data-cell'][$value]) ? "data-cell='{$field['data-cell'][$value]}'" : '',
 					$label
 				);
 			}

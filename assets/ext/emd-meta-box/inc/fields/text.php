@@ -17,13 +17,14 @@ if ( ! class_exists( 'EMD_MB_Text_Field' ) )
 		static function html( $meta, $field )
 		{
 			return sprintf(
-				'<input type="text" class="emd-mb-text" name="%s" id="%s" value="%s" placeholder="%s" size="%s" %s>%s',
+				'<input type="text" class="emd-mb-text" name="%s" id="%s" value="%s" placeholder="%s" size="%s" %s %s>%s',
 				$field['field_name'],
 				$field['id'],
 				$meta,
 				$field['placeholder'],
 				$field['size'],
 				!$field['datalist'] ?  '' : "list='{$field['datalist']['id']}'",
+				isset($field['data-cell']) ? "data-cell='{$field['data-cell']}'" : '',
 				self::datalist_html($field)
 			);
 		}

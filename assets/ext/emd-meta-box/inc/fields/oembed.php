@@ -37,7 +37,7 @@ if ( ! class_exists( 'EMD_MB_OEmbed_Field' ) )
 		 */
 		static function wp_ajax_get_embed()
 		{
-			$url = isset( $_POST['url'] ) ? $_POST['url'] : '';
+			$url = isset( $_POST['url'] ) ? esc_url($_POST['url']) : '';
 			wp_send_json_success( self::get_embed( $url ) );
 		}
 
@@ -76,6 +76,34 @@ if ( ! class_exists( 'EMD_MB_OEmbed_Field' ) )
 				__( 'Preview', 'emd-plugins' ),
 				$meta ? self::get_embed( $meta ) : ''
 			);
+		}
+		/**
+		 * Output the field value
+		 * Display embed media
+		 *
+		 * @param  array    $field   Field parameters
+		 * @param  array    $args    Additional arguments. Not used for these fields.
+		 * @param  int|null $post_id Post ID. null for current post. Optional.
+		 *
+		 * @return mixed Field value
+		 */
+		static function the_value( $field, $args = array(), $post_id = null )
+		{
+			$value = self::get_value( $field, $args, $post_id );
+			if ( $field['clone'] )
+			{
+				$output = '<ul>';
+				foreach ( $value as $subvalue )
+				{
+					$output .= '<li>' . self::get_embed( $subvalue ) . '</li>';
+				}
+				$output .= '</ul>';
+			}
+			else
+			{
+				$output = self::get_embed( $value );
+			}
+			return $output;
 		}
 	}
 }

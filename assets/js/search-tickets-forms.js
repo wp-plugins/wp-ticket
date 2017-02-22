@@ -13,6 +13,8 @@ $.validator.setDefaults({
     ignore: [],
 });
 $.extend($.validator.messages,search_tickets_vars.validate_msg);
+$('#emd_ticket_duedate').datetimepicker({
+'dateFormat' : 'mm-dd-yy','timeFormat' : 'hh:mm'});
 $('#search_tickets').validate({
 onfocusout: false,
 onkeyup: false,
@@ -20,14 +22,15 @@ onclick: false,
 errorClass: 'text-danger',
 rules: {
   emd_ticket_id:{
-required : false
 },
 emd_ticket_email:{
 email  : true,
-required : false
+},
+emd_ticket_duedate:{
 },
 },
 success: function(label) {
+label.remove();
 },
 errorPlacement: function(error, element) {
 if (typeof(element.parent().attr("class")) != "undefined" && element.parent().attr("class").search(/date|time/) != -1) {
@@ -49,5 +52,18 @@ else {
 error.insertAfter(element.parent());
 }
 },
+});
+$(document).on('click','#singlebutton_search_tickets',function(event){
+     var form_id = $(this).closest('form').attr('id');
+     $.each(search_tickets_vars.search_tickets.req, function (ind, val){
+         if(!$('input[name='+val+'],#'+ val).closest('.row').is(":hidden")){
+             $('input[name='+val+'],#'+ val).rules("add","required"); 
+         }
+     });
+     var valid = $('#' + form_id).valid();
+     if(!valid) {
+        event.preventDefault();
+        return false;
+     }
 });
 });

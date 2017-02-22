@@ -41,8 +41,8 @@ if ( ! class_exists( 'EMD_MB_Image_Field' ) )
 		 */
 		static function wp_ajax_reorder_images()
 		{
-			$field_id = isset( $_POST['field_id'] ) ? $_POST['field_id'] : 0;
-			$order    = isset( $_POST['order'] ) ? $_POST['order'] : 0;
+			$field_id = isset( $_POST['field_id'] ) ? (string) $_POST['field_id'] : 0;
+			$order    = isset( $_POST['order'] ) ? (string) $_POST['order'] : 0;
 			$post_id  = isset( $_POST['post_id'] ) ? (int) $_POST['post_id'] : 0;
 
 			check_ajax_referer( "emd-mb-reorder-images_{$field_id}" );
