@@ -128,6 +128,13 @@ function emd_shc_get_layout_list($atts, $args, $args_default, $fields) {
 			$layout = ob_get_clean();
 			return $layout;
 		}
+		else
+		{?>
+		<div class="no-result">
+			<i class="fa fa-info"></i>There are no tickets to display.
+		</div>
+		<?php
+		}
 	}
 	return '';
 }
