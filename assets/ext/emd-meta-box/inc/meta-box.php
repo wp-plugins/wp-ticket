@@ -58,8 +58,16 @@ if ( ! class_exists( 'EMD_Meta_Box' ) )
 			$this->fields     = &$this->meta_box['fields'];
 			$this->validation = &$this->meta_box['validation'];
 			$this->conditional = &$this->meta_box['conditional'];
+			if(!defined('EMD_MB_APP') && !empty($this->meta_box['app_name'])){
+				define('EMD_MB_APP', $this->meta_box['app_name']);
+			}
 			if(!empty($this->meta_box['tax_conditional'])){
-				$this->conditional =array_merge($this->conditional,$this->meta_box['tax_conditional']);
+				if(!empty($this->conditional)){
+					$this->conditional =array_merge($this->conditional,$this->meta_box['tax_conditional']);
+				}
+				else {	
+					$this->conditional =$this->meta_box['tax_conditional'];
+				}
 			}
 
 
@@ -148,7 +156,7 @@ if ( ! class_exists( 'EMD_Meta_Box' ) )
 
 			if ($this->validation || ( $this->validation  && $this->conditional))
 			{
-				wp_enqueue_script( 'jquery-validate', EMD_MB_URL . '../jvalidate1111/wpas.validate.min.js', array( 'jquery' ), EMD_MB_VER, true );
+				wp_enqueue_script( 'jquery-validate', EMD_MB_URL . '../jvalidate1150/wpas.validate.min.js', array( 'jquery' ), EMD_MB_VER, true );
 				wp_enqueue_script( 'emd-mb-validate-cond', EMD_MB_JS_URL . 'validate-cond.js', array( 'jquery-validate' ), EMD_MB_VER, true );
 				wp_localize_script('emd-mb-validate-cond','validate_msg',$jqvalid_msg);
 			}
@@ -347,8 +355,9 @@ if ( ! class_exists( 'EMD_Meta_Box' ) )
 			foreach ( $this->fields as $field )
 			{
 				$name = $field['id'];
-				$old  = get_post_meta( $post_id, $name, !$field['multiple'] );
-				$new  = isset( $_POST[$name] ) ? $_POST[$name] : ( $field['multiple'] ? array() : '' );
+				$single = $field['clone'] || ! $field['multiple'];
+				$old  = get_post_meta( $post_id, $name, $single );
+				$new  = isset( $_POST[$name] ) ? $_POST[$name] : ( $single ? '' : array() );
 
 				// Allow field class change the value
 				$new = call_user_func( array( self::get_class_name( $field ), 'value' ), $new, $old, $post_id, $field );
@@ -414,6 +423,8 @@ if ( ! class_exists( 'EMD_Meta_Box' ) )
 				$field = wp_parse_args( $field, array(
 					'multiple'      => false,
 					'clone'         => false,
+					'max_clone'     => 0,
+					'sort_clone'    => false,
 					'std'           => '',
 					'desc'          => '',
 					'format'        => '',

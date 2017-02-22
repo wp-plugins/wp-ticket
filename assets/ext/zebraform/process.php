@@ -4,10 +4,11 @@
 if (isset($_GET['captcha']) && ($_GET['captcha'] == 1 || $_GET['captcha'] == 2)) {
 
     // storage method
-    $storage = ($_GET['captcha'] == 2 ? 'session' : 'cookie');
+    //$storage = ($_GET['captcha'] == 2 ? 'session' : 'cookie');
+    $storage = 'cookie';
 
     // if storage method is "session", start a session
-    if ($storage == 'session') session_start();
+    //if ($storage == 'session') session_start();
 
     // as this file actually generates an image we set the headers accordingly
     header('Content-type:image/jpeg');
@@ -99,10 +100,11 @@ if (isset($_GET['captcha']) && ($_GET['captcha'] == 1 || $_GET['captcha'] == 2))
     $value = md5(md5(md5($resultString)));
 
     // if storage is "session", store the value in session
-    if ($storage == 'session') $_SESSION['captcha'] = $value;
+    //if ($storage == 'session') $_SESSION['captcha'] = $value;
 
     // otherwise, store the value in a cookie
-    else setcookie('captcha', $value, time() + 3600, '/');
+    //else setcookie('captcha', $value, time() + 3600, '/');
+    setcookie('captcha', $value, time() + 3600, '/');
 
     // either ways, the value will later be read by the form generator
     // and used to see if the user entered the correct characters

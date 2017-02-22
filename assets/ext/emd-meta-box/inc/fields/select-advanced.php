@@ -16,11 +16,12 @@ if ( !class_exists( 'EMD_MB_Select_Advanced_Field' ) )
 		 */
 		static function admin_enqueue_scripts()
 		{
-			wp_enqueue_style( 'select2', EMD_MB_CSS_URL . 'select2/select2.css', array(), '3.2' );
+			wp_enqueue_style( 'emdmb-select2', EMD_MB_CSS_URL . 'select2/select2.css', array(), '3.2' );
 			wp_enqueue_style( 'emdmb-select-advanced', EMD_MB_CSS_URL . 'select-advanced.css', array(), EMD_MB_VER );
 
-			wp_register_script( 'select2', EMD_MB_JS_URL . 'select2/select2.min.js', array(), '3.2', true );
-			wp_enqueue_script( 'emd-mb-select-advanced', EMD_MB_JS_URL . 'select-advanced.js', array( 'select2' ), EMD_MB_VER, true );
+			wp_register_script( 'emdmb-select2', EMD_MB_JS_URL . 'select2/select2.min.js', array(), '3.2', true );
+			wp_enqueue_script( 'emd-mb-select-advanced', EMD_MB_JS_URL . 'select-advanced.js', array( 'emdmb-select2' ), EMD_MB_VER, true );
+
 		}
 
 		/**
@@ -34,11 +35,12 @@ if ( !class_exists( 'EMD_MB_Select_Advanced_Field' ) )
 		static function html( $meta, $field )
 		{
 			$html = sprintf(
-				'<select class="emd-mb-select-advanced" name="%s" id="%s" size="%s"%s data-options="%s">',
+				'<select class="emd-mb-select-advanced" name="%s" id="%s" size="%s"%s %s data-options="%s">',
 				$field['field_name'],
 				$field['id'],
 				$field['size'],
 				$field['multiple'] ? ' multiple="multiple"' : '',
+				isset($field['data-cell']) ? "data-cell='{$field['data-cell']}'" : '',
 				esc_attr( json_encode( $field['js_options'] ) )
 			);
 

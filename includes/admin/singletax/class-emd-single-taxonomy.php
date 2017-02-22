@@ -54,15 +54,18 @@ class Emd_Single_Taxonomy {
 	 */
 	private function get_single_tax_list() {
 		$tax_list = get_option($this->app . '_tax_list', Array());
+		$tax_settings = get_option($this->app . '_tax_settings', Array());
 		foreach ($tax_list as $ptype => $taxs) {
 			foreach ($taxs as $stax => $stax_val) {
-				if ($stax_val['type'] == 'single') {
+				if ($stax_val['type'] == 'single' && (empty($tax_settings[$stax]['hide']) ||
+					(!empty($tax_settings[$stax]['hide']) && $tax_settings[$stax]['hide'] != 'hide'))
+				) {
 					$this->single_tax_list[$stax]['default'] = '';
 					if (is_array($stax_val['default']) && !empty($stax_val['default'])) {
 						$this->single_tax_list[$stax]['default'] = $stax_val['default'][0];
 					}
 					$this->single_tax_list[$stax]['label'] = $stax_val['label'];
-					$this->single_tax_list[$stax]['ptype'] = $ptype;
+					$this->single_tax_list[$stax]['ptype'][] = $ptype;
 				}
 			}
 		}
@@ -96,13 +99,15 @@ class Emd_Single_Taxonomy {
 				$id = $stax . 'div';
 				$add_id = 'radio-' . $stax . 'div';
 			}
-			remove_meta_box($id, $sval['ptype'], 'side');
-			add_meta_box($add_id, $sval['label'], array(
-				$this,
-				'stax_metabox'
-			) , $sval['ptype'], 'side', 'core', array(
-				'taxonomy' => $stax
-			));
+			foreach($sval['ptype'] as $sptype){
+				remove_meta_box($id, $sptype, 'side');
+				add_meta_box($add_id, $sval['label'], array(
+					$this,
+					'stax_metabox'
+				) , $sptype, 'side', 'core', array(
+					'taxonomy' => $stax
+				));
+			}
 		}
 	}
 	/**
@@ -285,7 +290,7 @@ class Emd_Single_Taxonomy {
 	public function save_taxonomy_terms($post_id) {
 		if (!empty($this->single_tax_list)) {
 			foreach ($this->single_tax_list as $stax => $sval) {
-				if (isset($_POST['post_type']) && $sval['ptype'] == $_POST['post_type']) {
+				if (isset($_POST['post_type']) && in_array($_POST['post_type'],$sval['ptype'])) {
 					// verify this came from our plugin - one of our nonces must be set
 					if (!isset($_POST["_single_nonce-{$stax}"]) && !isset($_POST["_ajax_nonce-add-{$stax}"])) return;
 					// verify the nonce if this is an ajax "add term" action

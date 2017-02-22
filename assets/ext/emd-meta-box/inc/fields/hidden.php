@@ -27,19 +27,36 @@ if ( ! class_exists( 'EMD_MB_Hidden_Field' ) )
 				else
 				{	
 					if(empty($meta)){
-						$val = emd_get_hidden_func($field['hidden_func']);
+						$cstring = '';
+                                                if(!empty($field['concat_string'])){
+                                                        $cstring = $field['concat_string'];
+                                                	$val = emd_get_hidden_func($field['hidden_func'],$cstring,$post->ID);
+                                                }
+						else {
+							$val = emd_get_hidden_func($field['hidden_func']);
+						}
 						switch ($val) {
 							case 'emd_uid':
 								$val = uniqid($post->ID,false);
 								break;
 							case  'emd_autoinc':
 								$val = get_option($field['id'] . "_autoinc",$field['autoinc_start']);
-								$val = $val + $field['autoinc_incr'];
+								if($val < $field['autoinc_start']){
+									$val = $field['autoinc_start'];
+								}
+								else {
+									$val = $val + $field['autoinc_incr'];
+								}
 								break;
 						}
 					}
 					else {
-						$val = $meta;
+						if(!empty($field['concat_string'])){
+                                                        $val = emd_get_hidden_func($field['hidden_func'],$field['concat_string'],$post->ID);
+                                                }
+                                                else {
+                                                        $val = $meta;
+                                                }
 					}
 				}
                         }
@@ -60,7 +77,10 @@ if ( ! class_exists( 'EMD_MB_Hidden_Field' ) )
 			$name = $field['id'];
 			update_post_meta($post_id, $name, $new);
 			if(isset($field['hidden_func']) && $field['hidden_func'] == 'autoinc'){
-				update_option($name . "_autoinc", $new);
+				$val = get_option($field['id'] . "_autoinc",$field['autoinc_start']);
+				if($new > $val){
+					update_option($name . "_autoinc", $new);
+				}
 			}
 		}
 	}

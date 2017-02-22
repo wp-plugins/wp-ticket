@@ -1,106 +1,206 @@
-jQuery( document ).ready( function( $ )
+/* global jQuery, emd_mb_cloneable_editors */
+
+jQuery( function ( $ )
 {
-	toggle_remove_buttons();
+	'use strict';
 
-	function add_cloned_fields( $input )
-	{
-		var $clone_last = $input.find( '.emd-mb-clone:last' ),
-			$clone = $clone_last.clone(),
-			$input, $address_button, name, id;
-	
-		$clone.insertAfter( $clone_last );
-		$input = $clone.find( ':input[class|="emdmb"]' );
-		$address_button = $clone.find( '.emd-mb-map-goto-address-button' );
-
-		// Reset value
-		$input.val( '' );
-
-		// Get the field name, and increment
-		name = $input.attr( 'name' ).replace( /\[(\d+)\]/, function( match, p1 )
+	// Object holds all methods related to fields' index when clone
+	var cloneIndex = {
+		/**
+		 * Reset index for fields in .emd-mb-clone
+		 * Must be done when add/remove or sort clone
+		 * @param $container A div container which has all fields
+		 */
+		reset      : function ( $container )
 		{
-			return '[' + ( parseInt( p1 ) + 1 ) + ']';
+			var index = 0;
+			$container.find( '.emd-mb-clone' ).each( function ()
+			{
+				cloneIndex.set( $( this ), index++ );
+			} );
+		},
+		/**
+		 * Set index for fields in a .emd-mb-clone
+		 * @param $clone .emd-mb-clone element
+		 * @param index Index value
+		 */
+		set        : function ( $clone, index )
+		{
+			$clone.find( ':input[class|="emd-mb"]' ).each( function ()
+			{
+				var $field = $( this );
+
+				// Name attribute
+				var name = $field.attr( 'name' );
+				if ( name )
+				{
+					$field.attr( 'name', cloneIndex.replace( index, name, '[', ']', false ) );
+				}
+
+				// ID attribute
+				var id = $field.attr( 'id' );
+				if ( id )
+				{
+					$field.attr( 'id', cloneIndex.replace( index, id, '_' ) );
+				}
+			} );
+
+			// Address button's value attribute
+			var $address = $clone.find( '.emd-mb-map-goto-address-button' );
+			if ( $address.length )
+			{
+				var value = $address.attr( 'value' );
+				$address.attr( 'value', cloneIndex.replace( index, value, '_' ) );
+			}
+		},
+		/**
+		 * Replace an attribute of a field with updated index
+		 * @param index New index value
+		 * @param value Attribute value
+		 * @param before String before returned value
+		 * @param after String after returned value
+		 * @param alternative Check if attribute does not contain any integer, will reset the attribute?
+		 * @return string
+		 */
+		replace    : function ( index, value, before, after, alternative )
+		{
+			before = before || '';
+			after = after || '';
+			alternative = alternative || true;
+
+			var regex = new RegExp( cloneIndex.escapeRegex( before ) + '(\\d+)' + cloneIndex.escapeRegex( after ) ),
+				newValue = before + index + after;
+
+			return regex.test( value ) ? value.replace( regex, newValue ) : (alternative ? value + newValue : value );
+		},
+		/**
+		 * Helper function to escape string in regular expression
+		 * @link https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+		 * @param string
+		 * @return string
+		 */
+		escapeRegex: function ( string )
+		{
+			return string.replace( /[.*+?^${}()|[\]\\]/g, "\\$&" );
+		}
+	};
+
+	/**
+	 * Clone fields
+	 * @param $container A div container which has all fields
+	 * @return void
+	 */
+	function clone( $container )
+	{
+		//var $clone_last = $container.children( '.emd-mb-clone:last' ),
+		var $clone_last = $container.find( '.emd-mb-clone:last' ),
+			$clone = $clone_last.clone(),
+			$input;
+		$clone.insertAfter( $clone_last );
+		$input = $clone.find( ':input[class|="emd-mb"]' );
+
+		$input.each( function ()
+		{
+			var $field = $( this );
+			if ( $field.attr( 'type' ) === 'radio' || $field.attr( 'type' ) === 'checkbox' )
+			{
+				// Reset 'checked' attribute
+				$field.removeAttr( 'checked' );
+			}
+			else
+			{
+				// Reset value
+				$field.val( '' );
+			}
 		} );
 
-		// Update the "name" attribute
-		$input.attr( 'name', name );
-
-		// Get the field id, and increment
-		var pattern = new RegExp(/_(\d+)/);
-		if (pattern.test($input.attr( 'id' ))) {
-			id = $input.attr( 'id' ).replace( /_(\d+)/, function( match, p1 )
-			{
-				return '_' + ( parseInt( p1 ) + 1 ) ;
-			} );
-		} else {
-			id = $input.attr( 'id' ) + '_1';
-		}
-
-		// Update the "id" attribute
-		$input.attr( 'id', id );
-
-		// Update the address_button "value" attribute
-		if($address_button) {
-			if (pattern.test($address_button.attr( 'value' ))) {
-				id = $address_button.attr( 'value' ).replace( /_(\d+)/, function( match, p1 )
-				{
-					return '_' + ( parseInt( p1 ) + 1 ) ;
-				} );
-			} else {
-				id = $address_button.attr( 'value' ) + '_1';
-			}
-			$address_button.attr( 'value', id );
-		}
+		cloneIndex.reset( $container );
 
 		// Toggle remove buttons
-		toggle_remove_buttons( $input );
-		
-		//Trigger custom clone event
+		toggleRemoveButtons( $input );
+
+		// Trigger custom clone event
 		$input.trigger( 'clone' );
 	}
 
-	function add_wysiwyg_clone( $input )
+	/**
+	 * Hide remove buttons when there's only 1 of them
+	 *
+	 * @param $container .emd-mb-input container
+	 *
+	 * @return void
+	 */
+	function toggleRemoveButtons( $container )
 	{
-		var	$clone_first = $input.find( '.emd-mb-clone:first'),
-				$clone_last = $input.find( '.emd-mb-clone:last'),
-				$clone = $( '<div />' ).addClass('emd-mb-clone'),
-				field_name = $clone_last.find('textarea.wp-editor-area').attr( 'name' ),
-				field_id = field_name.replace( /\[(\d+)\]/, '');
+		var $button = $container.find( '.remove-clone' );
+		$button[$button.length < 2 ? 'hide' : 'show']();
+	}
 
+	/**
+	 * Toggle add button
+	 * Used with [data-max-clone] attribute. When max clone is reached, the add button is hid and vice versa
+	 *
+	 * @param $container .emd-mb-input container
+	 *
+	 * @return void
+	 */
+	function toggleAddButton( $container )
+	{
+		var $button = $container.find( '.add-clone' ),
+			maxClone = parseInt( $container.data( 'max-clone' ) ),
+			numClone = $container.find( '.emd-mb-clone' ).length;
+
+		$button[isNaN( maxClone ) || (maxClone && numClone < maxClone) ? 'show' : 'hide']();
+	}
+
+	/**
+	 * Clone WYSIWYG field
+	 * @param $container
+	 * @return void
+	 */
+	function cloneWYSIWYG( $container )
+	{
+		var $clone_first = $container.find( '.emd-mb-clone:first' ),
+			$clone_last = $container.find( '.emd-mb-clone:last' ),
+			$clone = $( '<div />' ).addClass( 'emd-mb-clone' ),
+			field_name = $clone_last.find( 'textarea.wp-editor-area' ).attr( 'name' ),
+			field_id = field_name.replace( /\[(\d+)]/, '' );
 
 		//Create some global vars
 		var new_index = 0;
-		var new_name =  field_name.replace( /\[(\d+)\]/, function( match, p1 )
+		var new_name = field_name.replace( /\[(\d+)]/, function ( match, p1 )
 		{
-			new_index = ( parseInt( p1 ) + 1 );
+			new_index = ( parseInt( p1, 10 ) + 1 );
 			return '[' + new_index + ']';
 		} );
 
-		if( typeof emd_mb_cloneable_editors !== 'undefined' && typeof emd_mb_cloneable_editors[field_id] !== 'undefined') {
-
+		if ( typeof emd_mb_cloneable_editors !== 'undefined' && typeof emd_mb_cloneable_editors[field_id] !== 'undefined' )
+		{
 			//Get HTML of editor from global object
-			var cloned_editor = $(emd_mb_cloneable_editors[field_id]);
+			var cloned_editor = $( emd_mb_cloneable_editors[field_id] );
 
 			//Fill new clone with html form global object
 			$clone.append( cloned_editor );
 
 			//Add remove button to clone
-			$clone.append($clone_last.find('.remove-clone').clone() );
+			$clone.append( $clone_last.find( '.remove-clone' ).clone() );
 
 			//Add new clone after the last clone
 			$clone.insertAfter( $clone_last );
 
 			//Replace ID of field with new ID
-			var new_id = cloned_editor.attr( 'id' ).replace( /\[(\d+)\]/, '['+new_index+']' );
+			var new_id = cloned_editor.attr( 'id' ).replace( /\[(\d+)]/, '[' + new_index + ']' );
 			cloned_editor.attr( 'id', new_id );
 
 			//Replace all IDs within cloned field
-			cloned_editor.find( '[id*="'+field_id+'"]' ).each( function(){
-				var id = $(this).attr('id').replace( /\[(\d+)\]/, '['+new_index+']' );
-				$(this).attr( 'id', id );
+			cloned_editor.find( '[id*="' + field_id + '"]' ).each( function ()
+			{
+				var id = $( this ).attr( 'id' ).replace( /\[(\d+)]/, '[' + new_index + ']' );
+				$( this ).attr( 'id', id );
 			} );
 
 			//Get the new textarea element
-			var textarea = $(cloned_editor).find( 'textarea.wp-editor-area' );
+			var textarea = $( cloned_editor ).find( 'textarea.wp-editor-area' );
 
 			// Update the "name" attribute
 			textarea.attr( 'name', new_name );
@@ -109,25 +209,38 @@ jQuery( document ).ready( function( $ )
 			textarea.html( '' );
 
 			//Update editor link, so we can add media to the new editor
-			cloned_editor.find( '#insert-media-button').data( 'editor', new_name );
+			cloned_editor.find( '#insert-media-button' ).data( 'editor', new_name );
 
 
 			//Get TinyMCE setting for our fields
-			var tmceinit = tinyMCEPreInit.mceInit[  $clone_first.find('textarea.wp-editor-area').attr( 'name' ) ];
-			var tmceqtinit = tinyMCEPreInit.qtInit[ $clone_first.find('textarea.wp-editor-area').attr( 'name' ) ];
+			var tmceinit = tinyMCEPreInit.mceInit[$clone_first.find( 'textarea.wp-editor-area' ).attr( 'name' )];
+			var tmceqtinit = tinyMCEPreInit.qtInit[$clone_first.find( 'textarea.wp-editor-area' ).attr( 'name' )];
 
 			//Replace id & elements with new created field names
 			tmceinit.elements = new_name;
 			tmceqtinit.id = new_name;
 
 			//Initialize TinyMCE
-			try { tinymce.init( tmceinit ); } catch(e){}
-			if ( typeof(QTags) == 'function' ) {
-				try { quicktags( tmceqtinit ); } catch(e){}
+			try
+			{
+				tinymce.init( tmceinit );
+			}
+			catch ( e )
+			{
+			}
+			if ( typeof(QTags) === 'function' )
+			{
+				try
+				{
+					quicktags( tmceqtinit );
+				}
+				catch ( e )
+				{
+				}
 			}
 
 			// Toggle remove buttons
-			toggle_remove_buttons( $clone );
+			toggleRemoveButtons( $clone );
 
 			//Trigger custom clone event
 			textarea.trigger( 'clone' );
@@ -135,94 +248,68 @@ jQuery( document ).ready( function( $ )
 
 	}
 
-	// Add more clones
-	$( '.add-clone' ).on( 'click', function( e )
-	{
-		e.stopPropagation();
-		var $input = $( this ).parents( '.emd-mb-input' ),
-			$clone_group = $( this ).parents( '.emd-mb-field' ).attr( "clone-group" );
-
-		// If the field is part of a clone group, get all fields in that
-		// group and itterate over them
-		if ( $clone_group )
+	$( '#poststuff' )
+		// Add clones
+		.on( 'click', '.add-clone', function ( e )
 		{
-			// Get the parent metabox and then find the matching
-			// clone-group elements inside
-			var $metabox = $( this ).parents( '.inside' );
-			var $clone_group_list = $metabox.find( 'div[clone-group="' + $clone_group + '"]' );
+			e.preventDefault();
 
-			$.each( $clone_group_list.find( '.emd-mb-input' ),
-				function( key, value )
-				{
-					add_cloned_fields( $( value ) );
-				} );
-		}
-		else if ( $( this).parents( '.emd-mb-field' ).hasClass( 'emd-mb-wysiwyg-wrapper' ) ){
-			add_wysiwyg_clone( $input );
-		}
-		else
-			add_cloned_fields( $input );
+			var $container = $( this ).closest( '.emd-mb-input' );
 
-		toggle_remove_buttons( $input );
+			cloneIndex.reset( $container );
 
-		return false;
-	} );
+			if ( $( this ).closest( '.emd-mb-field' ).hasClass( 'emd-mb-wysiwyg-wrapper' ) )
+			{
+				cloneWYSIWYG( $container );
+			}
+			else
+			{
+				clone( $container );
+			}
 
-	// Remove clones
-	$( '.emd-mb-input' ).on( 'click', '.remove-clone', function()
-	{
-		var $this = $( this ),
-			$input = $this.parents( '.emd-mb-input' ),
-			$clone_group = $( this ).parents( '.emd-mb-field' ).attr( 'clone-group' );
-
-		// Remove clone only if there're 2 or more of them
-		if ( $input.find( '.emd-mb-clone' ).length <= 1 )
-			return false;
-
-		if ( $clone_group )
+			toggleRemoveButtons( $container );
+			toggleAddButton( $container );
+		} )
+		// Remove clones
+		.on( 'click', '.remove-clone', function ( e )
 		{
-			// Get the parent metabox and then find the matching
-			// clone-group elements inside
-			var $metabox = $( this ).parents( '.inside' );
-			var $clone_group_list = $metabox.find( 'div[clone-group="' + $clone_group + '"]' );
-			var $index = $this.parent().index();
+			e.preventDefault();
 
-			$.each( $clone_group_list.find( '.emd-mb-input' ),
-				function( key, value )
-				{
-					$( value ).children( '.emd-mb-clone' ).eq( $index ).remove();
+			var $this = $( this ),
+				$container = $this.closest( '.emd-mb-input' );
 
-					// Toggle remove buttons
-					toggle_remove_buttons( $( value ) );
-				} );
-		}
-		else
-		{
+			// Remove clone only if there are 2 or more of them
+			if ( $container.find( '.emd-mb-clone' ).length < 2 )
+			{
+				return;
+			}
+
 			$this.parent().remove();
-
-			// Toggle remove buttons
-			toggle_remove_buttons( $input );
-		}
-
-		return false;
-	} );
-
-	/**
-	 * Hide remove buttons when there's only 1 of them
-	 *
-	 * @param $el jQuery element. If not supplied, the function will applies for all fields
-	 *
-	 * @return void
-	 */
-	function toggle_remove_buttons( $el )
-	{
-		var $button;
-		if ( !$el )
-			$el = $( '.emd-mb-field' );
-		$el.each( function()
-		{
-			$button = $( this ).find( '.remove-clone' );
-			$button.length < 2 ? $button.hide() : $button.show();
+			cloneIndex.reset( $container );
+			toggleRemoveButtons( $container );
+			toggleAddButton( $container )
 		} );
-	}
+
+	$( '.emd-mb-input' ).each( function ()
+	{
+		var $container = $( this );
+		cloneIndex.reset( $container );
+		toggleRemoveButtons( $container );
+		toggleAddButton( $container );
+
+		$container.sortable( {
+			handle     : '.emd-mb-clone-icon',
+			placeholder: ' emd-mb-clone emd-mb-clone-placeholder',
+			items      : '.emd-mb-clone',
+			start      : function ( event, ui )
+			{
+				// Make the placeholder has the same height as dragged item
+				ui.placeholder.height( ui.item.height() );
+			},
+			update     : function ()
+			{
+				cloneIndex.reset( $container );
+			}
+		} );
+	} );
 } );

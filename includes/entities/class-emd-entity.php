@@ -114,10 +114,10 @@ class Emd_Entity {
 						foreach ($uniq_keys as $mykey) {
 							$tpart = emd_mb_meta($mykey, Array() , $post_id);
 							if(!empty($tpart)){
-								$new_title.= $tpart . " - ";
+								$new_title.= $tpart . " ";
 							}
 						}
-						$new_title = rtrim($new_title, ' - ');
+						$new_title = rtrim($new_title, ' ');
 					}
 				}
 				if ($post->post_title == $post_id ||  ($post->post_title != $new_title && $new_title != '')) {
@@ -178,7 +178,7 @@ class Emd_Entity {
 ?>
 			<script type="text/javascript">
 			jQuery(document).ready(function($){
-					$('h2 a.add-new-h2').after('<a id="opt-<?php echo str_replace("_", "-", $this->post_type); ?>" class="add-new-h2" href="<?php echo admin_url('edit.php?post_type=' . $this->menu_entity . '&page=operations_' . $this->post_type); ?>" ><?php _e('Operations', 'emd-plugins'); ?></a>');
+					$('a.page-title-action').after('<a id="opt-<?php echo str_replace("_", "-", $this->post_type); ?>" class="add-new-h2" href="<?php echo admin_url('edit.php?post_type=' . $this->menu_entity . '&page=operations_' . $this->post_type); ?>" ><?php _e('Operations', 'emd-plugins'); ?></a>');
 					$('li.opt_<?php echo $this->post_type; ?>').html('');
 					});     
 		</script>
@@ -233,16 +233,32 @@ class Emd_Entity {
 	protected function set_args_boxes(){
 		$search_args = Array();
 		$filter_args = Array();	
-		$this->boxes[0]['validation'] = array(
-			'onfocusout' => false,
-			'onkeyup' => false,
-			'onclick' => false
-		);
+		foreach($this->boxes as $kbox => $vbox){
+			$this->boxes[$kbox]['validation'] = array(
+				'onfocusout' => false,
+				'onkeyup' => false,
+				'onclick' => false
+			);
+		}
 		$myapp = str_replace("-", "_", $this->textdomain);
 		$attr_list = get_option($myapp . '_attr_list');
+		$sform_list = Array();
+		$shc_list = get_option($myapp . '_shc_list');
+		if(!empty($shc_list) && !empty($shc_list['forms'])){
+			foreach($shc_list['forms'] as $kform => $sforms){
+				if($sforms['type'] == 'submit'){
+					$sform_list[] = $kform;
+				}
+			}
+		}
+		if(!empty($sform_list)){
+			$glob_forms_list = get_option($myapp . '_glob_forms_list');
+		}
+
 		if (!empty($attr_list[$this->post_type])) {
+			$ent_map_list = get_option($myapp . '_ent_map_list');
 			foreach ($attr_list[$this->post_type] as $kattr => $vattr) {
-				if ($vattr['visible'] == 1) {
+				if (empty($ent_map_list[$this->post_type]['attrs'][$kattr]) || (!empty($ent_map_list[$this->post_type]['attrs'][$kattr]) && $ent_map_list[$this->post_type]['attrs'][$kattr] != 'hide')) {
 					$search_args[$kattr]['name'] = $vattr['label'];
 					$search_args[$kattr]['meta'] = $kattr;
 					$search_args[$kattr]['type'] = $vattr['display_type'];
@@ -256,19 +272,26 @@ class Emd_Entity {
 					if (!empty($vattr['desc'])) {
 						$search_args[$kattr]['desc'] = $vattr['desc'];
 					}
-					$this->boxes[0]['fields'][$kattr]['name'] = $vattr['label'];
-					$this->boxes[0]['fields'][$kattr]['list_visible'] = $vattr['list_visible'];
-					$this->boxes[0]['fields'][$kattr]['id'] = $kattr;
+					if (!empty($vattr['max'])) {
+						$search_args[$kattr]['max'] = $vattr['max'];
+					}
+					if (!empty($vattr['display_meta'])) {
+						$search_args[$kattr]['display_meta'] = $vattr['display_meta'];
+					}
+					$this->boxes[$vattr['mid']]['fields'][$kattr]['name'] = $vattr['label'];
+					$this->boxes[$vattr['mid']]['fields'][$kattr]['list_visible'] = $vattr['list_visible'];
+					$this->boxes[$vattr['mid']]['fields'][$kattr]['id'] = $kattr;
+					$this->boxes[$vattr['mid']]['fields'][$kattr]['visible'] = 1;
 					if ($vattr['display_type'] == 'user-adv') {
-						$this->boxes[0]['fields'][$kattr]['type'] = 'user';
+						$this->boxes[$vattr['mid']]['fields'][$kattr]['type'] = 'user';
 					} else {
-						$this->boxes[0]['fields'][$kattr]['type'] = $vattr['display_type'];
+						$this->boxes[$vattr['mid']]['fields'][$kattr]['type'] = $vattr['display_type'];
 					}
 					if (isset($vattr['roles'])) {
-						$this->boxes[0]['fields'][$kattr]['query_args']['role'] = $vattr['roles'];
+						$this->boxes[$vattr['mid']]['fields'][$kattr]['query_args']['role'] = $vattr['roles'];
 					}
 					if (isset($vattr['dformat'])) {
-						$this->boxes[0]['fields'][$kattr]['js_options'] = $vattr['dformat'];
+						$this->boxes[$vattr['mid']]['fields'][$kattr]['js_options'] = $vattr['dformat'];
 					}
 					$attr_fields = Array(
 						'hidden_func',
@@ -283,18 +306,40 @@ class Emd_Entity {
 						'placeholder',
 						'field_type',
 						'address_field',
+						'data-formula',
+						'data-cell',
+						'clone',
+						'sort_clone',
+						'max_clone',
+						'max',
+						'display_meta',
+						'concat_string',
 					);
 					foreach ($attr_fields as $attr_field) {
 						if (isset($vattr[$attr_field])) {
-							$this->boxes[0]['fields'][$kattr][$attr_field] = $vattr[$attr_field];
+							$this->boxes[$vattr['mid']]['fields'][$kattr][$attr_field] = $vattr[$attr_field];
 						}
 					}
-					$this->boxes[0]['fields'][$kattr]['class'] = $kattr;
+					$this->boxes[$vattr['mid']]['fields'][$kattr]['class'] = $kattr;
 					//validation
+					if(!empty($sform_list)){
+						$vattr_req = 0;
+						foreach($sform_list as $sform){
+							if(isset($glob_forms_list[$sform][$kattr]) && isset($glob_forms_list[$sform][$kattr]['req'])){
+							 	if($glob_forms_list[$sform][$kattr]['req'] == 1){
+									$vattr_req = 1;
+								}
+							}
+							elseif(!isset($glob_forms_list[$sform][$kattr])) {
+								$vattr_req = $vattr['required'];
+							}	
+						}
+						$vattr['required'] = $vattr_req;
+					}
 					if ($vattr['required'] == 1) {
-						$this->boxes[0]['validation']['rules'][$kattr]['required'] = true;
+						$this->boxes[$vattr['mid']]['validation']['rules'][$kattr]['required'] = true;
 					} else {
-						$this->boxes[0]['validation']['rules'][$kattr]['required'] = false;
+						$this->boxes[$vattr['mid']]['validation']['rules'][$kattr]['required'] = false;
 					}
 					$valid_rules = Array(
 						'email',
@@ -326,12 +371,12 @@ class Emd_Entity {
 					);
 					foreach ($valid_rules as $vrule) {
 						if (isset($vattr[$vrule])) {
-							$this->boxes[0]['validation']['rules'][$kattr][$vrule] = $vattr[$vrule];
+							$this->boxes[$vattr['mid']]['validation']['rules'][$kattr][$vrule] = $vattr[$vrule];
 						}
 					}
 					if(!empty($vattr['conditional'])){
-						$this->boxes[0]['conditional'][$kattr] = $vattr['conditional'];
-						$this->boxes[0]['conditional'][$kattr]['type'] = $vattr['display_type'];
+						$this->boxes[$vattr['mid']]['conditional'][$kattr] = $vattr['conditional'];
+						$this->boxes[$vattr['mid']]['conditional'][$kattr]['type'] = $vattr['display_type'];
 					}
 					if ($vattr['filterable'] == 1) {
 						$filter_args[$kattr]['name'] = $vattr['label'];
@@ -357,14 +402,23 @@ class Emd_Entity {
 						}
 					}
 				}
+				else {
+					$this->boxes[$vattr['mid']]['fields'][$kattr]['id'] = $kattr;
+					$this->boxes[$vattr['mid']]['fields'][$kattr]['visible'] = 0;
+					if ($vattr['display_type'] == 'user-adv') {
+						$this->boxes[$vattr['mid']]['fields'][$kattr]['type'] = 'user';
+					} else {
+						$this->boxes[$vattr['mid']]['fields'][$kattr]['type'] = $vattr['display_type'];
+					}
+				}
 			}
 		}
 		$tax_list = get_option($myapp . '_tax_list');
 		if (!empty($tax_list[$this->post_type])) {
 			foreach ($tax_list[$this->post_type] as $ktax => $vtax) {
 				if(!empty($vtax['conditional']['attr_rules']) || !empty($vtax['conditional']['tax_rules'])){
-					$this->boxes[0]['tax_conditional'][$ktax] = $vtax['conditional'];
-					$this->boxes[0]['tax_conditional'][$ktax]['type'] = $vtax['cond_type'];
+					$this->boxes[$vattr['mid']]['tax_conditional'][$ktax] = $vtax['conditional'];
+					$this->boxes[$vattr['mid']]['tax_conditional'][$ktax]['type'] = $vtax['cond_type'];
 				}
 			}
 		}

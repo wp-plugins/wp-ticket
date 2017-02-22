@@ -39,7 +39,7 @@
 			if (defaultLoc) {
 				defaultLoc = defaultLoc.split(',');
 			} else {
-				defaultLoc = [53.346881, -6.258860];
+				defaultLoc = [25.7616798, -80.19179020000001];
 			}
 
 			latLng = new google.maps.LatLng( defaultLoc[0], defaultLoc[1] ); // Initial position for map
@@ -192,6 +192,15 @@
 				$( this ).data('mapController', field);
 			});
 		});
+		$('.emd-tabs-acc').on( "click", function( event, ui ){
+                        $( '.emd-mb-map-field' ).each( function()
+                        {
+                                var field = new mapField( $( this ) );
+                                field.init();
+
+                                $( this ).data('mapController', field);
+                        } );
+                });
 	} );
 
 } )( jQuery );

@@ -17,10 +17,11 @@ if ( ! class_exists( 'EMD_MB_Checkbox_Field' ) )
 		static function html( $meta, $field )
 		{
 			return sprintf(
-				'<input type="checkbox" class="emd-mb-checkbox" name="%s" id="%s" value="1" %s />',
+				'<input type="checkbox" class="emd-mb-checkbox" name="%s" id="%s" value="1" %s %s/>',
 				$field['field_name'],
 				$field['id'],
-				checked( !empty( $meta ), 1, false )
+				checked( !empty( $meta ), 1, false ),
+				isset($field['data-cell']) ? "data-cell='{$field['data-cell']}'" : ''
 			);
 		}
 

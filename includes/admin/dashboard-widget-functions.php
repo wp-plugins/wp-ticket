@@ -20,7 +20,7 @@ if (!defined('ABSPATH')) exit;
  */
 function emd_dashboard_widget($widget_id, $type, $args = Array() , $default = '') {
 	$dwidgets = get_option('dashboard_widget_options');
-	if ($type == 'admin') {
+	if ($type == 'admin' || $type == 'integration') {
 		$message = $default;
 		if (isset($dwidgets[$widget_id]) && isset($dwidgets[$widget_id]['message'])) {
 			$message = $dwidgets[$widget_id]['message'];
@@ -28,9 +28,9 @@ function emd_dashboard_widget($widget_id, $type, $args = Array() , $default = ''
 		echo $message;
 	} else {
 		$pids = Array();
-		$has_limit_by = get_option($args['app'] . "_has_limitby_cap");
-		if (isset($has_limit_by) && $has_limit_by == 1) {
-			$pids = apply_filters('emd_limit_by', Array() , $args['app'], $args['class']);
+		$back_ents = emd_find_limitby('backend', $args['app']);
+		if(!empty($back_ents) && in_array($args['class'],$back_ents)){
+			$pids = apply_filters('emd_limit_by', Array() , $args['app'], $args['class'],'backend');
 		}
 		$total_items = 5;
 		if (isset($dwidgets[$widget_id]) && isset($dwidgets[$widget_id]['items'])) {
@@ -39,7 +39,9 @@ function emd_dashboard_widget($widget_id, $type, $args = Array() , $default = ''
 		if ($type == 'comment') {
 			echo emd_dashboard_comment_layout($total_items, $pids, $args);
 		} else {
+			echo '<div class="emd-container">' . $args['header'];
 			echo Emd_Widget::get_ent_widget_layout($total_items, $pids, $args);
+			echo $args['footer'] . '</div>';
 		}
 	}
 }

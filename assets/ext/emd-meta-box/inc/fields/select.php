@@ -27,11 +27,12 @@ if ( !class_exists( 'EMD_MB_Select_Field' ) )
 		static function html( $meta, $field )
 		{
 			$html = sprintf(
-				'<select class="emd-mb-select" name="%s" id="%s" size="%s"%s>',
+				'<select class="emd-mb-select" name="%s" id="%s" size="%s"%s %s>',
 				$field['field_name'],
 				$field['id'],
 				$field['size'],
-				$field['multiple'] ? ' multiple="multiple"' : ''
+				$field['multiple'] ? ' multiple="multiple"' : '',
+				isset($field['data-cell']) ? "data-cell='{$field['data-cell']}'" : ''
 			);
 
 			$html .= self::options_html( $field, $meta );

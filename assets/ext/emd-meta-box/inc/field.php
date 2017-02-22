@@ -31,13 +31,22 @@ if ( !class_exists( 'EMD_MB_Field ' ) )
 
 			$field_class = EMD_Meta_Box::get_class_name( $field );
 			$meta = call_user_func( array( $field_class, 'meta' ), $post->ID, $saved, $field );
+			$begin = "";
+			$end = "";
+			// Apply filter to field meta value
+			// 1st filter applies to all fields
+			// 2nd filter applies to all fields with the same type
+			// 3rd filter applies to current field only
+			$meta = apply_filters( 'emd_mb_field_meta', $meta, $field, $saved );
+			$meta = apply_filters( "emd_mb_{$field['type']}_meta", $meta, $field, $saved );
+			$meta = apply_filters( "emd_mb_{$field['id']}_meta", $meta, $field, $saved );
 
-			$group = '';	// Empty the clone-group field
 			$type = $field['type'];
 			$id   = $field['id'];
 
-			$begin = call_user_func( array( $field_class, 'begin_html' ), $meta, $field );
-
+			if(!empty($field['visible'])){
+				$begin = call_user_func( array( $field_class, 'begin_html' ), $meta, $field );
+			}
 			// Apply filter to field begin HTML
 			// 1st filter applies to all fields
 			// 2nd filter applies to all fields with the same type
@@ -51,12 +60,8 @@ if ( !class_exists( 'EMD_MB_Field ' ) )
 			// Cloneable fields
 			if ( $field['clone'] )
 			{
-				if ( isset( $field['clone-group'] ) )
-					$group = " clone-group='{$field['clone-group']}'";
-
-				$meta = (array) $meta;
-
 				$field_html = '';
+				$meta = (array) $meta;
 
 				foreach ( $meta as $index => $sub_meta )
 				{
@@ -70,8 +75,18 @@ if ( !class_exists( 'EMD_MB_Field ' ) )
 					if ( $field['multiple'] )
 						$sub_field['field_name'] .= '[]';
 
-					// Wrap field HTML in a div with class="emd-mb-clone" if needed
-					$input_html = '<div class="emd-mb-clone">';
+					// Wrap field HTML in a div with class="rwmb-clone" if needed
+					$class = "emd-mb-clone emd-mb-{$field['type']}-clone";
+					if ( $field['sort_clone'] )
+					{
+						$class .= ' emd-mb-sort-clone';
+					}
+					$input_html = "<div class='$class'>";
+
+
+					// Drag clone icon
+					if ( $field['sort_clone'] )
+						$input_html .= "<a href='javascript:;' class='emd-mb-clone-icon'></a>";
 
 					// Call separated methods for displaying each type of field
 					$input_html .= call_user_func( array( $field_class, 'html' ), $sub_meta, $sub_field );
@@ -82,8 +97,8 @@ if ( !class_exists( 'EMD_MB_Field ' ) )
 					$input_html = apply_filters( "emd_mb_{$type}_html", $input_html, $field, $sub_meta );
 					$input_html = apply_filters( "emd_mb_{$id}_html", $input_html, $field, $sub_meta );
 
-					// Add clone button
-					$input_html .= self::clone_button();
+					// Remove clone button
+					$input_html .= call_user_func( array( $field_class, 'remove_clone_button' ), $sub_field );
 
 					$input_html .= '</div>';
 
@@ -93,9 +108,13 @@ if ( !class_exists( 'EMD_MB_Field ' ) )
 			// Non-cloneable fields
 			else
 			{
-				// Call separated methods for displaying each type of field
-				$field_html = call_user_func( array( $field_class, 'html' ), $meta, $field );
-
+				if(!empty($field['visible'])){
+					// Call separated methods for displaying each type of field
+					$field_html = call_user_func( array( $field_class, 'html' ), $meta, $field );
+				}
+				else {
+					$field_html = "";
+				}
 				// Apply filter to field HTML
 				// 1st filter applies to all fields with the same type
 				// 2nd filter applies to current field only
@@ -103,8 +122,9 @@ if ( !class_exists( 'EMD_MB_Field ' ) )
 				$field_html = apply_filters( "emd_mb_{$id}_html", $field_html, $field, $meta );
 			}
 
-			$end = call_user_func( array( $field_class, 'end_html' ), $meta, $field );
-
+			if(!empty($field['visible'])){
+				$end = call_user_func( array( $field_class, 'end_html' ), $meta, $field );
+			}
 			// Apply filter to field end HTML
 			// 1st filter applies to all fields
 			// 2nd filter applies to all fields with the same type
@@ -123,7 +143,9 @@ if ( !class_exists( 'EMD_MB_Field ' ) )
 				$classes[] = $field['class'];
 		
 			$field_classes = implode( ' ', $classes );
-			$field_html = '<div class="' . $field_classes . '" ' . $group . '>' . $field_html . '</div>';
+			if(!empty($field['visible'])){
+				$field_html = '<div class="' . $field_classes . '">' . $field_html . '</div>';
+			}
 			//wpas-change	
 
 			// Apply filter to field wrapper
@@ -162,13 +184,19 @@ if ( !class_exists( 'EMD_MB_Field ' ) )
 			if ( empty( $field['name'] ) )
 				return '<div class="emd-mb-input">';
 
+			$data_max_clone = '';
+			if ( is_numeric( $field['max_clone'] ) && $field['max_clone'] > 1 )
+			{
+				$data_max_clone .= ' data-max-clone=' . $field['max_clone'];
+			}
 			return sprintf(
 				'<div class="emd-mb-label">
 					<label for="%s">%s</label>
 				</div>
-				<div class="emd-mb-input">',
+				<div class="emd-mb-input"%s>',
 				$field['id'],
-				$field['name']
+				$field['name'],
+				$data_max_clone
 			);
 		}
 
@@ -184,9 +212,7 @@ if ( !class_exists( 'EMD_MB_Field ' ) )
 		{
 			$id = $field['id'];
 
-			$button = '';
-			if ( $field['clone'] )
-				$button = '<a href="#" class="emd-mb-button button-primary add-clone">' . __( '+', 'emd-plugins' ) . '</a>';
+			$button = $field['clone'] ? call_user_func( array( EMD_Meta_Box::get_class_name( $field ), 'add_clone_button' ), $field ) : '';
 
 			$desc = !empty( $field['desc'] ) ? "<p id='{$id}_description' class='description'>{$field['desc']}</p>" : '';
 
@@ -199,11 +225,28 @@ if ( !class_exists( 'EMD_MB_Field ' ) )
 		/**
 		 * Add clone button
 		 *
+		 * @param array $field Field parameter
+		 *
 		 * @return string $html
 		 */
-		static function clone_button()
+		static function add_clone_button( $field )
 		{
-			return '<a href="#" class="emd-mb-button button remove-clone">' . __( '&#8211;', 'emd-plugins' ) . '</a>';
+			$text = apply_filters( 'emd_mb_add_clone_button_text', __( '+ Add more', 'meta-box' ), $field );
+			return "<a href='#' class='emd-mb-button button-primary add-clone'>$text</a>";
+		}
+
+		/**
+		 * Remove clone button
+		 *
+		 * @param array $field Field parameter
+		 *
+		 * @return string $html
+		 */
+		static function remove_clone_button( $field )
+		{
+			$icon = '<i class="dashicons dashicons-minus"></i>';
+			$text = apply_filters( 'emd_mb_remove_clone_button_text', $icon, $field );
+			return "<a href='#' class='emd-mb-button remove-clone'>$text</a>";
 		}
 
 		/**
@@ -217,7 +260,8 @@ if ( !class_exists( 'EMD_MB_Field ' ) )
 		 */
 		static function meta( $post_id, $saved, $field )
 		{
-			$meta = get_post_meta( $post_id, $field['id'], !$field['multiple'] );
+			$single = $field['clone'] || ! $field['multiple'];
+			$meta = get_post_meta( $post_id, $field['id'], $single );
 
 			// Use $field['std'] only when the meta box hasn't been saved (i.e. the first time we run)
 			$meta = ( !$saved && '' === $meta || array() === $meta ) ? $field['std'] : $meta;

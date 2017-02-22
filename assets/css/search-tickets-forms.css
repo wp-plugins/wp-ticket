@@ -1,5 +1,6 @@
 
 div.emd-container #search_tickets{
+margin-bottom:35px;
 padding: 15px;
 }
 div.emd-container #search_tickets:before, #search_tickets:after {
@@ -86,6 +87,41 @@ color:red;
 div.emd-container label {
 font-weight:normal !important;
 }
+div.emd-container .select2-search-choice-close{
+background: url("/wp-content/plugins/wp-ticket/assets/ext/bselect2341/select2.png") no-repeat scroll right top rgba(0, 0, 0, 0) !important;
+}
+div.emd-container .select2-container.form-control {
+background: none repeat scroll 0 0 #FFFFFF !important;
+}
+div.emd-container .select2-container-multi .select2-choices .select2-search-choice,
+div.emd-container .select2-container-multi .select2-choices .select2-search-field input {
+    font-size: 14px;
+}
+div.emd-container .select2-container--default .select2-selection--multiple .select2-selection__choice {
+font-size: 80%;
+margin-left:0;
+background-color: #ffffff;
+color: #000000;
+font-weight: 400;
+}
+div.emd-container .select2-container--default .select2-selection--multiple,
+div.emd-container .select2-container .select2-selection--single {
+min-height: 34px;
+line-height: 0.5;
+font-size: 14px;
+}
+div.emd-container .select2-search.select2-search--inline{
+  margin: 0;
+  padding: 0 6px;
+  width: 100%;
+}
+div.emd-container .select2-container {
+    width: 100% !important;
+}
+div.emd-container .select2-container--default {
+display:table !important;
+table-layout:fixed !important;
+}
 div.emd-container #singlebutton_search_tickets {
     background: none repeat scroll 0 0 #428BCA;
     border-color: #357EBD;
@@ -114,7 +150,6 @@ div.emd-container #emd_ticket_id {
     border-radius: 4px 4px 4px 4px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
     display: block;
-    font-size: 14px;
     height: 34px;
     line-height: 1.42857;
     padding: 6px 12px 6px 12px;
@@ -127,7 +162,18 @@ div.emd-container #emd_ticket_email {
     border-radius: 4px 4px 4px 4px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
     display: block;
-    font-size: 14px;
+    height: 34px;
+    line-height: 1.42857;
+    padding: 6px 12px 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    vertical-align: middle;
+    width: 100%;
+}
+div.emd-container #emd_ticket_duedate {
+    border: 1px solid #CCCCCC;
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    display: block;
     height: 34px;
     line-height: 1.42857;
     padding: 6px 12px 6px 12px;

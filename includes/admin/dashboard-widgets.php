@@ -3,7 +3,6 @@
  * Admin Dashboard Functions
  *
  * @package WP_TICKET_COM
- * @version 2.0.1
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
@@ -32,10 +31,14 @@ function wp_ticket_com_recent_tickets_dashboard_dwidget() {
 		'post_type' => 'emd_ticket',
 		'post_status' => 'publish',
 		'orderby' => 'date',
-		'order' => 'DESC'
+		'order' => 'DESC',
+		'context' => 'wp_ticket_com_recent_tickets_dashboard_widget',
 	);
 	$args['fname'] = 'wp_ticket_com_recent_tickets_dashboard_layout';
 	$args['app'] = 'wp_ticket_com';
+	$args['filter'] = '';
+	$args['header'] = '<ul>';
+	$args['footer'] = '</li>';
 	emd_dashboard_widget('wp_ticket_com_recent_tickets_dashboard', 'entity', $args);
 }
 /**
@@ -52,9 +55,8 @@ function wp_ticket_com_recent_tickets_dashboard_dwidget_control() {
  *
  */
 function wp_ticket_com_recent_tickets_dashboard_layout() {
-?>
-* <a title="<?php echo esc_html(emd_mb_meta('emd_ticket_id')) ?> - <?php echo get_the_date() ?> - <?php echo get_the_time() ?>" href="<?php echo get_permalink() ?>"><?php echo get_the_title() ?></a><br />
-
-
-<?php
+	ob_start();
+	emd_get_template_part('wp_ticket_com', 'widget', 'recent-tickets-dashboard-content');
+	$layout = ob_get_clean();
+	return $layout;
 }

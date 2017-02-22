@@ -13,7 +13,7 @@ if ( !class_exists( 'EMD_MB_Map_Field' ) )
 		 */
 		static function admin_enqueue_scripts()
 		{
-			wp_enqueue_script( 'googlemap', 'https://maps.google.com/maps/api/js?sensor=false', array(), '', true );
+			wp_enqueue_script( 'googlemap', 'https://maps.google.com/maps/api/js', array(), '', true );
 			wp_enqueue_style( 'emd-mb-map', EMD_MB_CSS_URL . 'map.css' );
 			wp_enqueue_script( 'emd-mb-map', EMD_MB_JS_URL . 'map.js', array( 'jquery', 'jquery-ui-autocomplete', 'googlemap' ), EMD_MB_VER, true );
 		}
@@ -96,8 +96,8 @@ if ( !class_exists( 'EMD_MB_Map_Field' ) )
 			 * Enqueue scripts
 			 * Note: We still can enqueue script which outputs in the footer
 			 */
-			wp_register_script( 'google-maps', 'https://maps.google.com/maps/api/js?sensor=false', array(), '', true );
-			wp_enqueue_script( 'emd-mb-map-frontend', EMD_MB_JS_URL . 'map-frontend.js', array( 'google-maps' ), '', true );
+			wp_register_script( 'google-maps', 'https://maps.google.com/maps/api/js', array(), '', true );
+			wp_enqueue_script( 'emd-mb-map-frontend', EMD_MB_JS_URL . 'map-frontend.js', array( 'jquery','google-maps' ), '', true );
 			// Map parameters
 			$args = wp_parse_args( $args, array(
 				'latitude'     => $value['latitude'],
@@ -117,12 +117,19 @@ if ( !class_exists( 'EMD_MB_Map_Field' ) )
 			 */
 			$args['js_options'] = wp_parse_args( $args['js_options'], array(
 				// Default to 'zoom' level set in admin, but can be overwritten
-				'zoom'      => $value['zoom'],
+				'zoom'      => $args['zoom'],
 				// Map type, see https://developers.google.com/maps/documentation/javascript/reference#MapTypeId
-				'mapTypeId' => 'ROADMAP',
+				'mapTypeId' => $args['mapTypeId'],
 			) );
+
 			$output = sprintf(
-				'<div class="emd-mb-map-canvas" data-map_options="%s" style="width:%s;height:%s"></div>',
+				'<style type="text/css" media="screen">
+				/*<![CDATA[*/
+				.gm-style img{ 
+				max-width:none !important; 
+				/*]]>*/} 
+				</style>
+				<div class="emd-mb-map-canvas" data-map_options="%s" style="width:%s;height:%s"></div>',
 				esc_attr( wp_json_encode( $args ) ),
 				esc_attr( $args['width'] ),
 				esc_attr( $args['height'] )

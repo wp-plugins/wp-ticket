@@ -477,26 +477,38 @@ class Zebra_Form_Control extends XSS_Clean
      */
     function set_attributes($attributes, $overwrite = true)
     {
-
         // check if $attributes is given as an array
         if (is_array($attributes))
 
             // iterate through the given attributes array
             foreach ($attributes as $attribute => $value) {
+		if(isset($this->attributes['value']) && $attribute == 'data-cell' && ($this->attributes['type'] == 'checkbox' || $this->attributes['type'] == 'radio')){
+                        if(is_array($value)){
+                                foreach($value as $val => $cell){
+                                        if($val == $this->attributes['value']){
+                                                $this->attributes[$attribute] = $cell;
+                                        }
+                                }
+                        }
+			else {                     
+				$this->attributes[$attribute] = $value;
+			}
+                }
+		else {
+			// we need to url encode the prefix as it may contain HTML entities which would produce validation errors
+			if ($attribute == 'data-prefix') $value = urlencode($value);
 
-                // we need to url encode the prefix as it may contain HTML entities which would produce validation errors
-                if ($attribute == 'data-prefix') $value = urlencode($value);
+			// if the value is to be appended to the already existing one
+			// and there is a value set for the specified attribute
+			// and the values do not represent an array
+			if (!$overwrite && isset($this->attributes[$attribute]) && !is_array($this->attributes[$attribute]))
 
-                // if the value is to be appended to the already existing one
-                // and there is a value set for the specified attribute
-                // and the values do not represent an array
-                if (!$overwrite && isset($this->attributes[$attribute]) && !is_array($this->attributes[$attribute]))
+			    // append the value
+			    $this->attributes[$attribute] = $this->attributes[$attribute] . ' ' . $value;
 
-                    // append the value
-                    $this->attributes[$attribute] = $this->attributes[$attribute] . ' ' . $value;
-
-                // otherwise, add attribute to attributes array
-                else $this->attributes[$attribute] = $value;
+			// otherwise, add attribute to attributes array
+			else $this->attributes[$attribute] = $value;
+		}
 
             }
 

@@ -49,12 +49,13 @@ if ( !class_exists( 'EMD_MB_Date_Field' ) )
 				}
                         }
 			return sprintf(
-				'<input type="text" class="emd-mb-date" name="%s" value="%s" id="%s" size="%s" data-options="%s" readonly/>',
+				'<input type="text" class="emd-mb-date" name="%s" value="%s" id="%s" size="%s" data-options="%s" data-cell="%s" readonly/>',
 				$field['field_name'],
 				$meta,
 				isset( $field['clone'] ) && $field['clone'] ? '' : $field['id'],
 				$field['size'],
-				esc_attr( json_encode( $field['js_options'] ) )
+				esc_attr( json_encode( $field['js_options'] ) ),
+				isset( $field['data-cell'] ) ? $field['data-cell'] : ''
 			);
 		}
 
@@ -77,6 +78,9 @@ if ( !class_exists( 'EMD_MB_Date_Field' ) )
 			$field['js_options'] = wp_parse_args( $field['js_options'], array(
 				'dateFormat'      => empty( $field['format'] ) ? 'yy-mm-dd' : $field['format'],
 				'showButtonPanel' => true,
+				'changeMonth' => true,
+				'changeYear' => true,
+				'yearRange' => '-100:+10'
 			) );
 
 			return $field;

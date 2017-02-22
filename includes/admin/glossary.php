@@ -3,7 +3,6 @@
  * Settings Glossary Functions
  *
  * @package WP_TICKET_COM
- * @version 2.0.1
  * @since WPAS 4.0
  */
 if (!defined('ABSPATH')) exit;
@@ -23,13 +22,47 @@ function wp_ticket_com_settings_glossary() {
 <p><?php _e('The below are the definitions of entities, attributes, and terms included in Wp Ticket.', 'wp-ticket-com'); ?></p>
 <div id="glossary" class="accordion-container">
 <ul class="outer-border">
-<li id="emd_ticket" class="control-section accordion-section">
+<li id="emd_agent" class="control-section accordion-section">
+<h3 class="accordion-section-title hndle" tabindex="2"><?php _e('Agents', 'wp-ticket-com'); ?></h3>
+<div class="accordion-section-content">
+<div class="inside">
+<table class="form-table"><p class"lead"><?php _e('Agents are employees from the company that addresses issues to the customer\'s satisfaction.', 'wp-ticket-com'); ?></p><tr>
+<th><?php _e('Photo', 'wp-ticket-com'); ?></th>
+<td><?php _e('Photo of the staff member. Photo does not have a default value. ', 'wp-ticket-com'); ?></td>
+</tr><tr>
+<th><?php _e('First Name', 'wp-ticket-com'); ?></th>
+<td><?php _e('First name of the staff member. First Name is a required field. Being a unique identifier, it uniquely distinguishes each instance of Agent entity. First Name is filterable in the admin area. First Name does not have a default value. ', 'wp-ticket-com'); ?></td>
+</tr><tr>
+<th><?php _e('Last Name', 'wp-ticket-com'); ?></th>
+<td><?php _e('Last name of the staff member. Last Name is a required field. Being a unique identifier, it uniquely distinguishes each instance of Agent entity. Last Name is filterable in the admin area. Last Name does not have a default value. ', 'wp-ticket-com'); ?></td>
+</tr><tr>
+<th><?php _e('Agent user', 'wp-ticket-com'); ?></th>
+<td><?php _e('System user assigned to the staff member. Agent user is a required field. Being a unique identifier, it uniquely distinguishes each instance of Agent entity. Agent user does not have a default value. Only users who have the following access roles are listed as allowable value; <ul style="list-style: square outside none;padding: 30px;"><li>manager</li><li>agent</li></ul>', 'wp-ticket-com'); ?></td>
+</tr><tr>
+<th><?php _e('Email', 'wp-ticket-com'); ?></th>
+<td><?php _e('Email address of the staff member. Email is filterable in the admin area. Email does not have a default value. ', 'wp-ticket-com'); ?></td>
+</tr><tr>
+<th><?php _e('Phone', 'wp-ticket-com'); ?></th>
+<td><?php _e('Phone number of the staff member. Phone is filterable in the admin area. Phone does not have a default value. ', 'wp-ticket-com'); ?></td>
+</tr><tr>
+<th><?php _e('Extension', 'wp-ticket-com'); ?></th>
+<td><?php _e('Phone number extension of the staff member. Extension is filterable in the admin area. Extension does not have a default value. ', 'wp-ticket-com'); ?></td>
+</tr><tr>
+<th><?php _e('Mobile', 'wp-ticket-com'); ?></th>
+<td><?php _e('Mobile phone number of the staff member. Mobile is filterable in the admin area. Mobile does not have a default value. ', 'wp-ticket-com'); ?></td>
+</tr><tr>
+<th><?php _e('Tickets Assigned', 'wp-ticket-com'); ?></th>
+<td><?php _e('Allows to display and create connections with Tickets', 'wp-ticket-com'); ?>. <?php _e('One instance of Agents can associated with many instances of Tickets', 'wp-ticket-com'); ?>.  <?php _e('The relationship can be set up in the edit area of Tickets using Assignee relationship box', 'wp-ticket-com'); ?>. </td>
+</tr></table>
+</div>
+</div>
+</li><li id="emd_ticket" class="control-section accordion-section">
 <h3 class="accordion-section-title hndle" tabindex="1"><?php _e('Tickets', 'wp-ticket-com'); ?></h3>
 <div class="accordion-section-content">
 <div class="inside">
 <table class="form-table"><p class"lead"><?php _e('A tickets represents a help request.', 'wp-ticket-com'); ?></p><tr>
 <th><?php _e('Ticket ID', 'wp-ticket-com'); ?></th>
-<td><?php _e('Unique identifier for a ticket Ticket ID is filterable in the admin area. Ticket ID does not have a default value. ', 'wp-ticket-com'); ?></td>
+<td><?php _e('Unique identifier for a ticket Being a unique identifier, it uniquely distinguishes each instance of Ticket entity. Ticket ID is filterable in the admin area. Ticket ID does not have a default value. ', 'wp-ticket-com'); ?></td>
 </tr><tr>
 <th><?php _e('First Name', 'wp-ticket-com'); ?></th>
 <td><?php _e(' First Name is a required field. First Name is filterable in the admin area. First Name does not have a default value. ', 'wp-ticket-com'); ?></td>
@@ -101,32 +134,8 @@ function wp_ticket_com_settings_glossary() {
 <td><?php _e('This ticket is being actively worked on at the moment.', 'wp-ticket-com'); ?></td>
 </tr>
 <tr>
-<td><?php _e('Reopened', 'wp-ticket-com'); ?></td>
-<td><?php _e('This ticket was once \'Resolved\' or \'Closed\', but is now being re-visited, e.g. an ticket with a Resolution of \'Cannot Reproduce\' is Reopened when more information becomes available and the ticket becomes reproducible. The next ticket states are either marked In Progress, Resolved or Closed.', 'wp-ticket-com'); ?></td>
-</tr>
-<tr>
 <td><?php _e('Closed', 'wp-ticket-com'); ?></td>
 <td><?php _e('This ticket is complete.', 'wp-ticket-com'); ?></td>
-</tr>
-<tr>
-<td><?php _e('Resolved - Fixed', 'wp-ticket-com'); ?></td>
-<td><?php _e('A fix for this ticket has been implemented.', 'wp-ticket-com'); ?></td>
-</tr>
-<tr>
-<td><?php _e('Resolved - Won\'t Fix', 'wp-ticket-com'); ?></td>
-<td><?php _e('This ticket will not be fixed, e.g. it may no longer be relevant.', 'wp-ticket-com'); ?></td>
-</tr>
-<tr>
-<td><?php _e('Resolved - Duplicate', 'wp-ticket-com'); ?></td>
-<td><?php _e('This ticket is a duplicate of an existing ticket. It is recommended you create a link to the duplicated ticket by creating a related ticket connection.', 'wp-ticket-com'); ?></td>
-</tr>
-<tr>
-<td><?php _e('Resolved - Incomplete', 'wp-ticket-com'); ?></td>
-<td><?php _e('There is not enough information to work on this ticket.', 'wp-ticket-com'); ?></td>
-</tr>
-<tr>
-<td><?php _e('Resolved - CNR', 'wp-ticket-com'); ?></td>
-<td><?php _e('This ticket could not be reproduced at this time, or not enough information was available to reproduce the ticket issue. If more information becomes available, reopen the ticket.', 'wp-ticket-com'); ?></td>
 </tr>
 </table>
 </div></td>
@@ -134,9 +143,12 @@ function wp_ticket_com_settings_glossary() {
 <tr>
 <th><?php _e('Topic', 'wp-ticket-com'); ?></th>
 
-<td><?php _e('Topics are the categories for tickets. Topic accepts multiple values like tags', 'wp-ticket-com'); ?>. <?php _e('Topic does not have a default value', 'wp-ticket-com'); ?>.<div class="taxdef-block"><p><?php _e('The following are the preset values for <b>Topic:</b>', 'wp-ticket-com'); ?></p><p class="taxdef-values"><?php _e('Feature request', 'wp-ticket-com'); ?>, <?php _e('Task', 'wp-ticket-com'); ?>, <?php _e('Bug', 'wp-ticket-com'); ?></p></div></td>
+<td><?php _e('Topics are the categories for tickets. Topic accepts multiple values like tags', 'wp-ticket-com'); ?>. <?php _e('Topic has a default value of:', 'wp-ticket-com'); ?> <?php _e(' uncategorized', 'wp-ticket-com'); ?>. <div class="taxdef-block"><p><?php _e('The following are the preset values for <b>Topic:</b>', 'wp-ticket-com'); ?></p><p class="taxdef-values"><?php _e('Feature request', 'wp-ticket-com'); ?>, <?php _e('Task', 'wp-ticket-com'); ?>, <?php _e('Bug', 'wp-ticket-com'); ?>, <?php _e('Uncategorized', 'wp-ticket-com'); ?>, <?php _e('Order', 'wp-ticket-com'); ?>, <?php _e('Presales', 'wp-ticket-com'); ?></p></div></td>
 </tr>
-</table>
+<tr>
+<th><?php _e('Assignee', 'wp-ticket-com'); ?></th>
+<td><?php _e('Allows to display and create connections with Agents', 'wp-ticket-com'); ?>. <?php _e('One instance of Tickets can associated with <b>only one</b> instance of Agents', 'wp-ticket-com'); ?>.  <?php _e('The relationship can be set up in the edit area of Tickets using Assignee relationship box. ', 'wp-ticket-com'); ?> </td>
+</tr></table>
 </div>
 </div>
 </li>
