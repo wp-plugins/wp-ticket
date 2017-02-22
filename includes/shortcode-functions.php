@@ -119,6 +119,14 @@ if (!function_exists('emd_shc_get_layout_list')) {
 				$args = Array('post__in' => explode(",",$misc_filters['post_id']), 'post_type' => $args['post_type']);
 			}
 			$myshc_query = new WP_Query($args);
+			if (!is_user_logged_in())
+			{
+			?>
+			<div class="tickets-info">
+				<b>Note:</b> As a visitor, you can only see tickets submitted by other visitors.<br/> Please Login to see all tickets.
+			</div>
+			<?php
+			}
 			if ($myshc_query->have_posts()) {	
 					
 				ob_start();
