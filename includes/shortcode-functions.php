@@ -239,7 +239,7 @@ if (!function_exists('emd_shc_get_layout_list')) {
 			}
 			else{
 				?>
-				<div class="no-results"> No search results! </div>
+				<div class="tickets-info"> No search results! </div>
 				<?php
 			}
 		}
